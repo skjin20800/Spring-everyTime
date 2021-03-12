@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file ="../layout/header.jsp" %>
-
+<title>메인 페이지</title>
     <div id="submenu">
             <div class="wrap">
                 <div class="divider"></div>
                 <div class="group">
                     <ul>
-                    <li><a href="/389150" data-id="389150" class="new">자유게시판</a></li>
+                    <li><a href="/board/free" data-id="389150" class="new">자유게시판</a></li>
                     <li><a href="/259143" data-id="259143" class="new">비밀게시판</a></li>
                     <li><a href="/389426" data-id="389426" class="new">졸업생게시판</a></li>
                     <li><a href="/389239" data-id="389239" class="new">새내기게시판</a></li>

@@ -1,0 +1,5 @@
+package com.everytime.project.domain.board;
+
+public class Board {
+
+}

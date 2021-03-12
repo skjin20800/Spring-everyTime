@@ -11,12 +11,20 @@ import com.everytime.project.config.auth.PrincipalDetails;
 @Controller
 public class BoardController {
 	
-	@GetMapping({"","/"})
+	@GetMapping({"","/","/board"})
 	public String findAll() {//@Controller + @ResponseBody = @RestController
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		PrincipalDetails principalDetails =  (PrincipalDetails) authentication.getPrincipal();
 		System.out.println(principalDetails.getUser());
 		return "jsp/boardMain";
+	}
+	
+	@GetMapping("/board/free")
+	public String freeFindAll() {//@Controller + @ResponseBody = @RestController
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		PrincipalDetails principalDetails =  (PrincipalDetails) authentication.getPrincipal();
+		System.out.println(principalDetails.getUser());
+		return "jsp/boardFree";
 	}
 	
 }

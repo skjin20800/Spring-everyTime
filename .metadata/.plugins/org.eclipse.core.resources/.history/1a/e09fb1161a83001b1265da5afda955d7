@@ -1,0 +1,5 @@
+package com.everytime.project.domain.board.reply;
+
+public class Reply {
+
+}
