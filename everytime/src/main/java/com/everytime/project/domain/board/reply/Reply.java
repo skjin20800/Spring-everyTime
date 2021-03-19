@@ -4,13 +4,11 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -30,21 +28,21 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 public class Reply {
-
 	@Id //Primary Key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; //시퀀스, auto_increment
 	
-	private Long from;
+	@Column(nullable = false, length = 100)
+	private Long fromReply;
 		
 	@Lob
 	private String content;
 	
 	@ColumnDefault("0") 
-	private Integer scrapCount;
+	private int scrapCount;
 	
 	@ColumnDefault("1") 
-	private Integer replyAnomymous_Number;
+	private int replyAnomymousNumber;
 	
 	@Column(nullable = false, length = 100)
 	private Boolean isAnonymous;
@@ -52,13 +50,13 @@ public class Reply {
 	@CreationTimestamp
 	private Timestamp createDate;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "user_Id") // 테이블에 user_Id로적힘
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "board_Id") // 테이블에 user_Id로적힘
+	@ManyToOne
+	@JoinColumn(name = "board_Id") 
 	private Board board;
-	
-	
+
+
 }

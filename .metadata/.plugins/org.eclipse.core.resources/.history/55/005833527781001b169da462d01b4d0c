@@ -1,5 +1,0 @@
-package com.everytime.project.config;
-
-public class SecurityConfig {
-
-}

@@ -18,30 +18,26 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@Entity
-public class Like {
 
-	@Id //Primary Key
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id; //시퀀스, auto_increment
-	
-	private Boolean isLike;
-		
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_Id") // 테이블에 user_Id로적힘
-	private User user;
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "board_Id") // 테이블에 user_Id로적힘
-	private Board board;
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "reply_Id") // 테이블에 user_Id로적힘
-	private Reply reply;
-	
+public class Like {
+//
+//	@Id //Primary Key
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Long id; //시퀀스, auto_increment
+//	
+//	private Boolean isLike;
+//		
+//	@ManyToOne
+//	@JoinColumn(name = "user_Id") // 테이블에 user_Id로적힘
+//	private User user;
+//	
+//	@ManyToOne
+//	@JoinColumn(name = "board_Id") // 테이블에 user_Id로적힘
+//	private Board board;
+//	
+//	@ManyToOne
+//	@JoinColumn(name = "reply_Id") // 테이블에 user_Id로적힘
+//	private Reply reply;
+	//
 	
 }

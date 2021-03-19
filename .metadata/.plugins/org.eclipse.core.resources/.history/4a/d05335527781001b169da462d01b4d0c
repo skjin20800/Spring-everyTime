@@ -1,5 +1,0 @@
-package com.everytime.project.config.auth;
-
-public class PrincipalDetailsService {
-
-}
