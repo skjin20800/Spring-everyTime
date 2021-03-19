@@ -20,12 +20,7 @@ public class BoardService {
 		return boardRepository.findByType(BoardType.FREE);
 	}
 	
-	public int 글쓰기(Board board) {
-		Board boardEntity = boardRepository.save(board);
-		if(boardEntity == null) {
-			return -1;
-		}else {
-			return 1;
-		}
+	public Board 글쓰기(Board board) {		
+		return boardRepository.save(board);
 	}
 }

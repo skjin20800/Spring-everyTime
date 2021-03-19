@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="jpa"/>
+		<item key="selection" value="_fn"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="_fn"/>
+			<item value="_fn.showWriteArticleForm();"/>
+			<item value="#writeArticleButton"/>
+			<item value="writeBoardContainer"/>
+			<item value="writeArticleButton"/>
+			<item value="새 글"/>
+			<item value="form class"/>
+			<item value="form"/>
+			<item value="&lt;form class=&quot;write&quot;&gt;"/>
 			<item value="jpa"/>
 			<item value="bob"/>
 			<item value="/h2"/>
 			<item value="간짜장"/>
 			<item value="open"/>
 			<item value="context"/>
-			<item value="resources"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="616"/>
-		<item key="DIALOG_Y_ORIGIN" value="263"/>
+		<item key="DIALOG_X_ORIGIN" value="1493"/>
+		<item key="DIALOG_Y_ORIGIN" value="474"/>
 		<item key="DIALOG_WIDTH" value="288"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

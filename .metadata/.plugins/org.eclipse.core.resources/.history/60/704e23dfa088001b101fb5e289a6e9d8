@@ -53,9 +53,10 @@ public class BoardController {
 		Board board = boardPostReqDto.toEntity();
 		board.setUser(principalDetails.getUser());
 		board.setType(BoardType.FREE);
-		int result = boardService.글쓰기(board);
+		Board boardEntity = boardService.글쓰기(board);
+		
 
-		return new CMRespDto<>(result,null) ;
+		return new CMRespDto<>(1,null) ;
 		}
 	}
 
