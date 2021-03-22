@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+#container {
+  position: absolute;
+  left: 50%;
+  margin-left: -180px;
+  width: 360px;
+}
+address {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e3e3e3;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+address > ul.links {
+  padding: 20px 0;
+  font-size: 0;
+}
+address > ul.links > li {
+  display: inline-block;
+  margin: 0 5px;
+}
+address > ul.links > li > a {
+  color: #444444;
+  font-size: 13px;
+}
+address > ul.links > li.copyright > a {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 640px) {
+  #container {
+    position: static;
+    width: auto;
+  }
+  address > ul.links {
+    padding: 15px 0;
+  }
+}
