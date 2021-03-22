@@ -1,5 +1,18 @@
 @charset "utf-8";
 
+
+.profile__kb{
+ display: flex;
+    flex-direction: column;
+	float: left;
+  margin-bottom: 15px;
+  height: 40px;
+}
+
+.center__1{    
+    padding-top: 10px;
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * *  /  common  /  * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #writeArticleButton {
