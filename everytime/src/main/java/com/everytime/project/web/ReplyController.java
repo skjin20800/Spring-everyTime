@@ -2,6 +2,7 @@ package com.everytime.project.web;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,4 +31,15 @@ public class ReplyController {
 
 		return new CMRespDto<>(result,null) ;
 		}
+	
+	@DeleteMapping("/reply/{id}")
+	public CMRespDto<?> deleteById(@PathVariable Long id,
+			@AuthenticationPrincipal PrincipalDetails principalDetails){
+		
+		//모든 컨트롤러에 삭제하기, 수정하기는 무조건 동일 인물이 로그인 했는지 확인!!!
+		int result = replyService.삭제하기(id, principalDetails.getUser().getId());
+		return new CMRespDto<>(result,null);
+	}
+	
+
 }

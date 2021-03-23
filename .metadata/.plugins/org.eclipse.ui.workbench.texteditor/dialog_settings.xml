@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="board"/>
+		<item key="selection" value="create"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="create"/>
+			<item value="aa"/>
+			<item value="ㅁㅁ"/>
+			<item value="writecomment"/>
 			<item value="LAZY"/>
 			<item value="board"/>
 			<item value="List"/>
@@ -19,10 +23,6 @@
 			<item value="profile"/>
 			<item value="everytime.kr"/>
 			<item value="59"/>
-			<item value="_fn"/>
-			<item value="_fn.showWriteArticleForm();"/>
-			<item value="#writeArticleButton"/>
-			<item value="writeBoardContainer"/>
 		</list>
 		<list key="replacehistory">
 		</list>

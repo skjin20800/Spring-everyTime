@@ -30,4 +30,19 @@ public class ReplyService {
 			return 1;
 		}
 	}
+	
+	@Transactional
+	public int 삭제하기(Long id, Long userId) {
+		Reply replyEntity = replyRepository.findById(id).orElseThrow(()->{
+			return new IllegalArgumentException("id를 찾을 수 없습니다.");
+		});
+		if(replyEntity.getUser().getId()==userId) {
+			replyRepository.deleteById(id);
+			return 1;
+		}else {
+			return -1;
+		}		
+	}
+
+	
 }

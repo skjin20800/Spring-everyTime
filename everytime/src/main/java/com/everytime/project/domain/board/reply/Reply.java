@@ -1,20 +1,27 @@
 package com.everytime.project.domain.board.reply;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.everytime.project.domain.board.Board;
+import com.everytime.project.domain.board.reply.rereply.ReReply;
 import com.everytime.project.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -33,17 +40,10 @@ public class Reply {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; //시퀀스, auto_increment
 	
-	@Column(length = 100)
-	private Long fromReply;
-		
 	@Lob
 	private String content;
 	
-	@ColumnDefault("0") 
-	private int scrapCount;
-	
-	@ColumnDefault("0") 
-	private int replyAnomymousNumber;
+	private Integer likeCount;
 	
 	@Column(nullable = false, length = 100)
 	private Boolean isAnonymous;
@@ -59,6 +59,17 @@ public class Reply {
 	@JoinColumn(name = "boardId")
 	private Board board;
 	
+	//양방향 매핑
+	@OneToMany(mappedBy = "reply",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"reply"})
+   @OrderBy("id desc")
+	private List<ReReply> rereplys;
+	
+	 @PrePersist
+	    public void prePersist() {
+	        this.likeCount = this.likeCount == null ? 0 : this.likeCount;
+	    }
+	
 
-
+	
 }

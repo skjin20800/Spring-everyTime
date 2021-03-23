@@ -35,16 +35,17 @@
     <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
-    <fullyQualifiedTypeName name="com.everytime.project.domain.board.reply.Reply"/>
     <fullyQualifiedTypeName name="com.everytime.project.web.ReplyReqDto"/>
     <fullyQualifiedTypeName name="com.everytime.project.service.ReplyService"/>
     <fullyQualifiedTypeName name="com.everytime.project.domain.board.reply.ReplyRepository"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnoreProperties"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIdentityInfo"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.ObjectIdGenerators"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.everytime.project.domain.board.reply.Reply"/>
+    <fullyQualifiedTypeName name="javax.persistence.PostPersist"/>
 </qualifiedTypeNameHistroy>

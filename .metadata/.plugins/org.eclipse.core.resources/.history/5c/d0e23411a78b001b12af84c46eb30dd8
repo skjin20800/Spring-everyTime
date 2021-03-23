@@ -1,0 +1,65 @@
+/*대댓글 버튼 클릭시 form 생성*/
+function formReReply(id){
+	
+	let count = 1;
+	if(count == 1){
+$("#reply-"+id).prepend(
+	`<form class="writecomment">
+	<input type="hidden" id="rereply-${id}" value="${id}" /> 
+	<input type="text" id="rereplycontent-${id}" maxlength="300" placeholder="댓글을 입력하세요." class="text" />
+	<ul class="option">
+	<li class="anonym "><input type="checkbox" class="form-check-input" id="isAnonymous-${id}" name="isAnonymous-${id}" />
+	<label class="form-check-label " for="exampleCheck1"> 익명 </label></li>
+	<li title="완료" onClick="postReReply(${id})"><p class="center__1">그림</p></li>
+	</ul>
+	<div class="clearBothOnly"></div>
+	</form>
+`);	
+count = count +1;	
+	}else{
+		
+	}	
+}
+/*대댓글 버튼 클릭시 form 생성 끝*/
+
+/*대댓글 버튼생성*/
+function postReReply(id){
+
+  	let data = {
+		content: $("#rereplycontent-"+id).val(),
+		isAnonymous: $("input:checkbox[name=isAnonymous-"+id+"]").is(':checked')
+	};
+	
+       $.ajax({
+		type: "POST",
+		url: "/rereply/"+id,
+		data: JSON.stringify(data),
+		contentType: "application/json; charset=utf-8",
+		dataType:"json"
+	}).done((res)=>{
+		console.log(res);
+		if(res.statusCode === 1){
+			alert("게시글 작성에 성공하였습니다.");
+			 location.reload();
+		}else{
+			alert("게시글 작성에 실패하였습니다.");
+		}
+	});
+	
+}
+
+/*글쓰기 완료*/
+  $("#reReplyPost").on("click", (e)=>{
+	e.preventDefault(); //form태그 action안타게 막아버리는것
+
+
+      
+
+      
+});
+
+/*글쓰기 완료*/
+
+
+
+/*대댓글 버튼생성 끝*/
