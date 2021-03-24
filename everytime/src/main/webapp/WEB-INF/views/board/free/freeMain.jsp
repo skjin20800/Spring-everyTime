@@ -34,11 +34,21 @@
 						<c:otherwise>
 							<h3 class="small">익명</h3>
 						</c:otherwise>
-					</c:choose>
+					</c:choose>					
 					<ul class="status">
-						<li title="공감" class="vote">0</li>
-						<li title="댓글" class="comment">2</li>
-					</ul>
+					<li title="공감" class="vote" onClick="boardLike(${board.id})">${fn:length(board.likes)}</li>
+					<li title="댓글" class="comment">
+					<!-- 댓글, 대댓글 갯수 더해서 출력 -->
+					<c:set var = "sum" value = "0" />
+					<c:set var= "sum" value="${sum + fn:length(board.replys)}"/>
+					<c:forEach var="reply" items="${board.replys}">
+					<c:set var= "sum" value="${sum + fn:length(reply.rereplys)}"/>
+					</c:forEach>
+					<c:out value="${sum}"/>
+					</li>
+					<li title="스크랩" class="scrap">${fn:length(board.scraps)}</li>
+				</ul>
+					
 					<hr> <input type="hidden" name="177388788_comment_anonym" value="0">
 				</a>
 				<div class="comments"></div>
@@ -117,4 +127,5 @@
 <%@include file ="../../layout/footer.jsp" %>
 </body>
 <script src="/js/board.post.js" type="text/javascript"></script>
+<script src="/js/board.likes.js" type="text/javascript"></script>
 </html>

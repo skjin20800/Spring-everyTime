@@ -37,7 +37,7 @@
             <div class="menus">
               <a href="/myarticle" class="myarticle">내가 쓴 글</a>
               <a href="/mycommentarticle" class="mycommentarticle">댓글 단 글</a>
-              <a href="/myscrap" class="myscrap">내 스크랩</a>
+              <a href="/myscrap" class="myscrap" >내 스크랩</a>
               <hr>
             </div>
           </div>

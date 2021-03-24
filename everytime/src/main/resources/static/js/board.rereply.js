@@ -9,7 +9,8 @@ $("#reply-"+id).after(
 	<ul class="option">
 	<li class="anonym "><input type="checkbox" class="form-check-input" id="isAnonymous-${id}" name="isAnonymous-${id}" />
 	<label class="form-check-label " for="exampleCheck1"> 익명 </label></li>
-	<li title="완료" onClick="postReReply(${id})"><p class="center__1">작성</p></li>
+	<li title="완료" onClick="postReReply(${id})" class = "submit"><p class="center__1">&nbsp;</p></li>
+	
 	</ul>
 	<div class="clearBothOnly"></div>
 	</form>

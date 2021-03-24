@@ -12,7 +12,7 @@ import com.everytime.project.config.auth.PrincipalDetails;
 import com.everytime.project.domain.board.reply.rereply.ReReply;
 import com.everytime.project.service.ReReplyService;
 import com.everytime.project.web.dto.CMRespDto;
-import com.everytime.project.web.rereply.dto.ReReplyReqDto;
+import com.everytime.project.web.dto.rereply.ReReplyReqDto;
 
 import lombok.RequiredArgsConstructor;
 

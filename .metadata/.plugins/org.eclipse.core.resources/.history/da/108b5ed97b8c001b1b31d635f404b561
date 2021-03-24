@@ -1,0 +1,26 @@
+package com.everytime.project.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.everytime.project.domain.user.scrap.Scrap;
+import com.everytime.project.domain.user.scrap.ScrapRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class ScrapService {
+	private final ScrapRepository scrapRepository;
+	
+	@Transactional
+	public int 스크랩(Long userId, Long boardId) {
+		
+		Scrap scrap = scrapRepository.findByUserIdAndBoardId(userId,boardId);
+		if(scrap != null) {
+			return -1;
+		}else {
+			return scrapRepository.mBoardScrap(userId, boardId);	
+		}
+	}
+}

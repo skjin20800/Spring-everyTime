@@ -21,6 +21,7 @@ import javax.persistence.PrePersist;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.everytime.project.domain.board.Board;
+import com.everytime.project.domain.board.like.Likes;
 import com.everytime.project.domain.board.reply.rereply.ReReply;
 import com.everytime.project.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -43,7 +44,7 @@ public class Reply {
 	@Lob
 	private String content;
 	
-	private Integer likeCount;
+
 	
 	@Column(nullable = false, length = 100)
 	private Boolean isAnonymous;
@@ -64,11 +65,12 @@ public class Reply {
 	@JsonIgnoreProperties({"reply"})
    @OrderBy("id desc")
 	private List<ReReply> rereplys;
-	
-	 @PrePersist
-	    public void prePersist() {
-	        this.likeCount = this.likeCount == null ? 0 : this.likeCount;
-	    }
+
+	//양방향 매핑
+		@OneToMany(mappedBy = "reply",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+		@JsonIgnoreProperties({"reply"})
+		@OrderBy("id desc")
+		private List<Likes> likes;
 	
 
 	

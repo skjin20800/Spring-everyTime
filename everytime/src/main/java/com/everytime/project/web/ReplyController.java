@@ -12,7 +12,7 @@ import com.everytime.project.config.auth.PrincipalDetails;
 import com.everytime.project.domain.board.reply.Reply;
 import com.everytime.project.service.ReplyService;
 import com.everytime.project.web.dto.CMRespDto;
-import com.everytime.project.web.reply.dto.ReplyReqDto;
+import com.everytime.project.web.dto.reply.ReplyReqDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -40,6 +40,6 @@ public class ReplyController {
 		int result = replyService.삭제하기(id, principalDetails.getUser().getId());
 		return new CMRespDto<>(result,null);
 	}
-	
+	//
 
 }

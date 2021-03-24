@@ -17,8 +17,8 @@ import com.everytime.project.config.auth.PrincipalDetails;
 import com.everytime.project.domain.board.Board;
 import com.everytime.project.domain.board.BoardType;
 import com.everytime.project.service.BoardService;
-import com.everytime.project.web.board.dto.BoardPostReqDto;
 import com.everytime.project.web.dto.CMRespDto;
+import com.everytime.project.web.dto.board.BoardPostReqDto;
 
 import lombok.RequiredArgsConstructor;
 

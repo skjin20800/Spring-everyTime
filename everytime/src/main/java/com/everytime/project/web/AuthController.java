@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.everytime.project.service.AuthService;
-import com.everytime.project.web.auth.dto.AuthJoinReqDto;
+import com.everytime.project.web.dto.auth.AuthJoinReqDto;
 
 import lombok.RequiredArgsConstructor;
 

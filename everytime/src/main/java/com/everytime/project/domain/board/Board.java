@@ -17,12 +17,13 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
-import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.everytime.project.domain.board.like.Likes;
 import com.everytime.project.domain.board.reply.Reply;
 import com.everytime.project.domain.user.User;
+import com.everytime.project.domain.user.scrap.Scrap;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -56,10 +57,6 @@ public class Board {
 	
 	@Column(nullable = false, length = 100)
 	private Boolean isAnonymous;
-	
-	private Integer scrapCount;
-	private Integer replyCount;
-	private Integer likeCount;
 			
 	@CreationTimestamp
 	private Timestamp createDate;
@@ -73,11 +70,17 @@ public class Board {
 	@JsonIgnoreProperties({"board"})
 	@OrderBy("id desc")
 	private List<Reply> replys;
-
-	 @PrePersist
-	    public void prePersist() {
-	        this.scrapCount = this.scrapCount == null ? 0 : this.scrapCount;
-	        this.replyCount = this.replyCount == null ? 0 : this.replyCount;
-	        this.likeCount = this.likeCount == null ? 0 : this.likeCount;
-	    }
+//
+	 
+		//양방향 매핑
+		@OneToMany(mappedBy = "board",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+		@JsonIgnoreProperties({"board"})
+		@OrderBy("id desc")
+		private List<Likes> likes;
+		
+		//양방향 매핑
+		@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+		@JsonIgnoreProperties({"board"})
+		@OrderBy("id desc")
+		private List<Scrap> scraps;
 }
