@@ -7,11 +7,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.everytime.project.config.oauth.OAuth2DetailsService;
+
+import lombok.RequiredArgsConstructor;
+@RequiredArgsConstructor
 @Configuration //IoC등록
 @EnableWebSecurity //내가 커스텀한 시큐리티 사용하기
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	//SecurityConfig타입이 될려면 WebSecurityConfigurerAdapter 선언
-	
+	private final OAuth2DetailsService oAuth2DetailsService;
+
 	//IoC등록만 하면 AuthenticationManager가 Bcrypt로 자동 검증해줌
 	@Bean
 	public BCryptPasswordEncoder encode() {
@@ -29,6 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.formLogin() //x-www-form-urlencoded
 		.loginPage("/loginForm") //로그인 주소
 		.loginProcessingUrl("/login")  //Spring Security가 Post방식으로  "/login" 주소가 들어오면 낚아챈다
-		.defaultSuccessUrl("/"); //로그인후 기본이동페이지
+		.defaultSuccessUrl("/") //로그인후 기본이동페이지
+		.and()
+		.oauth2Login()
+		.userInfoEndpoint()
+		.userService(oAuth2DetailsService);
+		
 	}
 }

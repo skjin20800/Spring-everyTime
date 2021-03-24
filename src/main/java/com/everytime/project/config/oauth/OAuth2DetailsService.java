@@ -26,12 +26,10 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 		System.out.println("oAuth 로그인 진행중...");
-		System.out.println(userRequest.getAccessToken());
 		OAuth2User oauth2User = super.loadUser(userRequest);
-		System.out.println(oauth2User.getAttributes());
 		return processOAuth2User(userRequest, oauth2User);
 	}
-	//구글 로그인 프로세스
+	//로그인 프로세스
 	private OAuth2User processOAuth2User (OAuth2UserRequest userRequest, OAuth2User oauth2User) {
 		OAuth2UserInfo oAuth2UserInfo =null;
 		if(userRequest.getClientRegistration().getClientName().equals("Facebook")) {

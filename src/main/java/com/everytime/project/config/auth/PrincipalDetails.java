@@ -31,6 +31,11 @@ public class PrincipalDetails implements UserDetails,OAuth2User {
 		oauth = true;
 	}
 	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
 	public String getPassword() {
 		return user.getPassword();
 	}
@@ -67,10 +72,5 @@ public class PrincipalDetails implements UserDetails,OAuth2User {
 		Collection<GrantedAuthority> collectors = new ArrayList<>();
 		collectors.add(()->"ROLE_"+user.getUseRole().toString());
 		return collectors;		
-	}
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

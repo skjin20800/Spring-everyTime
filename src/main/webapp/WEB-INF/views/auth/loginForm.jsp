@@ -26,6 +26,7 @@
           <a href="/joinForm">회원가입</a>
         </p>
 <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" style="margin-left :50px"></div>
+<a href="/oauth2/authorization/facebook">페이스북 로그인테스트</a>
       </form>        
       
     </div>
