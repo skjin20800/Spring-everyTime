@@ -35,7 +35,7 @@ public class ScrapController {
 	@GetMapping("/myscrap")
 	public String myScrap(@AuthenticationPrincipal PrincipalDetails principalDetails,Model model) {
 		List<Board> boards = scrapService.스크랩목록(principalDetails.getUser().getId());
-		model.addAttribute("boards",boards);
+		model.addAttribute("boards",boards);		
 		return "board/scrap/scrapMain";
 		}
 

@@ -1,0 +1,206 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="../../layout/header.jsp"%>
+<title>자유 게시판</title>
+<%@include file ="../../layout/submenu.jsp" %>
+
+ <div id="container" class="article">
+	<input type="hidden" id="isUser" value="1"> <input type="hidden" id="boardId" value="389150">
+	<aside class="none">
+		<div class="title">
+			<a class="hamburger"></a>
+			<h1>
+				<a href="/389150">내 스크랩</a>
+			</h1>
+		</div>
+	</aside>
+	<div class="wrap title">
+		<h1>
+			<a href="/389150">내 스크랩</a>
+		</h1>
+		<hr>
+	</div>
+	<!-- 커스텁 스크랩 -->
+	<div class="wrap articles" id="writeBoardContainer">
+		<article>
+			<c:forEach var="board" items="${boards}">
+				<a class="article" href="/board/freeDetail/${board.id}">
+					<h2 class="medium">${board.title}</h2>
+					<p class="small">${board.content}</p> <time class="small">from ${board.type}</time> 
+					<c:choose>
+						<c:when test="${board.isAnonymous eq 'false'}">
+							<h3 class="small">${board.user.username}</h3>
+						</c:when>
+						<c:otherwise>
+							<h3 class="small">익명</h3>
+						</c:otherwise>
+					</c:choose>					
+					<ul class="status">
+					<li title="공감" class="vote" onClick="boardLike(${board.id})">${fn:length(board.likes)}</li>
+					<li title="댓글" class="comment">
+					<!-- 댓글, 대댓글 갯수 더해서 출력 -->
+					<c:set var = "sum" value = "0" />
+					<c:set var= "sum" value="${sum + fn:length(board.replys)}"/>
+					<c:forEach var="reply" items="${board.replys}">
+					<c:set var= "sum" value="${sum + fn:length(reply.rereplys)}"/>
+					</c:forEach>
+					<c:out value="${sum}"/>
+					</li>
+					<li title="스크랩" class="scrap">0</li>
+				</ul>
+					
+					<hr> <input type="hidden" name="177388788_comment_anonym" value="0">
+				</a>
+				<div class="comments"></div>
+			</c:forEach>
+		</article>
+
+		<div class="clearBothOnly"></div>
+		<div class="pagination">
+			<form id="searchArticleForm" class="search">
+				<select name="search_type"><option value="4">전체</option>
+					<option value="3">해시태그</option>
+					<option value="2">글 제목</option>
+					<option value="1">글 내용</option></select><input name="keyword" placeholder="검색어를 입력하세요." class="text">
+			</form>
+			<a href="/389150/p/2" class="next">다음</a>
+		</div>
+	</div>
+<hr>
+<!-- 커스텁 스크랩 -->
+	
+	
+	<!-- 스크랩복사 -->
+	<div id="container" class="article">
+    <input type="hidden" id="isUser" value="1">
+    <input type="hidden" id="boardId" value="myscrap">
+    <aside class="none">
+      <div class="title">
+        <a class="hamburger"></a>
+      <h1><a href="/myscrap">내 스크랩</a></h1></div>
+    </aside>
+    <div class="wrap title"><h1><a href="/myscrap">내 스크랩</a></h1><hr></div>
+    <div class="wrap articles"><article><a class="article" href="/389150/v/172961707"><img src="https://cf-fpi.everytime.kr/0.png" class="picture medium"><h3 class="medium">익명</h3><time class="medium">03/04 16:38</time><hr><h2 class="medium bold">행긱 급식 업체 번호 어디서 볼 수 있어?</h2><p class="medium">웅</p><a href="/389150" class="boardname">from 자유게시판</a><ul class="status"><li class="removescrap">스크랩 취소</li><li title="공감" class="vote">0</li><li title="댓글" class="comment">0</li></ul><hr><input type="hidden" name="172961707_comment_anonym" value="0"></a><div class="comments"></div></article><div class="clearBothOnly"></div><div class="pagination"><a href="/myscrap/p/2" class="next">다음</a></div></div>
+    <hr>
+    <div class="rightside"><div class="card"><div class="board"><h3><a>실시간 인기 글</a></h3><a class="article" href="/389150/v/178886449"><p class="title">잊지말자... 3월 26일</p><p class="small">오늘은 지난 2010년 3월 26일 해군 2함대 소속의 천안함이 북한의 공격을 받아 침몰한 천안함 피격사건이 일어난지 11년째 되는 날 입니다.</p><h4>자유게시판</h4><ul class="status"><li class="vote active">144</li><li class="comment active">9</li></ul><hr></a><a class="article" href="/389150/v/178787559"><p class="title">아까 집오는길에 착한 일 했다</p><p class="small">저녁으로 통닭 한마리 포장해서 빨리 따듯할때 먹으려고 빠른걸음으로 집 가고있는데 엄청 오르막길이라 그냥 걷기에도 힘든 길을 할아버지 어르신 한분</p><h4>자유게시판</h4><ul class="status"><li class="vote active">66</li><li class="comment active">27</li></ul><hr></a></div></div><div class="card"><div class="board"><h3><a href="/hotarticle">HOT 게시물<span>더 보기</span></a></h3><a class="list" href="/389150/v/178888924"><time>03/26 09:42</time><p>오늘은 천안함 피격 11주기입니다</p><hr></a><a class="list" href="/389150/v/178886449"><time>03/26 09:14</time><p>잊지말자... 3월 26일</p><hr></a><a class="list" href="/389150/v/178808944"><time>03/25 22:07</time><p>??</p><hr></a><a class="list" href="/389150/v/178787559"><time>03/25 20:30</time><p>아까 집오는길에 착한 일 했다</p><hr></a></div></div><div class="card"><div class="board"><h3><a href="/bestarticle">BEST 게시판<span>더 보기</span></a></h3></div></div><div class="card"><div class="board"><h3><a href="/lecture">최근 강의평<span>더 보기</span></a></h3><a class="article" href="/lecture/view/1573851"><span class="star"><span class="on" style="width: 100%;"></span></span><p class="title">회로이론Ⅱ : 최훈</p><p class="small">어려운 과목인데 잘 가르치려고 노력하려는게 보이심..<br>과목이 어렵다보니 다들 손놓는거같은데 공부 좀만해도 성적 잘나옴</p><hr></a><a class="article" href="/lecture/view/1573848"><span class="star"><span class="on" style="width: 20%;"></span></span><p class="title">컴퓨터언어및실습Ⅱ : 김지홍</p><p class="small">성적 개짜게줌 시험 문제도 적은데 공부 적당히한애랑 아예안한애랑 차이도안남</p><hr></a><a class="article" href="/lecture/view/2137915"><span class="star"><span class="on" style="width: 100%;"></span></span><p class="title">Media Information Literacy : 문종대(신문방송학)</p><p class="small">공지도 넘 느리시고 강의도 넘 느리지만 .. 듣다보면 강의는 유익한 내용이 많음 중간고사 말았는데 기말 레포트로 커버쳐서 에쁠 받음 학점 후하게</p><hr></a><a class="article" href="/lecture/view/1840227"><span class="star"><span class="on" style="width: 100%;"></span></span><p class="title">성과사랑의인문학 : 이은정(철학인문교양학부)</p><p class="small">교수님이 넘 따뜻.. 수업은 조금 지루한 부분도 있었지만 교수님이 집어준거만 꼼꼼하게 적어도 점수 잘 줌</p><hr></a></div></div></div>
+    <form id="abuseForm" class="modal">
+      <a title="닫기" class="close"></a>
+      <h3>신고 사유 선택</h3>
+      <ul>
+        <li><a data-reason="1">게시판 성격에 부적절함</a></li>
+        <li><a data-reason="2">욕설/비하</a></li>
+        <li><a data-reason="3">음란물/불건전한 만남 및 대화</a></li>
+        <li><a data-reason="4">상업적 광고 및 판매</a></li>
+        <li><a data-reason="5">유출/사칭/사기</a></li>
+        <li><a data-reason="6">낚시/놀람/도배</a></li>
+        <li><a data-reason="7">정당/정치인 비하 및 선거운동</a></li>
+      </ul>
+    </form>
+    <form id="manageMoimForm" class="modal">
+      <a title="닫기" class="close"></a>
+      <h3>게시판 설정</h3>
+      <p>
+        <label>소개</label>
+        <input type="text" name="info" class="text">
+      </p>
+      <p class="hide">
+        <label>인기 글 금지</label>
+        <input type="checkbox" id="manageMoimForm_is_not_selected_hot_article" name="is_not_selected_hot_article"><label for="manageMoimForm_is_not_selected_hot_article" class="checkbox">글이 공감을 받아도 인기 글 및 HOT 게시물에 선정되지 않음</label>
+      </p>
+      <input type="button" value="게시판 양도" class="button light floatLeft">
+      <input type="button" value="게시판 삭제" class="button light floatLeft">
+      <input type="submit" value="수정" class="button">
+    </form>
+    <form id="transferMoimForm" class="modal">
+      <a title="닫기" class="close"></a>
+      <h3>게시판 양도</h3>
+      <p>
+        <label>양도인 비밀번호</label>
+        <input type="password" name="transferer_password" class="text">
+      </p>
+      <p>
+        <label>피양도인 아이디</label>
+        <input type="text" name="transferee_userid" class="text">
+      </p>
+      <input type="submit" value="양도 요청" class="button">
+    </form>
+    <form id="attachThumbnailForm" class="modal">
+      <a title="닫기" class="close"></a>
+      <h3>첨부된 이미지</h3>
+      <p>
+        <label>설명 추가</label>
+        <textarea name="caption" class="text" placeholder="이 이미지에 대한 설명을 입력하세요."></textarea>
+      </p>
+      <input type="button" value="첨부 삭제" class="button light floatLeft">
+      <input type="submit" value="설명 저장" class="button">
+    </form>
+    <form id="messageSend" class="modal">
+      <a title="닫기" class="close"></a>
+      <h3>쪽지 보내기</h3>
+      <p>
+        <textarea name="message" class="text" placeholder="내용을 입력해주세요."></textarea>
+      </p>
+      <input type="submit" value="전송" class="button">
+    </form>
+  </div>
+	<!-- 스크랩복사 -->
+<%@include file="../../layout/realtimemenu.jsp"%>
+
+<form id="abuseForm" class="modal">
+		<a title="닫기" class="close"></a>
+		<h3>신고 사유 선택</h3>
+		<ul>
+			<li><a data-reason="1">게시판 성격에 부적절함</a></li>
+			<li><a data-reason="2">욕설/비하</a></li>
+			<li><a data-reason="3">음란물/불건전한 만남 및 대화</a></li>
+			<li><a data-reason="4">상업적 광고 및 판매</a></li>
+			<li><a data-reason="5">유출/사칭/사기</a></li>
+			<li><a data-reason="6">낚시/놀람/도배</a></li>
+			<li><a data-reason="7">정당/정치인 비하 및 선거운동</a></li>
+		</ul>
+	</form>
+	<form id="manageMoimForm" class="modal">
+		<a title="닫기" class="close"></a>
+		<h3>게시판 설정</h3>
+		<p>
+			<label>소개</label> <input type="text" name="info" class="text">
+		</p>
+		<p class="hide">
+			<label>인기 글 금지</label> <input type="checkbox" id="manageMoimForm_is_not_selected_hot_article" name="is_not_selected_hot_article"><label for="manageMoimForm_is_not_selected_hot_article"
+				class="checkbox">글이 공감을 받아도 인기 글 및 HOT 게시물에 선정되지 않음</label>
+		</p>
+		<input type="button" value="게시판 양도" class="button light floatLeft"> <input type="button" value="게시판 삭제" class="button light floatLeft"> <input type="submit" value="수정" class="button">
+	</form>
+	<form id="transferMoimForm" class="modal">
+		<a title="닫기" class="close"></a>
+		<h3>게시판 양도</h3>
+		<p>
+			<label>양도인 비밀번호</label> <input type="password" name="transferer_password" class="text">
+		</p>
+		<p>
+			<label>피양도인 아이디</label> <input type="text" name="transferee_userid" class="text">
+		</p>
+		<input type="submit" value="양도 요청" class="button">
+	</form>
+	<form id="attachThumbnailForm" class="modal">
+		<a title="닫기" class="close"></a>
+		<h3>첨부된 이미지</h3>
+		<p>
+			<label>설명 추가</label>
+			<textarea name="caption" class="text" placeholder="이 이미지에 대한 설명을 입력하세요."></textarea>
+		</p>
+		<input type="button" value="첨부 삭제" class="button light floatLeft"> <input type="submit" value="설명 저장" class="button">
+	</form>
+	<form id="messageSend" class="modal">
+		<a title="닫기" class="close"></a>
+		<h3>쪽지 보내기</h3>
+		<p>
+			<textarea name="message" class="text" placeholder="내용을 입력해주세요."></textarea>
+		</p>
+		<input type="submit" value="전송" class="button">
+	</form>
+</div>
+<%@include file ="../../layout/footer.jsp" %>
+</body>
+<script src="/js/board.post.js" type="text/javascript"></script>
+<script src="/js/board.likes.js" type="text/javascript"></script>
+</html>

@@ -7,7 +7,7 @@ $("#reply-"+id).after(
 	<input type="hidden" id="rereply-${id}" value="${id}" /> 
 	<input type="text" id="rereplycontent-${id}" maxlength="300" placeholder="댓글을 입력하세요." class="text" />
 	<ul class="option">
-	<li class="anonym "><input type="checkbox" class="form-check-input" id="isAnonymous-${id}" name="isAnonymous-${id}" />
+	<li class="mAnmoy "><input type="checkbox" class="form-check-input" id="isAnonymous-${id}" name="isAnonymous-${id}" />
 	<label class="form-check-label " for="exampleCheck1"> 익명 </label></li>
 	<li title="완료" onClick="postReReply(${id})" class = "submit"><p class="center__1">&nbsp;</p></li>
 	

@@ -19,53 +19,49 @@
 		</h1>
 		<hr>
 	</div>
-	<div class="wrap articles" id="writeBoardContainer">
-		<article>
-			<c:forEach var="board" items="${boards}">
-				<a class="article" href="/board/freeDetail/${board.id}">
-					<h2 class="medium">${board.title}</h2>
-					<p class="small">${board.content}</p> <time class="small">from ${board.type}</time> 
-					<c:choose>
-						<c:when test="${board.isAnonymous eq 'false'}">
-							<h3 class="small">${board.user.username}</h3>
-						</c:when>
+	<!-- 스크랩복사 -->
+
+<div id="container" class="article">
+  
+    <div class="wrap articles">
+    <article>
+    <c:forEach var="board" items="${boards}">
+    				<a class="article" href="/board/${board.type}Detail/${board.id}">
+    <img src="https://cf-fpi.everytime.kr/0.png" class="picture medium">
+    <c:choose>
+    <c:when test="${board.isAnonymous eq 'false'}">
+    <h3 class="small">${board.user.username}</h3>
+</c:when>
 						<c:otherwise>
-							<h3 class="small">익명</h3>
+	<h3 class="medium">익명</h3>
 						</c:otherwise>
-					</c:choose>					
-					<ul class="status">
-					<li title="공감" class="vote" onClick="boardLike(${board.id})">${fn:length(board.likes)}</li>
-					<li title="댓글" class="comment">
-					<!-- 댓글, 대댓글 갯수 더해서 출력 -->
-					<c:set var = "sum" value = "0" />
+						</c:choose>
+    
+    <time class="medium">03/04 16:38</time>
+    <hr>
+    <h2 class="medium bold">${board.title}</h2>
+    <p class="medium">${board.content}</p>
+    <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${board.type}</a>
+    <ul class="status"><li class="removescrap">스크랩 취소</li>
+    <li title="공감" class="vote" >${fn:length(board.likes)}</li>
+	<li title="댓글" class="comment">
+	<c:set var = "sum" value = "0" />
 					<c:set var= "sum" value="${sum + fn:length(board.replys)}"/>
 					<c:forEach var="reply" items="${board.replys}">
 					<c:set var= "sum" value="${sum + fn:length(reply.rereplys)}"/>
 					</c:forEach>
-					<c:out value="${sum}"/>
-					</li>
-					<li title="스크랩" class="scrap">0</li>
-				</ul>
-					
-					<hr> <input type="hidden" name="177388788_comment_anonym" value="0">
-				</a>
-				<div class="comments"></div>
-			</c:forEach>
-		</article>
-
-		<div class="clearBothOnly"></div>
-		<div class="pagination">
-			<form id="searchArticleForm" class="search">
-				<select name="search_type"><option value="4">전체</option>
-					<option value="3">해시태그</option>
-					<option value="2">글 제목</option>
-					<option value="1">글 내용</option></select><input name="keyword" placeholder="검색어를 입력하세요." class="text">
-			</form>
-			<a href="/389150/p/2" class="next">다음</a>
-		</div>
-	</div>
-	<hr>
-	
+					<c:out value="${sum}"/>&nbsp;&nbsp;</li>				
+    </ul><hr>
+    <input type="hidden" name="172961707_comment_anonym" value="0"></a>
+    <div class="comments"></div>
+    </c:forEach>
+    </article>
+    
+    <div class="clearBothOnly">
+    
+    </div><div class="pagination"><a href="/myscrap/p/2" class="next">다음</a></div>
+    </div>
+	<!-- 스크랩복사 -->
 <%@include file="../../layout/realtimemenu.jsp"%>
 
 <form id="abuseForm" class="modal">

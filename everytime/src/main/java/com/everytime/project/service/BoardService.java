@@ -19,7 +19,7 @@ public class BoardService {
 	
 	@Transactional(readOnly = true)
 	public List<Board> 자유게시판목록() {		
-		return boardRepository.findByType(BoardType.FREE);
+		return boardRepository.findByType(BoardType.free);
 	}
 	
 

@@ -168,7 +168,9 @@
 				<form class="writecomment">
 					<input type="hidden" id="postId" value="${board.id}" /> <input type="text" id="reply" maxlength="300" placeholder="댓글을 입력하세요." class="text" />
 					<ul class="option">
-						<li class="mAnmoy"><input type="checkbox" class="form-check-input" id="isAnonymous" name="isAnonymous" /> <label class="form-check-label " for="exampleCheck1"> 익명 </label></li>
+						<li class="mAnmoy">
+						<input type="checkbox" class="form-check-input" id="isAnonymous" name="isAnonymous" /> <label class="form-check-label " for="exampleCheck1"> 익명 </label>
+						</li>
 						<li title="완료" class="submit" id="replyPost"><p class="center__1">&nbsp;</p></li>
 					</ul>
 					<div class="clearBothOnly"></div>

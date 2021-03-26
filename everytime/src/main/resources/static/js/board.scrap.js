@@ -1,5 +1,11 @@
 /*게시글 스크랩 클릭시 */
 function boardScrap(id){
+	
+	 if (confirm("정말 스크랩 하시겠습니까??") == true){    //확인
+        }else{   //취소
+            return;
+          }
+	
 	       $.ajax({
 		type: "POST",
 		url: "/scrap/"+id,
