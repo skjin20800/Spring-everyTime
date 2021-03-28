@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+    <sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal" />
+</sec:authorize>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +17,13 @@
 </head>
 
 <body cz-shortcut-listen="true" style>
+<c:choose>
+<c:when test="${!empty principal}">
+<script>
+	location.href="/";
+</script>				
+</c:when>
+</c:choose>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=1812961052216546&autoLogAppEvents=1" nonce="WbJX66lO"></script>
   <div id="container" class="login">
@@ -26,9 +38,8 @@
           <a href="/joinForm">회원가입</a>
         </p>
 <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" style="margin-left :50px"></div>
-<a href="/oauth2/authorization/facebook">페이스북 로그인테스트</a>
+      <a href="/oauth2/authorization/facebook">페이스북 로그인테스트</a>
       </form>        
-      
     </div>
     <address>
       <ul class="links">

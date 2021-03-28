@@ -70,7 +70,7 @@ public class PrincipalDetails implements UserDetails,OAuth2User {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		System.out.println("롤 검증 하는 중");
 		Collection<GrantedAuthority> collectors = new ArrayList<>();
-		collectors.add(()->"ROLE_"+user.getUseRole().toString());
+		collectors.add(()->"ROLE_"+user.getUserRole().toString());
 		return collectors;		
 	}
 }

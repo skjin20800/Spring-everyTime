@@ -26,7 +26,7 @@ public class FacebookInfo extends OAuth2UserInfo{
 
 	@Override
 	public String getUsername() {
-		return "Facebook"+(String)attributes.get("id");
+		return "Facebook_"+(String)attributes.get("id");
 	}
 
 }
