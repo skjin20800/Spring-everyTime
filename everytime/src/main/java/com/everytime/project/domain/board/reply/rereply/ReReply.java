@@ -16,10 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.everytime.project.domain.board.Board;
 import com.everytime.project.domain.board.like.Likes;
 import com.everytime.project.domain.board.reply.Reply;
 import com.everytime.project.domain.user.User;

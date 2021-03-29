@@ -59,9 +59,11 @@
 			<div class="comments" style="display: block;">
 				<!-- 댓글 반복문 -->
 				<c:forEach var="reply" items="${board.replys}">
+				
 					<!-- 댓글 or 대댓글 -->
 					<!-- 댓글 -->
 					<article class="parent" id="reply-${reply.id}">
+					
 						<img src="https://cf-fpi.everytime.kr/0.png" class="picture medium">
 						<!-- 익명 여부 -->
 						<c:choose>
@@ -88,6 +90,7 @@
 									<li class="childcomment" onClick="formReReply(${reply.id})">대댓글</li>
 									<li class="commentvote" onClick="replyLike(${reply.id})">공감</li>
 									<li class="del"><a onClick="deleteReply(${reply.id})">삭제</a></li>
+									<li></li>
 								</ul>
 							</c:otherwise>
 						</c:choose>
@@ -140,7 +143,10 @@
 									<ul class="status">
 										<li class="commentvote" onClick="reReplyLike(${rereply.id})">공감</li>
 										<li class="del"><a onClick="deleteReReply(${rereply.id})">삭제</a></li>
+										<li></li>
 									</ul>
+							    </c:otherwise>
+							    </c:choose>
 									<hr>
 									<p class="large">${rereply.content}</p>
 									<time class="medium">시간 미정</time>
@@ -159,8 +165,6 @@
 									</c:choose>
 									<!--대댓글 공감 있을때만 표시 끝-->
 						</article>
-						</c:otherwise>
-						</c:choose>
 					</c:forEach>
 				</c:forEach>
 

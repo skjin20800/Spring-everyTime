@@ -8,7 +8,7 @@ function boardScrap(id){
 	
 	       $.ajax({
 		type: "POST",
-		url: "/scrap/"+id,
+		url: "/myboard/scrap/"+id,
 		dataType:"json"
 	}).done((res)=>{
 		console.log(res);

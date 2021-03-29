@@ -15,8 +15,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
-import javax.persistence.PostLoad;
-import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -43,8 +41,6 @@ public class Reply {
 	
 	@Lob
 	private String content;
-	
-
 	
 	@Column(nullable = false, length = 100)
 	private Boolean isAnonymous;

@@ -1,6 +1,5 @@
 package com.everytime.project.web.dto.rereply;
 
-import com.everytime.project.domain.board.reply.Reply;
 import com.everytime.project.domain.board.reply.rereply.ReReply;
 
 import lombok.AllArgsConstructor;

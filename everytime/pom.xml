@@ -17,7 +17,8 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
-		<!--  추가 라이브러리 -->
+		<!--  추가 라이브러리 -->		
+		
 	<!-- JSP에서 security 땡겨쓰기 -->
 	<dependency>
 	  <groupId>org.springframework.security</groupId>
@@ -36,7 +37,7 @@
 	<dependency>
 	  <groupId>javax.servlet</groupId>
 	  <artifactId>jstl</artifactId>
-	  <version>1.2</version>
+	  
 	</dependency>
 	
 		<dependency>
