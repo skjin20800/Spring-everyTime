@@ -13,6 +13,15 @@
     padding-top: 10px;
 }
 
+.right__1{    
+    display: flex;
+        width: 500px;
+        justify-content: space-between;
+        
+        
+}
+
+
 /* * * * * * * * * * * * * * * * * * * * * * * * *  /  common  /  * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #writeArticleButton {

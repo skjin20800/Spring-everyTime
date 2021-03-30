@@ -48,7 +48,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 					.email(oAuth2UserInfo.getEmail())
 					.userRole(RoleType.OAUTH)
 					.nickname("")
-					.entranceYear(0)
+					.entranceYear("")
 					.university("")
 					.build();
 			userEntity=userRepository.save(user);
