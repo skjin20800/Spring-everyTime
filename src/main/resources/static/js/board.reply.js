@@ -28,6 +28,8 @@ let postId = $("#postId").val();
       
 });
 
+
+
 /*댓글쓰기 완료*/
 
 /*댓글 삭제*/
@@ -52,5 +54,10 @@ function deleteReply(id){
 	});
 }
 /*댓글 삭제 완료*/
+
+
+
+
+
 
 
