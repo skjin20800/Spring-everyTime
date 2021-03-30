@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable(); //csrf비활성화
 		http.authorizeRequests()
-		.antMatchers("/").permitAll()
+		.antMatchers("/","/css/**","/images/**","/js/**").permitAll()
 		.antMatchers("/loginForm").permitAll()
 		.antMatchers("/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") //user,post만 인증 및 허용//ROLE_는 강제성이 있음. 롤 검증시 사용
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
