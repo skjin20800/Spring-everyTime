@@ -28,16 +28,16 @@
               <p class="school">skjin20800</p>
               <ul class="buttons">
                 <li><a href="/my">내 정보</a></li>
-                <li><a href="/user/logout">로그아웃</a></li>
+                <li><a href="/logout">로그아웃</a></li>
               </ul>
               <hr>
             </form>
           </div>
           <div class="card">
             <div class="menus">
-              <a href="/myarticle" class="myarticle">내가 쓴 글</a>
-              <a href="/mycommentarticle" class="mycommentarticle">댓글 단 글</a>
-              <a href="/myscrap" class="myscrap" >내 스크랩</a>
+              <a href="/myboard" class="myarticle">내가 쓴 글</a>
+              <a href="/myboard/myreply" class="mycommentarticle">댓글 단 글</a>
+              <a href="/myboard/scrap" class="myscrap" >내 스크랩</a>
               <hr>
             </div>
           </div>

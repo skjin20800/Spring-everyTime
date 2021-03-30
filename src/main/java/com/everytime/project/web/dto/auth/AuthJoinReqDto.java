@@ -14,7 +14,7 @@ public class AuthJoinReqDto {
 	private String nickname;
 	private String email;
 	private String university;
-	private Integer entranceYear;
+	private String entranceYear;
 	
 	public User toEntity() {
 		return User.builder()

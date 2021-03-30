@@ -2,9 +2,11 @@ package com.everytime.project.config.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.everytime.project.domain.user.User;
 
@@ -12,13 +14,26 @@ import lombok.Data;
 
 @SuppressWarnings("serial")
 @Data
-public class PrincipalDetails implements UserDetails {
+public class PrincipalDetails implements UserDetails,OAuth2User {
 
 
 	private User user;
+	private Map<String, Object> attributes; // OAUth제공자로 부터 받은 회원 정보
+	private boolean oauth = false;
+
 
 	public PrincipalDetails(User user) {
 		this.user = user;
+	}	
+	public PrincipalDetails(User user, Map<String, Object> attributes) {
+		this.user = user;
+		this.attributes = attributes;
+		oauth = true;
+	}
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	@Override
 	public String getPassword() {

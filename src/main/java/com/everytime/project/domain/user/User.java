@@ -47,7 +47,7 @@ public class User {
 	private String university;
 	
 	@Column(nullable = false, length = 100)
-	private Integer entranceYear;
+	private String entranceYear;
 		
 	@CreationTimestamp
 	private Timestamp createDate;

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../../layout/header.jsp"%>
-<title>자유 게시판</title>
+<title>내가 쓴 글</title>
 <%@include file ="../../layout/submenu.jsp" %>
 
  <div id="container" class="article">
@@ -9,13 +9,13 @@
 		<div class="title">
 			<a class="hamburger"></a>
 			<h1>
-				<a href="/389150">내 스크랩</a>
+				<a href="/389150">내가 쓴 글</a>
 			</h1>
 		</div>
 	</aside>
 	<div class="wrap title">
 		<h1>
-			<a href="/389150">내 스크랩</a>
+			<a href="/389150">내가 쓴 글</a>
 		</h1>
 		<hr>
 	</div>
@@ -42,8 +42,8 @@
     <h2 class="medium bold">${board.title}</h2>
     <p class="medium">${board.content}</p>
     <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${board.type}</a>
-    <ul class="status"><li class="removescrap">스크랩 취소</li>
-    <li title="공감" class="vote" >${fn:length(board.likes)}</li>
+    <ul class="status">
+    <li title="공감" class="vote" >${fn:length(reply.board.likes)}</li>
 	<li title="댓글" class="comment">
 	<c:set var = "sum" value = "0" />
 					<c:set var= "sum" value="${sum + fn:length(board.replys)}"/>
