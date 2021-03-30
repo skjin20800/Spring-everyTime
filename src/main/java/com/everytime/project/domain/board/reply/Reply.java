@@ -15,6 +15,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.PostLoad;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -67,7 +69,19 @@ public class Reply {
 		@JsonIgnoreProperties({"reply"})
 		@OrderBy("id desc")
 		private List<Likes> likes;
+		
+		@Transient // 칼럼이 만들어지지 않는다.
+		private String dateSubstr;
 	
+		@PostLoad //select 되자마자 실행된다.
+		public void dateSubstr() {
+			this.dateSubstr = createDate.toString().substring(5, 16);  
+		}
+		
+		
+		
+		  
+
 
 	
 }

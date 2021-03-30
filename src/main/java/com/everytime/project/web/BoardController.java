@@ -1,7 +1,8 @@
 package com.everytime.project.web;
-
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +18,10 @@ import com.everytime.project.domain.board.BoardType;
 import com.everytime.project.service.BoardService;
 import com.everytime.project.web.dto.CMRespDto;
 import com.everytime.project.web.dto.board.BoardPostReqDto;
+import com.everytime.project.web.dto.board.SearchReqDto;
 
 import lombok.RequiredArgsConstructor;
+
 
 @RequiredArgsConstructor
 @Controller
@@ -32,8 +35,8 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/free")
-	public String freeFindAll(Model model) {
-		List<Board> boards = boardService.자유게시판목록();
+	public String freeFindAll(Model model,@PageableDefault(sort = "id", direction = Sort.Direction.DESC  , size = 5)Pageable pageable) {	
+		Page<Board> boards = boardService.자유게시판목록(pageable);
 		model.addAttribute("boards",boards);
 		return "board/free/freeMain";
 	}
@@ -42,9 +45,7 @@ public class BoardController {
 	@GetMapping("/board/freeDetail/{id}")
 	public String freeDetailFind(@PathVariable Long id,Model model) {
 		Board boardEntity = boardService.자유게시판상세보기(id);
-		String date = boardEntity.getCreateDate().toString().substring(5,16);
 		model.addAttribute("board",boardEntity);
-		model.addAttribute("date",date);
 		return "board/free/freeDetail";
 	}
 	
@@ -58,6 +59,18 @@ public class BoardController {
 
 		return new CMRespDto<>(result,null) ;
 		}
+	
+	
+	@PostMapping("/board/search")
+	public String search(SearchReqDto searchReqDto, Model model,
+			@PageableDefault(sort = "id", direction = Sort.Direction.DESC , size = 5)Pageable pageable
+			) {
+		Page<Board> boards = boardService.검색하기(searchReqDto, pageable);
+		model.addAttribute("boards",boards);
+		return "board/free/freeMain";
+	}
+
+	
 	}
 
 

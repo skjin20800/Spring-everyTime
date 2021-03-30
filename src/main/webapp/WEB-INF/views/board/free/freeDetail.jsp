@@ -31,7 +31,7 @@
 							<h3 class="small">익명</h3>
 						</c:otherwise>
 					</c:choose>
-					<time class="large">${date}</time>
+					<time class="large">${board.dateSubstr}</time>
 				</div>
 				<ul class="status">
 					<li class="messagesend" data-modal="messageSend" data-article-id="177166298" data-is-anonym="1">쪽지</li>
@@ -97,7 +97,7 @@
 
 						<hr>
 						<p class="large">${reply.content}</p>
-						<time class="medium">시간미정</time>
+						<time class="medium" id="time_reply">${reply.dateSubstr}</time>
 
 						<!--댓글 공감 있을때만 표시 -->
 						<c:choose>
@@ -149,7 +149,7 @@
 							    </c:choose>
 									<hr>
 									<p class="large">${rereply.content}</p>
-									<time class="medium">시간 미정</time>
+									<time class="medium">${rereply.dateSubstr}</time>
 									<!--대댓글 공감 있을때만 표시 -->
 									<c:choose>
 										<c:when test="${fn:length(rereply.likes) != 0}">

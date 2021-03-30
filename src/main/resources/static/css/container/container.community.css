@@ -20,6 +20,15 @@
         
         
 }
+.btn__search{
+	background-color: white !important; 
+	border: 1px solid #C62917 !important;
+	color: #C62917 !important;
+}
+
+.jkb__pagination{
+	justify-content: space-between !important;
+}
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * *  /  common  /  * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -890,6 +899,7 @@
   background-image: url("/images/new/container.articles.write.submit.png");
 }
 #container > div.articles > div.pagination > a {
+
   display: block;
   margin-top: 5px;
   margin-left: 5px;

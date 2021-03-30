@@ -1,13 +1,14 @@
 package com.everytime.project.service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.everytime.project.domain.board.Board;
 import com.everytime.project.domain.board.BoardRepository;
 import com.everytime.project.domain.board.BoardType;
+import com.everytime.project.web.dto.board.SearchReqDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,8 +19,8 @@ public class BoardService {
 	private final BoardRepository boardRepository;
 	
 	@Transactional(readOnly = true)
-	public List<Board> 자유게시판목록() {		
-		return boardRepository.findByType(BoardType.free);
+	public Page<Board> 자유게시판목록(Pageable pageable) {		
+		return boardRepository.findByType(BoardType.free,pageable);
 	}
 	
 
@@ -40,4 +41,11 @@ public class BoardService {
 			return 1;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	public Page<Board> 검색하기(SearchReqDto SearchReqDto,Pageable pageable) {
+		return boardRepository.findByTitleContaining(SearchReqDto.getKeyword(), pageable);
+	}
+
 }
