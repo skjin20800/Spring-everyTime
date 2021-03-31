@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../../layout/header.jsp"%>
+<%@include file="../layout/header.jsp"%>
 <title>${boardType}</title>
-<%@include file="../../layout/submenu.jsp"%>
+<%@include file="../layout/submenu.jsp"%>
 
 <div id="container" class="article">
 	<input type="hidden" id="isUser" value="1"> <input
@@ -82,7 +82,7 @@
 	</div>
 	<hr>
 
-	<%@include file="../../layout/realtimemenu.jsp"%>
+	<%@include file="../layout/realtimemenu.jsp"%>
 
 	<form id="abuseForm" class="modal">
 		<a title="닫기" class="close"></a>
@@ -147,7 +147,7 @@
 		<input type="submit" value="전송" class="button">
 	</form>
 </div>
-<%@include file="../../layout/footer.jsp"%>
+<%@include file="../layout/footer.jsp"%>
 </body>
 <script src="/js/board.post.js" type="text/javascript"></script>
 <script src="/js/board.likes.js" type="text/javascript"></script>

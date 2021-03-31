@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../../layout/header.jsp"%>
-<%@include file="../../layout/submenu.jsp"%>
+<%@include file="../layout/header.jsp"%>
+<%@include file="../layout/submenu.jsp"%>
 <div id="container" class="article">
 	<input type="hidden" id="isUser" value="1"> <input type="hidden" id="boardId" value="389150">
 	<aside class="none">
@@ -183,9 +183,9 @@
 	</div>
 	<hr>
 
-	<%@include file="../../layout/realtimemenu.jsp"%>
+	<%@include file="../layout/realtimemenu.jsp"%>
 </div>
-<%@include file="../../layout/footer.jsp"%>
+<%@include file="../layout/footer.jsp"%>
 <script src="/js/board.reply.js" type="text/javascript"></script>
 <script src="/js/board.rereply.js" type="text/javascript"></script>
 <script src="/js/board.likes.js" type="text/javascript"></script>

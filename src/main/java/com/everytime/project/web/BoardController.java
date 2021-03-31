@@ -41,7 +41,7 @@ public class BoardController {
 		model.addAttribute("boards",boards);
 		model.addAttribute("boardType",BoardName.boardName(type));
 		model.addAttribute("type",type);
-		return "board/free/freeMain";
+		return "board/boardList";
 	}
 	
 	
@@ -49,7 +49,7 @@ public class BoardController {
 	public String freeDetailFind(@PathVariable Long id,Model model) {
 		Board boardEntity = boardService.게시판상세보기(id);
 		model.addAttribute("board",boardEntity);
-		return "board/free/freeDetail";
+		return "board/boardDetail";
 	}
 	
 	@PostMapping("/board/post/{type}")
@@ -70,7 +70,7 @@ public class BoardController {
 			) {
 		Page<Board> boards = boardService.검색하기(searchReqDto, pageable);
 		model.addAttribute("boards",boards);
-		return "board/free/freeMain";
+		return "board/boardList";
 	}
 
 	

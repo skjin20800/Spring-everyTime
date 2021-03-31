@@ -95,7 +95,6 @@ public class Board {
 		@OrderBy("id desc")
 		private List<Scrap> scraps;
 		
-		
 		@Transient // 칼럼이 만들어지지 않는다.
 		private String dateSubstr;
 		@Transient
@@ -114,11 +113,7 @@ public class Board {
 				reReplyCount += rereply.getRereplyCount();
 			}
 			this.replyCount = replys.size()+reReplyCount;
-			
-			
-		}
-		
-			
+		}			
 		}
 
 		
