@@ -26,6 +26,7 @@ import com.everytime.project.domain.board.like.Likes;
 import com.everytime.project.domain.board.reply.Reply;
 import com.everytime.project.domain.user.User;
 import com.everytime.project.domain.user.scrap.Scrap;
+import com.everytime.project.util.BoardName;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -54,6 +55,8 @@ public class Board {
 	@Enumerated(EnumType.STRING) // Enum값을 DB에넣을때 STRING으로 바꿔넣어준다
 	private BoardType type; // FREE, 기타 타입
 	
+	
+	
 	@Lob
 	private String url;
 	
@@ -80,7 +83,13 @@ public class Board {
 		@OrderBy("id desc")
 		private List<Likes> likes;
 		
-		//양방향 매핑
+		@Transient // 칼럼이 만들어지지 않는다.
+		private int likeCount;
+		@Transient 
+		private int replyCount;
+		@Transient 
+		private int scrapCount;
+		
 		@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
 		@JsonIgnoreProperties({"board"})
 		@OrderBy("id desc")
@@ -89,11 +98,29 @@ public class Board {
 		
 		@Transient // 칼럼이 만들어지지 않는다.
 		private String dateSubstr;
+		@Transient
+		private String typeName;
 	
 		@PostLoad //select 되자마자 실행된다.
-		public void dateSubstr() {
-			this.dateSubstr = createDate.toString().substring(5, 16);  
+		public void postLoad() {
+			this.dateSubstr = createDate.toString().substring(5, 16);
+			this.typeName = BoardName.boardName(type);
+			
+			//count
+			this.likeCount = likes.size();
+			this.scrapCount = scraps.size();
+			int reReplyCount = 0;
+			for (Reply rereply : replys) {
+				reReplyCount += rereply.getRereplyCount();
+			}
+			this.replyCount = replys.size()+reReplyCount;
+			
+			
 		}
 		
+			
+		}
+
 		
-}
+		
+

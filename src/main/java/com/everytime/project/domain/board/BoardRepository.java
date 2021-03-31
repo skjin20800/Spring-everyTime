@@ -12,9 +12,11 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	Page<Board> findByTitleContaining(String keyword, Pageable pageable);
 
 	
-	// 게시글목록 타입으로 찾기
+	// 게시글 목록 타입으로 찾기
 	Page<Board> findByType(BoardType boardType, Pageable pageable);
 	
+	// 게시글 제목 타입으로 찾기
+	List<Board> findByType(BoardType boardType);
 
 	// 게시글목록 유저ID로 찾기
 	List<Board> findByUserId(Long userId);

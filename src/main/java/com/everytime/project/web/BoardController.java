@@ -16,6 +16,7 @@ import com.everytime.project.config.auth.PrincipalDetails;
 import com.everytime.project.domain.board.Board;
 import com.everytime.project.domain.board.BoardType;
 import com.everytime.project.service.BoardService;
+import com.everytime.project.util.BoardName;
 import com.everytime.project.web.dto.CMRespDto;
 import com.everytime.project.web.dto.board.BoardPostReqDto;
 import com.everytime.project.web.dto.board.SearchReqDto;
@@ -34,27 +35,29 @@ public class BoardController {
 		return "board/boardMain";
 	}
 	
-	@GetMapping("/board/free")
-	public String freeFindAll(Model model,@PageableDefault(sort = "id", direction = Sort.Direction.DESC  , size = 5)Pageable pageable) {	
-		Page<Board> boards = boardService.자유게시판목록(pageable);
+	@GetMapping("/board/{type}")
+	public String freeFindAll(@PathVariable BoardType type,Model model,@PageableDefault(sort = "id", direction = Sort.Direction.DESC  , size = 5)Pageable pageable) {	
+		Page<Board> boards = boardService.게시판목록(type,pageable);
 		model.addAttribute("boards",boards);
+		model.addAttribute("boardType",BoardName.boardName(type));
+		model.addAttribute("type",type);
 		return "board/free/freeMain";
 	}
 	
 	
 	@GetMapping("/board/freeDetail/{id}")
 	public String freeDetailFind(@PathVariable Long id,Model model) {
-		Board boardEntity = boardService.자유게시판상세보기(id);
+		Board boardEntity = boardService.게시판상세보기(id);
 		model.addAttribute("board",boardEntity);
 		return "board/free/freeDetail";
 	}
 	
-	@PostMapping("/board/post")
+	@PostMapping("/board/post/{type}")
 	@ResponseBody
-	public CMRespDto<?> save(@RequestBody BoardPostReqDto boardPostReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public CMRespDto<?> save(@PathVariable BoardType type, @RequestBody BoardPostReqDto boardPostReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		Board board = boardPostReqDto.toEntity();
 		board.setUser(principalDetails.getUser());
-		board.setType(BoardType.free);
+		board.setType(type);
 		int result = boardService.글쓰기(board);
 
 		return new CMRespDto<>(result,null) ;

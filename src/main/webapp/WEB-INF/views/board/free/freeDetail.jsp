@@ -7,13 +7,13 @@
 		<div class="title">
 			<a class="hamburger"></a>
 			<h1>
-				<a href="/389150">자유게시판</a>
+				<a href="/board/${board.type}">${board.typeName}</a>
 			</h1>
 		</div>
 	</aside>
 	<div class="wrap title">
 		<h1>
-			<a href="/389150">자유게시판</a>
+			<a href="/board/${board.type}">${board.typeName}</a>
 		</h1>
 		<hr>
 	</div>
@@ -41,17 +41,10 @@
 				<h2 class="large">${board.title}</h2>
 				<p class="large">${board.content}</p>
 				<ul class="status">
-					<li title="공감" class="vote" onClick="boardLike(${board.id})">${fn:length(board.likes)}</li>
-					<li title="댓글" class="comment">
+					<li title="공감" class="vote" onClick="boardLike(${board.id})">${board.likeCount}</li>
 					<!-- 댓글, 대댓글 갯수 더해서 출력 -->
-					<c:set var = "sum" value = "0" />
-					<c:set var= "sum" value="${sum + fn:length(board.replys)}"/>
-					<c:forEach var="reply" items="${board.replys}">
-					<c:set var= "sum" value="${sum + fn:length(reply.rereplys)}"/>
-					</c:forEach>
-					<c:out value="${sum}"/>
-					</li>
-					<li title="스크랩" class="scrap" onClick="boardScrap(${board.id})" >${fn:length(board.scraps)}</li>
+					<li title="댓글" class="comment">${board.replyCount}</li>
+					<li title="스크랩" class="scrap" onClick="boardScrap(${board.id})" >${board.scrapCount}</li>
 				</ul>
 			</a> <br />
 			<!-- 게시글 끝 -->
@@ -101,9 +94,9 @@
 
 						<!--댓글 공감 있을때만 표시 -->
 						<c:choose>
-							<c:when test="${fn:length(reply.likes) != 0}">
+							<c:when test="${reply.likeCount != 0}">
 								<ul class="status commentvotestatus">
-									<li class="vote commentvote" style="display: list-item;">${fn:length(reply.likes)}</li>
+									<li class="vote commentvote" style="display: list-item;">${reply.likeCount}</li>
 								</ul>
 							</c:when>
 							<c:otherwise>
@@ -152,9 +145,9 @@
 									<time class="medium">${rereply.dateSubstr}</time>
 									<!--대댓글 공감 있을때만 표시 -->
 									<c:choose>
-										<c:when test="${fn:length(rereply.likes) != 0}">
+										<c:when test="${rereply.likeCount != 0}">
 											<ul class="status commentvotestatus">
-												<li class="vote commentvote" style="display: list-item;">${fn:length(rereply.likes)}</li>
+												<li class="vote commentvote" style="display: list-item;">${rereply.likeCount}</li>
 											</ul>
 										</c:when>
 										<c:otherwise>

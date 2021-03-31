@@ -19,13 +19,13 @@ public class BoardService {
 	private final BoardRepository boardRepository;
 	
 	@Transactional(readOnly = true)
-	public Page<Board> 자유게시판목록(Pageable pageable) {		
-		return boardRepository.findByType(BoardType.free,pageable);
+	public Page<Board> 게시판목록(BoardType type,Pageable pageable) {		
+		return boardRepository.findByType(type,pageable);
 	}
 	
 
 	@Transactional(readOnly = true)
-	public Board 자유게시판상세보기(Long id) {
+	public Board 게시판상세보기(Long id) {
 		Board boardEntity = boardRepository.findById(id).orElseThrow(()->{
 			return new IllegalArgumentException("id를 찾을 수 없습니다.");
 		}); 

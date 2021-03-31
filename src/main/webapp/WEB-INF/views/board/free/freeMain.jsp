@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../../layout/header.jsp"%>
-<title>자유 게시판</title>
+<title>${boardType}</title>
 <%@include file="../../layout/submenu.jsp"%>
 
 <div id="container" class="article">
@@ -11,20 +11,21 @@
 		<div class="title">
 			<a class="hamburger"></a>
 			<h1>
-				<a href="/389150">자유게시판</a>
+				<a href="/board/${boardType}">${boardType}</a>
 			</h1>
 		</div>
 	</aside>
 	<div class="wrap title">
 		<h1>
-			<a href="/389150">자유게시판</a>
+			<a href="/board/${boardType}">${boardType}</a>
 		</h1>
 		<hr>
 	</div>
 	<div class="wrap articles" id="writeBoardContainer">
 		<!-- 글쓰기 -->
+		
+		<input type="hidden" id="boardType" value="${type}">
 		<a id="writeArticleButton">새 글을 작성해주세요!</a>
-
 		<c:forEach var="board" items="${boards.content}">
 			<article>
 				<a class="article" href="/board/freeDetail/${board.id}">
@@ -39,15 +40,9 @@
 						</c:otherwise>
 					</c:choose>
 					<ul class="status">
-						<li title="공감" class="vote" onClick="boardLike(${board.id})">${fn:length(board.likes)}</li>
-						<li title="댓글" class="comment">
-							<!-- 댓글, 대댓글 갯수 더해서 출력 --> <c:set var="sum" value="0" /> <c:set
-								var="sum" value="${sum + fn:length(board.replys)}" /> <c:forEach
-								var="reply" items="${board.replys}">
-								<c:set var="sum" value="${sum + fn:length(reply.rereplys)}" />
-							</c:forEach> <c:out value="${sum}" />
-						</li>
-						<li title="스크랩" class="scrap">${fn:length(board.scraps)}</li>
+						<li title="공감" class="vote" onClick="boardLike(${board.id})">${board.likeCount}</li>
+						<li title="댓글" class="comment">${board.replyCount}</li>
+						<li title="스크랩" class="scrap">${board.scrapCount}</li>
 					</ul>
 
 					<hr> <input type="hidden" name="177388788_comment_anonym"

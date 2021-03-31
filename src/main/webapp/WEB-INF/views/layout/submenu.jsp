@@ -6,7 +6,7 @@
         <div class="group">
           <ul>
           <li><a href="/board/free" data-id="389150" class="new active">자유게시판</a></li>
-          <li><a href="/259143" data-id="259143" class="new">비밀게시판</a></li>
+          <li><a href="/board/secret" data-id="259143" class="new">비밀게시판</a></li>
           <li><a href="/389426" data-id="389426" class="new">졸업생게시판</a></li>
           <li><a href="/389239" data-id="389239" class="new">새내기게시판</a></li>
           <li><a href="/482707" data-id="482707" class="new">시사·이슈</a></li>

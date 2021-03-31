@@ -59,6 +59,8 @@ $("#writeArticleButton").on("click",(e)=>{
   $("#writePost").on("click", (e)=>{
 	e.preventDefault(); //form태그 action안타게 막아버리는것
 
+	let type = $("#boardType").val();
+	console.log($("#boardType").val());
   	let data = {
 		content: $("#content").val(),
 		title: $("#title").val(),
@@ -67,7 +69,7 @@ $("#writeArticleButton").on("click",(e)=>{
       
       $.ajax({
 		type: "POST",
-		url: "/board/post",
+		url: "/board/post/"+type,
 		data: JSON.stringify(data),
 		contentType: "application/json; charset=utf-8",
 		dataType:"json"
