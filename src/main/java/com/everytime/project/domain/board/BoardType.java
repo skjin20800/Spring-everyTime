@@ -1,5 +1,5 @@
 package com.everytime.project.domain.board;
 
 public enum BoardType {
-	free,test, secret
+	free, secret, graduate, freshman, issue, marketplace, promotion, club, information, career
 }

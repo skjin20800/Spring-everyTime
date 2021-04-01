@@ -358,8 +358,8 @@
 }
 #container > div.articles > form.write ul.option li.anonym {
   float: right;
-  margin-right: 15px;
-  background-image: url("/images/new/container.articles.write.anonym.png");
+  margin-right: 10px;
+  padding-top: 10px;
 }
 #container > div.articles > form.write ul.option li.anonym.active {
   background-image: url("/images/new/container.articles.write.anonym.active.png");
