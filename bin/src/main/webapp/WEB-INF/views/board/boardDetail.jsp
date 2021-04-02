@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../../layout/header.jsp"%>
-<%@include file="../../layout/submenu.jsp"%>
+<%@include file="../layout/header.jsp"%>
+<%@include file="../layout/submenu.jsp"%>
 <div id="container" class="article">
 	<input type="hidden" id="isUser" value="1"> <input type="hidden" id="boardId" value="389150">
 	<aside class="none">
 		<div class="title">
 			<a class="hamburger"></a>
 			<h1>
-				<a href="/389150">자유게시판</a>
+				<a href="/board/${board.type}">${board.typeName}</a>
 			</h1>
 		</div>
 	</aside>
 	<div class="wrap title">
 		<h1>
-			<a href="/389150">자유게시판</a>
+			<a href="/board/${board.type}">${board.typeName}</a>
 		</h1>
 		<hr>
 	</div>
@@ -31,7 +31,7 @@
 							<h3 class="small">익명</h3>
 						</c:otherwise>
 					</c:choose>
-					<time class="large">${date}</time>
+					<time class="large">${board.dateSubstr}</time>
 				</div>
 				<ul class="status">
 					<li class="messagesend" data-modal="messageSend" data-article-id="177166298" data-is-anonym="1">쪽지</li>
@@ -41,17 +41,10 @@
 				<h2 class="large">${board.title}</h2>
 				<p class="large">${board.content}</p>
 				<ul class="status">
-					<li title="공감" class="vote" onClick="boardLike(${board.id})">${fn:length(board.likes)}</li>
-					<li title="댓글" class="comment">
+					<li title="공감" class="vote" onClick="boardLike(${board.id})">${board.likeCount}</li>
 					<!-- 댓글, 대댓글 갯수 더해서 출력 -->
-					<c:set var = "sum" value = "0" />
-					<c:set var= "sum" value="${sum + fn:length(board.replys)}"/>
-					<c:forEach var="reply" items="${board.replys}">
-					<c:set var= "sum" value="${sum + fn:length(reply.rereplys)}"/>
-					</c:forEach>
-					<c:out value="${sum}"/>
-					</li>
-					<li title="스크랩" class="scrap" onClick="boardScrap(${board.id})" >${fn:length(board.scraps)}</li>
+					<li title="댓글" class="comment">${board.replyCount}</li>
+					<li title="스크랩" class="scrap" onClick="boardScrap(${board.id})" >${board.scrapCount}</li>
 				</ul>
 			</a> <br />
 			<!-- 게시글 끝 -->
@@ -97,13 +90,13 @@
 
 						<hr>
 						<p class="large">${reply.content}</p>
-						<time class="medium">시간미정</time>
+						<time class="medium" id="time_reply">${reply.dateSubstr}</time>
 
 						<!--댓글 공감 있을때만 표시 -->
 						<c:choose>
-							<c:when test="${fn:length(reply.likes) != 0}">
+							<c:when test="${reply.likeCount != 0}">
 								<ul class="status commentvotestatus">
-									<li class="vote commentvote" style="display: list-item;">${fn:length(reply.likes)}</li>
+									<li class="vote commentvote" style="display: list-item;">${reply.likeCount}</li>
 								</ul>
 							</c:when>
 							<c:otherwise>
@@ -149,12 +142,12 @@
 							    </c:choose>
 									<hr>
 									<p class="large">${rereply.content}</p>
-									<time class="medium">시간 미정</time>
+									<time class="medium">${rereply.dateSubstr}</time>
 									<!--대댓글 공감 있을때만 표시 -->
 									<c:choose>
-										<c:when test="${fn:length(rereply.likes) != 0}">
+										<c:when test="${rereply.likeCount != 0}">
 											<ul class="status commentvotestatus">
-												<li class="vote commentvote" style="display: list-item;">${fn:length(rereply.likes)}</li>
+												<li class="vote commentvote" style="display: list-item;">${rereply.likeCount}</li>
 											</ul>
 										</c:when>
 										<c:otherwise>
@@ -190,9 +183,9 @@
 	</div>
 	<hr>
 
-	<%@include file="../../layout/realtimemenu.jsp"%>
+	<%@include file="../layout/realtimemenu.jsp"%>
 </div>
-<%@include file="../../layout/footer.jsp"%>
+<%@include file="../layout/footer.jsp"%>
 <script src="/js/board.reply.js" type="text/javascript"></script>
 <script src="/js/board.rereply.js" type="text/javascript"></script>
 <script src="/js/board.likes.js" type="text/javascript"></script>

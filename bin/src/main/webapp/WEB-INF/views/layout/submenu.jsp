@@ -6,24 +6,24 @@
         <div class="group">
           <ul>
           <li><a href="/board/free" data-id="389150" class="new active">자유게시판</a></li>
-          <li><a href="/259143" data-id="259143" class="new">비밀게시판</a></li>
-          <li><a href="/389426" data-id="389426" class="new">졸업생게시판</a></li>
-          <li><a href="/389239" data-id="389239" class="new">새내기게시판</a></li>
-          <li><a href="/482707" data-id="482707" class="new">시사·이슈</a></li>
-          <li><a href="/389374" data-id="389374" class="new">장터게시판</a></li>
-          <li><a href="/367573" data-id="367573" class="new">홍보게시판</a></li>
+          <li><a href="/board/secret" data-id="259143" class="new">비밀게시판</a></li>
+          <li><a href="/board/graduate" data-id="389426" class="new">졸업생게시판</a></li>
+          <li><a href="/board/freshman" data-id="389239" class="new">새내기게시판</a></li>
+          <li><a href="/board/issue" data-id="482707" class="new">시사·이슈</a></li>
+          <li><a href="/board/marketplace" data-id="389374" class="new">장터게시판</a></li>
+          <li><a href="/board/promotion" data-id="367573" class="new">홍보게시판</a></li>
           </ul>
         </div>
         <div class="group">
           <ul>
-          <li><a href="/418900" data-id="418900" class="new">동아리·학회</a></li>
+          <li><a href="/board/club" data-id="418900" class="new">동아리·학회</a></li>
           </ul>
         </div>
         <div class="divider"></div>
         <div class="group">
           <ul>
-          <li><a href="/259145" data-id="259145">정보게시판</a></li>
-          <li><a href="/389322" data-id="389322" class="new">취업·진로</a></li>
+          <li><a href="/board/information" data-id="259145">정보게시판</a></li>
+          <li><a href="/board/career" data-id="389322" class="new">취업·진로</a></li>
           </ul>
         </div>
         <div class="divider"></div>

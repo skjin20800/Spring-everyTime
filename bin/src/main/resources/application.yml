@@ -32,3 +32,13 @@ spring:
     serialization:
       fail-on-empty-beans: false
 
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 1812961052216546
+            client-secret: d09f6a9d63d5e441bc53c0edab1d552b
+            scope:
+            - email
+            - public_profile

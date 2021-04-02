@@ -69,4 +69,5 @@
 			</div>
 		</div>
 	</div>
+	<script src="/js/menu.realtimemenu2.js" type="text/javascript"></script>
 	

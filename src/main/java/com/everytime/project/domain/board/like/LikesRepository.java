@@ -1,5 +1,7 @@
 package com.everytime.project.domain.board.like;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -29,10 +31,6 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 		@Query(value = "INSERT INTO likes(userId, reReplyId, createDate) VALUES(:userId, :reReplyId, now())", nativeQuery = true)
 		int mReReplyLike(Long userId, Long reReplyId); // prepareStatement updateQuery() => -1 0 1
 		
-		
-		
-		
-		
-}
+		}
 
 

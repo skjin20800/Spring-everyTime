@@ -1,4 +1,6 @@
 package com.everytime.project.web;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.everytime.project.config.BestBoardConfig;
 import com.everytime.project.config.auth.PrincipalDetails;
 import com.everytime.project.domain.board.Board;
 import com.everytime.project.domain.board.BoardType;
@@ -31,7 +34,8 @@ public class BoardController {
 	private final BoardService boardService;
 	
 	@GetMapping({"","/","/board"})
-	public String findAll() {
+	public String findAll(Model model) {
+
 		return "board/boardMain";
 	}
 	
@@ -41,6 +45,7 @@ public class BoardController {
 		model.addAttribute("boards",boards);
 		model.addAttribute("boardType",BoardName.boardName(type));
 		model.addAttribute("type",type);
+		
 		return "board/boardList";
 	}
 	
@@ -49,6 +54,7 @@ public class BoardController {
 	public String freeDetailFind(@PathVariable Long id,Model model) {
 		Board boardEntity = boardService.게시판상세보기(id);
 		model.addAttribute("board",boardEntity);
+		
 		return "board/boardDetail";
 	}
 	
@@ -64,12 +70,16 @@ public class BoardController {
 		}
 	
 	
-	@PostMapping("/board/search")
-	public String search(SearchReqDto searchReqDto, Model model,
+	@GetMapping("/board/search/{type}")
+	public String search(@PathVariable BoardType type,
+			SearchReqDto searchReqDto, Model model,
 			@PageableDefault(sort = "id", direction = Sort.Direction.DESC , size = 5)Pageable pageable
 			) {
 		Page<Board> boards = boardService.검색하기(searchReqDto, pageable);
 		model.addAttribute("boards",boards);
+		model.addAttribute("boardType",BoardName.boardName(type));
+		model.addAttribute("type",type);
+		
 		return "board/boardList";
 	}
 

@@ -42,7 +42,6 @@ public class BoardService {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public Page<Board> 검색하기(SearchReqDto SearchReqDto,Pageable pageable) {
 		return boardRepository.findByTitleContaining(SearchReqDto.getKeyword(), pageable);
