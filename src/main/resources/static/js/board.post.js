@@ -49,10 +49,10 @@ $("#writeArticleButton").on("click",(e)=>{
 	
 	toggle = !toggle;
 	if(toggle == true){
-		console.log(toggle);
+		
 		$("#writeBoard").show(); //Show
 	}else{		
-		console.log(toggle);
+		
 		$("#writeBoard").hide(); // Hide
 	}
 });
@@ -62,7 +62,7 @@ $("#writeArticleButton").on("click",(e)=>{
 	e.preventDefault(); //form태그 action안타게 막아버리는것
 
 	let type = $("#boardType").val();
-	console.log($("#boardType").val());
+	
   	let data = {
 		content: $("#content").val(),
 		title: $("#title").val(),
@@ -76,7 +76,7 @@ $("#writeArticleButton").on("click",(e)=>{
 		contentType: "application/json; charset=utf-8",
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 			alert("게시글 작성에 성공하였습니다.");
 			 location.reload();

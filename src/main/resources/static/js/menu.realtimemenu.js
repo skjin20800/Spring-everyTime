@@ -4,9 +4,9 @@ function bestList(){
 	       $.ajax({
 		url: "/likes/bestList",
 	}).done((res)=>{
-		console.log(res);
+		
 		 let contents = res.data.content;
-		console.log(contents); 
+		
 		
 		  for(var i = 0; i<contents.length; i++){
 			

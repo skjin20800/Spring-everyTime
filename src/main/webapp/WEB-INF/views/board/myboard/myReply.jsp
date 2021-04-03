@@ -41,7 +41,7 @@
     <hr>
     <h2 class="medium bold">${board.title}</h2>
     <p class="medium">${reply.board.content}</p>
-    <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${reply.board.type}</a>
+    <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${reply.board.typeName}</a>
     <ul class="status">
 						<li title="공감" class="vote" onClick="boardLike(${board.id})">${board.likeCount}</li>
 						<li title="댓글" class="comment">${board.replyCount}</li>

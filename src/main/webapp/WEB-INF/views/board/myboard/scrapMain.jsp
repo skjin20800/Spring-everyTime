@@ -41,7 +41,7 @@
     <hr>
     <h2 class="medium bold">${scrap.board.title}</h2>
     <p class="medium">${scrapboard.content}</p>
-    <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${scrap.board.type}</a>
+    <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${scrap.board.typeName}</a>
     <ul class="status">
     <li class="removescrap">스크랩 취소</li>
 						<li title="공감" class="vote" onClick="boardLike(${board.id})">${board.likeCount}</li>

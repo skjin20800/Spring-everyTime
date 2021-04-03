@@ -1,6 +1,4 @@
 package com.everytime.project.web;
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -8,13 +6,14 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.everytime.project.config.BestBoardConfig;
 import com.everytime.project.config.auth.PrincipalDetails;
 import com.everytime.project.domain.board.Board;
 import com.everytime.project.domain.board.BoardType;
@@ -22,6 +21,7 @@ import com.everytime.project.service.BoardService;
 import com.everytime.project.util.BoardName;
 import com.everytime.project.web.dto.CMRespDto;
 import com.everytime.project.web.dto.board.BoardPostReqDto;
+import com.everytime.project.web.dto.board.BoardPutReqDto;
 import com.everytime.project.web.dto.board.SearchReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -68,6 +68,25 @@ public class BoardController {
 
 		return new CMRespDto<>(result,null) ;
 		}
+	
+	@PutMapping("/board/post/{id}")
+	@ResponseBody
+	public CMRespDto<?> update(@PathVariable Long id, @RequestBody BoardPutReqDto boardPutReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		int result = boardService.수정하기(id, boardPutReqDto.toEntity());
+
+		return new CMRespDto<>(result,null) ;
+		}
+	
+	
+	@DeleteMapping("/board/{id}")
+	@ResponseBody
+	public CMRespDto<?> deleteById(@PathVariable Long id,
+			@AuthenticationPrincipal PrincipalDetails principalDetails){
+		int result = boardService.삭제하기(id, principalDetails.getUser().getId());
+		return new CMRespDto<>(result,null);
+	}
+	
+	
 	
 	
 	@GetMapping("/board/search/{type}")

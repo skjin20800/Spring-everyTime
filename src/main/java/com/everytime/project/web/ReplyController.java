@@ -35,7 +35,7 @@ public class ReplyController {
 	@DeleteMapping("/reply/{id}")
 	public CMRespDto<?> deleteById(@PathVariable Long id,
 			@AuthenticationPrincipal PrincipalDetails principalDetails){
-		
+		System.out.println("호엥");
 		//모든 컨트롤러에 삭제하기, 수정하기는 무조건 동일 인물이 로그인 했는지 확인!!!
 		int result = replyService.삭제하기(id, principalDetails.getUser().getId());
 		return new CMRespDto<>(result,null);

@@ -36,7 +36,7 @@ function postReReply(id){
 		contentType: "application/json; charset=utf-8",
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 			alert("게시글 작성에 성공하였습니다.");
 			 location.reload();
@@ -60,9 +60,9 @@ function deleteReReply(id){
 		url: "/rereply/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+	
 		if(res.statusCode === 1){
-		$("#reply-"+id).remove();
+		$("#rereply-"+id).remove();
 		}else{
 			alert("삭제에 실패하였습니다.");
 		}
