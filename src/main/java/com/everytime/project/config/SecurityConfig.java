@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.everytime.project.config.oauth.LoginSuccessHandler;
 import com.everytime.project.config.oauth.OAuth2DetailsService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,15 +23,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public BCryptPasswordEncoder encode() {
 		return new BCryptPasswordEncoder();
 	}; 
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable(); //csrf비활성화
 		http.authorizeRequests()
 		.antMatchers("/","/css/**","/images/**","/js/**").permitAll()
-		.antMatchers("/loginForm").permitAll()
-		.antMatchers("/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") //user,post만 인증 및 허용//ROLE_는 강제성이 있음. 롤 검증시 사용
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+		.antMatchers("/loginForm","/joinForm").permitAll()
+		.antMatchers("/my/oauth").access("hasRole('ROLE_OAUTH')")
+//		.antMatchers("/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") //user,post만 인증 및 허용//ROLE_는 강제성이 있음. 롤 검증시 사용
+//		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 		.anyRequest().permitAll() //나머지 다 허용
 		.and()
 		.formLogin() //x-www-form-urlencoded
@@ -39,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.defaultSuccessUrl("/") //로그인후 기본이동페이지
 		.and()
 		.oauth2Login()
+		.successHandler(new LoginSuccessHandler())
 		.userInfoEndpoint()
 		.userService(oAuth2DetailsService);
 	}
