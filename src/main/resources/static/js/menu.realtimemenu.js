@@ -4,7 +4,6 @@ function bestList(){
 	       $.ajax({
 		url: "/likes/bestList",
 	}).done((res)=>{
-		
 		 let contents = res.data.content;
 		
 		

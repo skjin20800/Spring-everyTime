@@ -1,5 +1,8 @@
 package com.everytime.project.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -8,7 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.everytime.project.domain.board.Board;
 import com.everytime.project.domain.board.BoardRepository;
 import com.everytime.project.domain.board.BoardType;
-import com.everytime.project.domain.board.reply.Reply;
+import com.everytime.project.util.BoardName;
+import com.everytime.project.web.dto.board.BoardAllRespDto;
 import com.everytime.project.web.dto.board.SearchReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +22,28 @@ import lombok.RequiredArgsConstructor;
 public class BoardService {
 
 	private final BoardRepository boardRepository;
+	
+	
+	
+	
+	@Transactional(readOnly = true)
+	public List<BoardAllRespDto> 전체타입목록() {
+		List<BoardAllRespDto> dto = new ArrayList<>();
+		BoardType boardTypes[] = BoardType.values(); 
+		for (int i = 0; i < boardTypes.length; i++) {
+			BoardAllRespDto boardAllRespDto = new BoardAllRespDto();
+			boardAllRespDto.setBoardType(boardTypes[i]);
+			boardAllRespDto.setBoardName(BoardName.boardName(boardTypes[i]));
+			dto.add(boardAllRespDto);
+		}		
+		return dto;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Board> 전체게시판목록() {		
+		return boardRepository.findAll();
+	}
+	
 	
 	@Transactional(readOnly = true)
 	public Page<Board> 게시판목록(BoardType type,Pageable pageable) {		

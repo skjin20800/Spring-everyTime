@@ -1,4 +1,6 @@
 package com.everytime.project.web;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,6 +22,7 @@ import com.everytime.project.domain.board.BoardType;
 import com.everytime.project.service.BoardService;
 import com.everytime.project.util.BoardName;
 import com.everytime.project.web.dto.CMRespDto;
+import com.everytime.project.web.dto.board.BoardAllRespDto;
 import com.everytime.project.web.dto.board.BoardPostReqDto;
 import com.everytime.project.web.dto.board.BoardPutReqDto;
 import com.everytime.project.web.dto.board.SearchReqDto;
@@ -35,8 +38,11 @@ public class BoardController {
 	
 	@GetMapping({"","/","/board"})
 	public String findAll(Model model) {
-
-		return "board/boardMain";
+		List<BoardAllRespDto> types= boardService.전체타입목록();
+		List<Board> boards = boardService.전체게시판목록();
+		 model.addAttribute("types",types);
+		 model.addAttribute("boards",boards);		 
+		 return "board/boardMain";
 	}
 	
 	@GetMapping("/board/{type}")
