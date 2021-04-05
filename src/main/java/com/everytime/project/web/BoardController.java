@@ -1,6 +1,8 @@
 package com.everytime.project.web;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -8,6 +10,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,23 +67,22 @@ public class BoardController {
 		
 		return "board/boardDetail";
 	}
-	
+	 
 	@PostMapping("/board/post/{type}")
 	@ResponseBody
-	public CMRespDto<?> save(@PathVariable BoardType type, @RequestBody BoardPostReqDto boardPostReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public CMRespDto<?> save(@PathVariable BoardType type,@Valid @RequestBody BoardPostReqDto boardPostReqDto,BindingResult bindingResult, @AuthenticationPrincipal PrincipalDetails principalDetails ) {
 		Board board = boardPostReqDto.toEntity();
 		board.setUser(principalDetails.getUser());
 		board.setType(type);
 		int result = boardService.글쓰기(board);
 
-		return new CMRespDto<>(result,null) ;
+		return new CMRespDto<>(result,null);
 		}
-	
+	//
 	@PutMapping("/board/post/{id}")
 	@ResponseBody
-	public CMRespDto<?> update(@PathVariable Long id, @RequestBody BoardPutReqDto boardPutReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public CMRespDto<?> update(@PathVariable Long id,@Valid @RequestBody BoardPutReqDto boardPutReqDto,BindingResult bindingResult, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		int result = boardService.수정하기(id, boardPutReqDto.toEntity());
-
 		return new CMRespDto<>(result,null) ;
 		}
 	
@@ -91,20 +94,15 @@ public class BoardController {
 		int result = boardService.삭제하기(id, principalDetails.getUser().getId());
 		return new CMRespDto<>(result,null);
 	}
-	
-	
-	
-	
+		
 	@GetMapping("/board/search/{type}")
 	public String search(@PathVariable BoardType type,
-			SearchReqDto searchReqDto, Model model,
-			@PageableDefault(sort = "id", direction = Sort.Direction.DESC , size = 5)Pageable pageable
-			) {
+			 SearchReqDto searchReqDto, Model model,
+			@PageableDefault(sort = "id", direction = Sort.Direction.DESC , size = 5)Pageable pageable) {
 		Page<Board> boards = boardService.검색하기(searchReqDto, pageable);
 		model.addAttribute("boards",boards);
 		model.addAttribute("boardType",BoardName.boardName(type));
 		model.addAttribute("type",type);
-		
 		return "board/boardList";
 	}
 

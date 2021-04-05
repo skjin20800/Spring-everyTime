@@ -1,5 +1,7 @@
 package com.everytime.project.web.dto.reply;
 
+import javax.validation.constraints.NotBlank;
+
 import com.everytime.project.domain.board.reply.Reply;
 
 import lombok.AllArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ReplyReqDto {
 
+	@NotBlank(message = "댓글 내용을 입력하세요")
 	private String content;		
 	private Boolean isAnonymous;
 				

@@ -19,10 +19,10 @@ let postId = $("#postId").val();
 	}).done((res)=>{
 		
 		if(res.statusCode === 1){
-			alert("게시글 작성에 성공하였습니다.");
+			alert("댓글 작성에 성공하였습니다.");
 			 location.reload();
 		}else{
-			alert("게시글 작성에 실패하였습니다.");
+			alert("댓글 작성에 실패하였습니다.");
 		}
 	});
       

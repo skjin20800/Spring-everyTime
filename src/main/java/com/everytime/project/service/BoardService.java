@@ -41,7 +41,7 @@ public class BoardService {
 	
 	@Transactional(readOnly = true)
 	public List<Board> 전체게시판목록() {		
-		return boardRepository.findAll();
+		return boardRepository.mfindAll();
 	}
 	
 	

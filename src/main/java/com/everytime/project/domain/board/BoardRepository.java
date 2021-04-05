@@ -21,4 +21,8 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	//실시간 인기Top3
 		@Query(value = "SELECT b.* , count(boardId) count FROM (likes) right outer join (board b) on likes.boardId = b.id group by likes.boardId order by count desc ", nativeQuery = true)
 		Page<Board> mBestList(Pageable pageable);
+		
+		//전체 게시판 목록
+		@Query(value = "select * from board order by id desc ", nativeQuery = true)
+		List<Board> mfindAll();
 }
