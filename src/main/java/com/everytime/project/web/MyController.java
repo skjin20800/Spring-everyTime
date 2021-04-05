@@ -32,7 +32,7 @@ public class MyController {
 	public String myPassword() {
 		return "my/password";
 	}
-	@GetMapping("/my/University")
+	@GetMapping("/my/university")
 	public String myUniversity() {
 		return "my/university";
 	}
@@ -62,6 +62,7 @@ public class MyController {
 	@ResponseBody
 	public CMRespDto<?> passwordUpdate(@RequestBody PasswordUpdateDto passwordUpdateDto) {
 		System.out.println("MyController passwordUpdate - 작동");
+		System.out.println("passwordUpdate - "+passwordUpdateDto);
 		return myService.패스워드변경(passwordUpdateDto);
 	}
 

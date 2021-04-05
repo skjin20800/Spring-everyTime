@@ -122,10 +122,10 @@ gtag('config', 'UA-22022140-4');
 						<p data-v-e7756488="">4~20자</p>
 					</div>
 					<input data-v-e7756488="" type="password" maxlength="20"
-						placeholder="새 비밀번호" class=""id="newPassword">
+						placeholder="새 비밀번호" class=""id="newpassword">
 					<!---->
 					<input data-v-e7756488="" type="password" maxlength="20"
-						placeholder="새 비밀번호 확인" class=""id="newPasswordCheck">
+						placeholder="새 비밀번호 확인" class=""id="newpasswordCheck">
 						<span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
     <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
 					<!---->
@@ -135,8 +135,9 @@ gtag('config', 'UA-22022140-4');
 						<label data-v-e7756488="">현재 비밀번호</label>
 					</div>
 					<input data-v-e7756488="" type="password" maxlength="20"
-						placeholder="현재 비밀번호" class="" id = "nowPassword">
+						placeholder="현재 비밀번호" class="" id = "nowpassword">
 				</div>
+												<input type="hidden" id ="username" value="${principal.user.username}">
 				<div data-v-e7756488="" class="rules">
 					<p data-v-e7756488="">
 						<strong data-v-e7756488="">※ 혹시 타인에게 계정을 양도하려고 하시나요?</strong><br
@@ -153,7 +154,7 @@ gtag('config', 'UA-22022140-4');
 							브라우저 등)에서 즉시 로그아웃 처리됩니다.</span>
 					</p>
 				</div>
-				<input data-v-e7756488="" type="submit" value="비밀번호 변경">
+				<input id ="passwordPut" data-v-e7756488="" type="submit" value="비밀번호 변경">
 			</section>
 		</form>
 		<footer data-v-20651ef4="" data-v-e7756488="">

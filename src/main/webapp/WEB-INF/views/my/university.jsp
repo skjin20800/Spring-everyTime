@@ -120,12 +120,13 @@ gtag('config', 'UA-22022140-4');
 					<input data-v-bdf4e790="" type="password" maxlength="20"
 						id="password" placeholder="계정 비밀번호" class="">
 				</div>
+								<input type="hidden" id ="username" value="${principal.user.username}">
 				<div data-v-bdf4e790="" class="rules">
 					<p data-v-bdf4e790="">
 						※ 반드시 본인의 학교를 입력해주세요.<br data-v-bdf4e790=""> ※ 서비스 이용 등에 사용됩니다.
 					</p>
 				</div>
-				<button id="btn-update" data-v-bdf4e790="" >학교
+				<button id="universityPut" data-v-bdf4e790="" >학교
 					변경</button>
 			</section>
 		</form>

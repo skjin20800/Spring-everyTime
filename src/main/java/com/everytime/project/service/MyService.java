@@ -34,6 +34,7 @@ public class MyService {
 	}
 	@Transactional
 	public CMRespDto<?> 이메일변경(User user) {
+		System.out.println("이메일변경 - " +user);
 			User userEntity = userRepository.findByUsername(user.getUsername());
 			if(bCryptPasswordEncoder.matches(user.getPassword(), userEntity.getPassword())) {
 				userEntity.setEmail(user.getEmail());

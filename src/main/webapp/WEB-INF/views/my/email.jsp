@@ -120,13 +120,14 @@ gtag('config', 'UA-22022140-4');
 					<input data-v-bdf4e790="" type="password" maxlength="20"
 						id="password" placeholder="계정 비밀번호" class="">
 				</div>
+				<input type="hidden" id ="username" value="${principal.user.username}">
 				<div data-v-bdf4e790="" class="rules">
 					<p data-v-bdf4e790="">
 						※ 반드시 본인의 이메일을 입력해주세요.<br data-v-bdf4e790=""> ※ 계정 분실 시
 						아이디/비밀번호 찾기, 개인정보 관련 주요 고지사항 안내 등에 사용됩니다.
 					</p>
 				</div>
-				<button id="btn-update" data-v-bdf4e790="" >이메일
+				<button id="emailPut" data-v-bdf4e790="" class="submit" >이메일
 					변경</button>
 			</section>
 		</form>
