@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -47,7 +48,13 @@ public class Likes {
 	@JoinColumn(name = "reReplyId") // 대댓글
 	private Reply reReply;
 	
+	@Transient // 칼럼이 만들어지지 않는다.
+	private int likeCount;
+	
 	@CreationTimestamp
 	private Timestamp createDate;
+	
+	
+	
 	
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
     
     <sec:authorize access="isAuthenticated()">
@@ -23,7 +22,7 @@
         
     
     <!-- 부트스트랩 및 제이쿼리 -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -41,9 +40,9 @@
       <div id="account">
         <a href="/message" title="쪽지함" class="icon message">쪽지함</a></li>
         <a href="/my" title="내 정보" class="icon my">내 정보</a>
-        <input type="hidden" id="userUserid" value="lonru">
-        <input type="hidden" id="userSchool" value="151">
-        <input type="hidden" id="userCampus" value="183">
+        <input type="hidden" id="userUserid" value="${principal.user.nickname}">
+        <input type="hidden" id="userSchool" value="${principal.user.university}">
+        <input type="hidden" id="userCampus" value="${principal.user.university}">
       </div>
       <ul id="menu">
         <li class="active"><a href="/">게시판</a></li>

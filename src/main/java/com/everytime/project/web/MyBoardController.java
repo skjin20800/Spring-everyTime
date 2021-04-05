@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.everytime.project.config.BestBoardConfig;
 import com.everytime.project.config.auth.PrincipalDetails;
 import com.everytime.project.domain.board.Board;
 import com.everytime.project.domain.board.reply.Reply;
 import com.everytime.project.domain.user.scrap.Scrap;
+import com.everytime.project.service.LikesService;
 import com.everytime.project.service.MyBoardService;
 import com.everytime.project.web.dto.CMRespDto;
 
@@ -24,8 +26,8 @@ import lombok.RequiredArgsConstructor;
 public class MyBoardController {
 	
 	private final MyBoardService myBoardService;
-	
-	
+	private final BestBoardConfig bestBoardConfig;
+
 	@PostMapping("/myboard/scrap/{id}")
 	@ResponseBody
 	public CMRespDto<?> saveScrap(@AuthenticationPrincipal PrincipalDetails principalDetails, 
@@ -37,7 +39,12 @@ public class MyBoardController {
 	@GetMapping("/myboard/scrap")
 	public String myScrap(@AuthenticationPrincipal PrincipalDetails principalDetails,Model model) {
 		List<Scrap> scraps = myBoardService.스크랩목록(principalDetails.getUser().getId());
-		model.addAttribute("scraps",scraps);		
+		model.addAttribute("scraps",scraps);
+		
+		/*
+		 * List<Board> bestList = bestBoardConfig.bestBoard();
+		 * model.addAttribute("bestList",bestList);
+		 */
 		return "board/myboard/scrapMain";
 		}
 	
@@ -45,15 +52,26 @@ public class MyBoardController {
 	@GetMapping("/myboard/myreply")
 	public String myReply(@AuthenticationPrincipal PrincipalDetails principalDetails,Model model) {
 		List<Reply> replys = myBoardService.내댓글목록(principalDetails.getUser().getId());
-		model.addAttribute("replys",replys);		
+		model.addAttribute("replys",replys);
+		
+		/*
+		 * List<Board> bestList = bestBoardConfig.bestBoard();
+		 * model.addAttribute("bestList",bestList);
+		 */
 		return "board/myboard/myReply";
 		}
 	
 	@GetMapping("/myboard")
 	public String myboard(@AuthenticationPrincipal PrincipalDetails principalDetails,Model model) {
 		List<Board> boards = myBoardService.내게시글목록(principalDetails.getUser().getId());
-		model.addAttribute("boards",boards);		
+		model.addAttribute("boards",boards);
+		
+		/*
+		 * List<Board> bestList = bestBoardConfig.bestBoard();
+		 * model.addAttribute("bestList",bestList);
+		 */
 		return "board/myboard/myBoard";
 		}
 
 }
+

@@ -30,6 +30,7 @@ public class AuthController {
 	
 	@PostMapping("/join")
 	public String join(AuthJoinReqDto authJoinReqDto) {
+		System.out.println("회원가입 실행");
 		authService.회원가입(authJoinReqDto.toEntity());
 		return "redirect:/loginForm"; // 로그인 로직 다시 때리기
 	}

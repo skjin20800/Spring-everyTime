@@ -72,10 +72,16 @@ public class Reply {
 		
 		@Transient // 칼럼이 만들어지지 않는다.
 		private String dateSubstr;
+		@Transient
+		private int rereplyCount;
+		@Transient
+		private int likeCount;
 	
 		@PostLoad //select 되자마자 실행된다.
 		public void dateSubstr() {
 			this.dateSubstr = createDate.toString().substring(5, 16);  
+			this.rereplyCount = rereplys.size();
+			this.likeCount = likes.size();
 		}
 		
 		

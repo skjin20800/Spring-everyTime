@@ -43,15 +43,10 @@
     <p class="medium">${reply.board.content}</p>
     <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${reply.board.type}</a>
     <ul class="status">
-    <li title="공감" class="vote" >${fn:length(reply.board.likes)}</li>
-	<li title="댓글" class="comment">
-	<c:set var = "sum" value = "0" />
-					<c:set var= "sum" value="${sum + fn:length(reply.board.replys)}"/>
-					<c:forEach var="reply" items="${reply.board.replys}">
-					<c:set var= "sum" value="${sum + fn:length(reply.rereplys)}"/>
-					</c:forEach>
-					<c:out value="${sum}"/>&nbsp;&nbsp;</li>				
-    </ul><hr>
+						<li title="공감" class="vote" onClick="boardLike(${board.id})">${board.likeCount}</li>
+						<li title="댓글" class="comment">${board.replyCount}</li>
+						<li title="스크랩" class="scrap">${board.scrapCount}&nbsp;&nbsp;</li>
+					</ul><hr>
     <input type="hidden" name="172961707_comment_anonym" value="0"></a>
     <div class="comments"></div>
     </c:forEach>
