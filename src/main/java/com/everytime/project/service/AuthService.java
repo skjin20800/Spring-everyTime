@@ -23,7 +23,6 @@ public class AuthService {
 		
 		String rawPassword = user.getPassword(); //비밀번호를 받아온다
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword); //받아온 비밀번호를 해쉬암호화한다.
-		
 		user.setPassword(encPassword);// 암호화 암호 등록
 		user.setUserRole(RoleType.USER);
 		userRepository.save(user);
