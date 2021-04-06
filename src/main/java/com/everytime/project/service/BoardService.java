@@ -23,9 +23,6 @@ public class BoardService {
 
 	private final BoardRepository boardRepository;
 	
-	
-	
-	
 	@Transactional(readOnly = true)
 	public List<BoardAllRespDto> 전체타입목록() {
 		List<BoardAllRespDto> dto = new ArrayList<>();
