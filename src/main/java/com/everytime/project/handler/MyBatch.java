@@ -18,7 +18,6 @@ public class MyBatch {
 	
 	@Scheduled(fixedDelay = 1000*60*60) // Cron 정기적 실행
 	public void excute() {
-		System.out.println("excute실행");
 		List<String> exList = exceptionList.getExList();
 		for (String exception : exList) {
 			System.out.println(exception);
