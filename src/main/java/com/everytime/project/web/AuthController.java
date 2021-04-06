@@ -42,5 +42,4 @@ public class AuthController {
 		int result = authService.회원가입(authJoinReqDto.toEntity());
 		return new CMRespDto<>(result,null);
 	}
-	
 }

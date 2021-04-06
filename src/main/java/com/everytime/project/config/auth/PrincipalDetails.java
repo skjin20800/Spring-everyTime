@@ -68,7 +68,7 @@ public class PrincipalDetails implements UserDetails,OAuth2User {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		System.out.println("롤 검증 하는 중");
+		System.out.println("PrincipalDetails getAuthorities(): 롤 검증 하는 중");
 		Collection<GrantedAuthority> collectors = new ArrayList<>();
 		collectors.add(()->"ROLE_"+user.getUserRole().toString());
 		return collectors;		
