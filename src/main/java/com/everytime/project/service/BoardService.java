@@ -78,8 +78,8 @@ public class BoardService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<Board> 검색하기(SearchReqDto SearchReqDto,Pageable pageable) {
-		return boardRepository.findByTitleContaining(SearchReqDto.getKeyword(), pageable);
+	public Page<Board> 검색하기(BoardType type,SearchReqDto SearchReqDto,Pageable pageable) {
+		return boardRepository.findByTitleLikeAndType(SearchReqDto.getKeyword(),type ,pageable);
 	}
 	
 	@Transactional

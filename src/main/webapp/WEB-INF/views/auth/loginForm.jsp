@@ -45,11 +45,16 @@
 			<p class="submit">
 				<input type="submit" value="로그인" class="text">
 			</p>
-			<p class="register">
+						<p class="register">
 				<span>에브리타임에 처음이신가요?</span> 
 				<a href="/joinForm">회원가입</a>
 			</p>
-			      <a href="/oauth2/authorization/facebook">페이스북 로그인</a>
+			<p class="register">
+				<span>페이스북 아이디가 있으신가요?</span>
+				<a href="/oauth2/authorization/facebook">페이스북 로그인</a>
+				</p>
+	
+			      
 		</form>
 	</div>
 	<address>

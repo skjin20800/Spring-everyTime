@@ -60,7 +60,7 @@ public class BoardController {
 	}
 	
 	
-	@GetMapping("/board/freeDetail/{id}")
+	@GetMapping("/boardDetail/{id}")
 	public String freeDetailFind(@PathVariable Long id,Model model) {
 		Board boardEntity = boardService.게시판상세보기(id);
 		model.addAttribute("board",boardEntity);
@@ -99,7 +99,7 @@ public class BoardController {
 	public String search(@PathVariable BoardType type,
 			 SearchReqDto searchReqDto, Model model,
 			@PageableDefault(sort = "id", direction = Sort.Direction.DESC , size = 5)Pageable pageable) {
-		Page<Board> boards = boardService.검색하기(searchReqDto, pageable);
+		Page<Board> boards = boardService.검색하기(type,searchReqDto, pageable);
 		model.addAttribute("boards",boards);
 		model.addAttribute("boardType",BoardName.boardName(type));
 		model.addAttribute("type",type);

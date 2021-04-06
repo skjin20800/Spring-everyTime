@@ -26,7 +26,7 @@
     <div class="wrap articles">
     <article>
     <c:forEach var="reply" items="${replys}">
-    				<a class="article" href="/board/${reply.board.type}Detail/${reply.board.id}">
+    				<a class="article" href="/boardDetail/${reply.board.id}">
     <img src="https://cf-fpi.everytime.kr/0.png" class="picture medium">
     <c:choose>
     <c:when test="${reply.board.isAnonymous eq 'false'}">

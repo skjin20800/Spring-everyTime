@@ -24,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 public class BindingAdvice {
 
 	private final ExceptionList exceptionList;
-	private final MyExceptionRepository excetExceptionRepository;
 
 	@Transactional
 	@Around("execution(* com.everytime.project.web..*Controller.*(..))")

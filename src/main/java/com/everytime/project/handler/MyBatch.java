@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Component
 public class MyBatch {
+	
 
 	private final ExceptionList exceptionList;
 	private final MyExceptionRepository exceptionRepository;
@@ -20,6 +21,7 @@ public class MyBatch {
 	public void excute() {
 		List<String> exList = exceptionList.getExList();
 		for (String exception : exList) {
+
 			System.out.println(exception);
 			exceptionRepository.mException(exception);	
 		}

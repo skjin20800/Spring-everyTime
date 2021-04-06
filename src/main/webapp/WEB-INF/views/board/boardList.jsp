@@ -28,7 +28,7 @@
 		<a id="writeArticleButton">새 글을 작성해주세요!</a>
 		<c:forEach var="board" items="${boards.content}">
 			<article>
-				<a class="article" href="/board/freeDetail/${board.id}">
+				<a class="article" href="/boardDetail/${board.id}">
 					<h2 class="medium">${board.title}</h2>
 					<p class="small">${board.content}</p> <time class="small">${board.dateSubstr}
 					</time> <c:choose>
