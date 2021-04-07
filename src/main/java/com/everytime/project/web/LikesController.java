@@ -23,19 +23,19 @@ import lombok.RequiredArgsConstructor;
 public class LikesController {
 	private final LikesService likeService;
 	
-	@PostMapping("/likes/board/{id}")
+	@GetMapping("/likes/board/{id}")
 	public  CMRespDto<?> boardLikes(@AuthenticationPrincipal PrincipalDetails principalDetails,@PathVariable Long id) {
 		int result = likeService.게시판공감(principalDetails.getUser().getId() , id);
 		return new CMRespDto<>(result,null);
 	}
 	
-	@PostMapping("/likes/reply/{id}")
+	@GetMapping("/likes/reply/{id}")
 	public  CMRespDto<?> replyLikes(@AuthenticationPrincipal PrincipalDetails principalDetails,@PathVariable Long id) {
 		int result = likeService.댓글공감(principalDetails.getUser().getId() , id);
 		return new CMRespDto<>(result,null);
 	}
 	
-	@PostMapping("/likes/rereply/{id}")
+	@GetMapping("/likes/rereply/{id}")
 	public  CMRespDto<?> reReplyLikes(@AuthenticationPrincipal PrincipalDetails principalDetails,@PathVariable Long id) {
 		int result = likeService.대댓글공감(principalDetails.getUser().getId() , id);
 		return new CMRespDto<>(result,null);

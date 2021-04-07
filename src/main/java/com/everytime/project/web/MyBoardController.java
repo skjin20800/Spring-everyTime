@@ -27,7 +27,7 @@ public class MyBoardController {
 	
 	private final MyBoardService myBoardService;
 
-	@PostMapping("/myboard/scrap/{id}")
+	@GetMapping("/myboard/scrap/{id}")
 	@ResponseBody
 	public CMRespDto<?> saveScrap(@AuthenticationPrincipal PrincipalDetails principalDetails, 
 			@PathVariable Long id) {
