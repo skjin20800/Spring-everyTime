@@ -74,7 +74,7 @@
 			<c:forEach var="board" items="${boards}">
 			
 			<c:if test="${board.type eq type.boardType && num <5}">
-					<a class="list" href="/board/freeDetail/${board.id}">
+					<a class="list" href="/boardDetail/${board.id}">
 							<time>${board.dateSubstr}</time>
 					<p>${board.content}</p>
 					<hr></a>

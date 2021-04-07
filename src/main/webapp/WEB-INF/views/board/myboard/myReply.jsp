@@ -25,7 +25,7 @@
   
     <div class="wrap articles">
     <article>
-    <c:forEach var="reply" items="${replys}">
+    <c:forEach var="reply" items="${replys.content}">
     				<a class="article" href="/boardDetail/${reply.board.id}">
     <img src="https://cf-fpi.everytime.kr/0.png" class="picture medium">
     <c:choose>
@@ -43,9 +43,9 @@
     <p class="medium">${reply.board.content}</p>
     <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${reply.board.typeName}</a>
     <ul class="status">
-						<li title="공감" class="vote" onClick="boardLike(${board.id})">${board.likeCount}</li>
-						<li title="댓글" class="comment">${board.replyCount}</li>
-						<li title="스크랩" class="scrap">${board.scrapCount}&nbsp;&nbsp;</li>
+						<li title="공감" class="vote" onClick="boardLike(${reply.board.id})">${reply.board.likeCount}</li>
+						<li title="댓글" class="comment">${reply.board.replyCount}</li>
+						<li title="스크랩" class="scrap">${reply.board.scrapCount}&nbsp;&nbsp;</li>
 					</ul><hr>
     <input type="hidden" name="172961707_comment_anonym" value="0"></a>
     <div class="comments"></div>
@@ -54,8 +54,26 @@
     
     <div class="clearBothOnly">
     
-    </div><div class="pagination"><a href="/myscrap/p/2" class="next">다음</a></div>
-    </div>
+    </div>		<div class="pagination jkb__pagination">
+			<c:choose>
+				<c:when test="${replys.first}">
+				<a class="prev" disabled='disabled' >처음</a>
+				</c:when>
+				<c:otherwise>
+					<a href="?page=${replys.number-1}" class="prev">이전</a>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when test="${replys.last}">
+					<a class="next" disabled>끝</a>
+				</c:when>
+				<c:otherwise>
+						<a href="?page=${replys.number+1}" class="next">다음</a>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		</div>
 	<!-- 스크랩복사 -->
 <%@include file="../../layout/realtimemenu.jsp"%>
 

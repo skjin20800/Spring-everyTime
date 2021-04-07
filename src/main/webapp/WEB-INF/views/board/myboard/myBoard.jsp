@@ -25,7 +25,7 @@
   
     <div class="wrap articles">
     <article>
-    <c:forEach var="board" items="${boards}">
+    <c:forEach var="board" items="${boards.content}">
     				<a class="article" href="/boardDetail/${board.id}">
     <img src="https://cf-fpi.everytime.kr/0.png" class="picture medium">
     <c:choose>
@@ -55,8 +55,27 @@
     
     <div class="clearBothOnly">
     
-    </div><div class="pagination"><a href="/myscrap/p/2" class="next">다음</a></div>
     </div>
+		<div class="pagination jkb__pagination">
+			<c:choose>
+				<c:when test="${boards.first}">
+				<a class="prev" disabled='disabled' >처음</a>
+				</c:when>
+				<c:otherwise>
+					<a href="?page=${boards.number-1}" class="prev">이전</a>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when test="${boards.last}">
+					<a class="next" disabled>끝</a>
+				</c:when>
+				<c:otherwise>
+						<a href="?page=${boards.number+1}" class="next">다음</a>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		</div>
 	<!-- 스크랩복사 -->
 <%@include file="../../layout/realtimemenu.jsp"%>
 
@@ -113,7 +132,7 @@
 		</p>
 		<input type="submit" value="전송" class="button">
 	</form>
-</div>
+
 <%@include file ="../../layout/footer.jsp" %>
 </body>
 <script src="/js/board.post.js" type="text/javascript"></script>

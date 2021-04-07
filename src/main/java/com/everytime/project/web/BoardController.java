@@ -11,7 +11,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -95,11 +94,11 @@ public class BoardController {
 		return new CMRespDto<>(result,null);
 	}
 		
-	@GetMapping("/board/search/{type}")
+	@PostMapping("/board/search/{type}")
 	public String search(@PathVariable BoardType type,
 			 SearchReqDto searchReqDto, Model model,
 			@PageableDefault(sort = "id", direction = Sort.Direction.DESC , size = 5)Pageable pageable) {
-		Page<Board> boards = boardService.검색하기(type,searchReqDto, pageable);
+		Page<Board> boards = boardService.검색하기(searchReqDto, type,pageable);
 		model.addAttribute("boards",boards);
 		model.addAttribute("boardType",BoardName.boardName(type));
 		model.addAttribute("type",type);

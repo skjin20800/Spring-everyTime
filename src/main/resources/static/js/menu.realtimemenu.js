@@ -11,7 +11,7 @@ function bestList(){
 			
 			var cardGrid = $("#bestContainer");
 			var newDiv = document.createElement("a");
-                  newDiv.setAttribute( 'href', `/board/freeDetail/${contents[i].id}` );
+                  newDiv.setAttribute( 'href', `/boardDetail/${contents[i].id}` );
 				newDiv.className = 'article';
 				
 			var cardDetail = `<p class="title">${contents[i].title}</p>`;

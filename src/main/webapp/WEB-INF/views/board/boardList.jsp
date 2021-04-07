@@ -58,7 +58,7 @@
 				<c:when test="${boards.first}">
 					<div class="m-2">
 						<form class="form-inline d-flex justify-content-end"
-							action="/board/search/${type}" method="get">
+							action="/board/search/${type}" method="post">
 							<input type="text" name="keyword" class="form-control mr-sm-2"
 								placeholder="제목을 입력하세요">
 							<button class="btn m-1 btn__search">검색</button>
