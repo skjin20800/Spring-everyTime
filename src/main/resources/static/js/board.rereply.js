@@ -1,7 +1,7 @@
 /*대댓글 버튼 클릭시 form 생성*/
 function formReReply(id){
 	
-	if($("#rereply-"+id).val() == null){
+	if($("#rereply-"+id).val() == null || $("#rereply-"+id).val() == ""){
 $("#reply-"+id).after(
 	`<form class="writecomment child">
 	<input type="hidden" id="rereply-${id}" value="${id}" /> 
