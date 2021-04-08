@@ -5,7 +5,7 @@
         <div class="divider"></div>
         <div class="group">
           <ul>
-          <li><a href="/board/free" data-id="389150" class="new active">자유게시판</a></li>
+          <li><a href="/board/free" data-id="389150" class="new">자유게시판</a></li>
           <li><a href="/board/secret" data-id="259143" class="new">비밀게시판</a></li>
           <li><a href="/board/graduate" data-id="389426" class="new">졸업생게시판</a></li>
           <li><a href="/board/freshman" data-id="389239" class="new">새내기게시판</a></li>
@@ -22,42 +22,24 @@
         <div class="divider"></div>
         <div class="group">
           <ul>
-          <li><a href="/board/information" data-id="259145">정보게시판</a></li>
+          <li><a href="/board/information" data-id="259145" class="new">정보게시판</a></li>
           <li><a href="/board/career" data-id="389322" class="new">취업·진로</a></li>
           </ul>
         </div>
         <div class="divider"></div>
         <div class="group">
           <ul>
-          <li><a href="/397801" data-id="397801" class="new">어둠의 뽕나무숲</a></li>
-          <li><a href="/407935" data-id="407935" class="new">끝말잇기하는 게시판</a></li>
-          <li><a href="/460174" data-id="460174" class="new">간호학과 게시판</a></li>
-          <li><a href="/401266" data-id="401266" class="new">게임 같이하실분~~</a></li>
-          <li><a href="/378866" data-id="378866" class="new">덕질게시판</a></li>
-          <li><a href="/454992" data-id="454992" class="new">🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈</a></li>
-          <li><a href="/423155" data-id="423155" class="new">🙏소원 비는곳🙏</a></li>
+          <li><a href="/397801" data-id="397801" class="new">서비스 준비중</a></li>
           </ul>
         </div>
         <div class="group">
           <ul>
-          <li><a href="/449063" data-id="449063" class="new">🏋🏻헬스/운동 게시판🏋🏻‍♂️</a></li>
-          <li><a href="/457161" data-id="457161" class="new">애니게시판</a></li>
-          <li><a href="/425922" data-id="425922" class="new">❤️동의인 미팅 남자 소개 &amp; 여자 소개💙</a></li>
-          <li><a href="/399384" data-id="399384" class="new">노래추천</a></li>
-          <li><a href="/402204" data-id="402204" class="new">불꽃의 화풀이방</a></li>
-          <li><a href="/477089" data-id="477089" class="new">본인의 장점 쓰고 가자&gt;&lt;</a></li>
-          <li><a href="/407811" data-id="407811" class="new">연애못하는사람들의모임</a></li>
+          <li><a href="/397801" data-id="397801" class="new">서비스 준비중</a></li>
           </ul>
         </div>
         <div class="group">
           <ul>
-          <li><a href="/431044" data-id="431044" class="new">가사로 노래 맞추기</a></li>
-          <li><a href="/468156" data-id="468156" class="new">동의대 모든 MBTI 모여라</a></li>
-          <li><a href="/423866" data-id="423866" class="new">bl 게시판</a></li>
-          <li><a href="/467495" data-id="467495">한의학과 게시판</a></li>
-          <li><a href="/398438" data-id="398438" class="new">전국~~~반려동물자랑~~~~</a></li>
-          <li><a href="/408780" data-id="408780" class="new">•커플들의 고민상담 게시판•</a></li>
-            <li><a class="more">더 보기</a></li>
+          <li><a href="/397801" data-id="397801" class="new">서비스 준비중</a></li>
           </ul>
         </div>
         <div class="group hidden">

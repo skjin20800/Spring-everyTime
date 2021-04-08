@@ -40,5 +40,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.defaultSuccessUrl("/") // 로그인후 기본이동페이지
 				.and().oauth2Login().successHandler(new LoginSuccessHandler()).userInfoEndpoint()
 				.userService(oAuth2DetailsService);
+
 	}
 }

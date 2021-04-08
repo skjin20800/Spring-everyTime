@@ -2,6 +2,8 @@ package com.everytime.project.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,18 +35,18 @@ public class MyBoardService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Scrap> 스크랩목록(Long userId) {
-		 return scrapRepository.findByUserId(userId);
+	public Page<Scrap> 스크랩목록(Long userId, Pageable pageable) {
+		 return scrapRepository.findByUserId(userId, pageable);
 		}
 	
 	@Transactional(readOnly = true)
-	public List<Reply> 내댓글목록(Long userId) {
-		List<Reply> replys = replyRepository.mMyReply(userId);
-		 return replys;
+	public Page<Reply> 내댓글목록(Long userId, Pageable pageable) {
+		
+		 return  replyRepository.mMyReply(userId, pageable);
 		}
 	
 	@Transactional(readOnly = true)
-	public List<Board> 내게시글목록(Long userId) {
-		 return boardRepository.findByUserId(userId);
+	public Page<Board> 내게시글목록(Long userId,Pageable pageable) {
+		 return boardRepository.findByUserId(userId, pageable);
 		}
 	}

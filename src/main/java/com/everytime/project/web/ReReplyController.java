@@ -1,7 +1,10 @@
 package com.everytime.project.web;
 
+import javax.validation.Valid;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +26,8 @@ public class ReReplyController {
 	private final ReReplyService rereReplyService;
 	
 	@PostMapping("/rereply/{id}")
-	public CMRespDto<?> save(Model model,@PathVariable Long id , @RequestBody ReReplyReqDto rereplyReqDto,
-			@AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public CMRespDto<?> save(Model model,@PathVariable Long id ,@Valid @RequestBody ReReplyReqDto rereplyReqDto, BindingResult bindingResult
+		,@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
 		ReReply rereply = rereplyReqDto.toEntity();
 		rereply.setUser(principalDetails.getUser());
@@ -40,7 +43,6 @@ public class ReReplyController {
 		//모든 컨트롤러에 삭제하기, 수정하기는 무조건 동일 인물이 로그인 했는지 확인!!!
 		int result = rereReplyService.삭제하기(id, principalDetails.getUser().getId());
 		return new CMRespDto<>(result,null);
-	}
-	
+	}	
 
 }

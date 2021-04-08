@@ -1,7 +1,5 @@
 package com.everytime.project.web;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,7 +8,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.everytime.project.config.auth.PrincipalDetails;
@@ -26,19 +23,19 @@ import lombok.RequiredArgsConstructor;
 public class LikesController {
 	private final LikesService likeService;
 	
-	@PostMapping("/likes/board/{id}")
+	@GetMapping("/likes/board/{id}")
 	public  CMRespDto<?> boardLikes(@AuthenticationPrincipal PrincipalDetails principalDetails,@PathVariable Long id) {
 		int result = likeService.게시판공감(principalDetails.getUser().getId() , id);
 		return new CMRespDto<>(result,null);
 	}
 	
-	@PostMapping("/likes/reply/{id}")
+	@GetMapping("/likes/reply/{id}")
 	public  CMRespDto<?> replyLikes(@AuthenticationPrincipal PrincipalDetails principalDetails,@PathVariable Long id) {
 		int result = likeService.댓글공감(principalDetails.getUser().getId() , id);
 		return new CMRespDto<>(result,null);
 	}
 	
-	@PostMapping("/likes/rereply/{id}")
+	@GetMapping("/likes/rereply/{id}")
 	public  CMRespDto<?> reReplyLikes(@AuthenticationPrincipal PrincipalDetails principalDetails,@PathVariable Long id) {
 		int result = likeService.대댓글공감(principalDetails.getUser().getId() , id);
 		return new CMRespDto<>(result,null);

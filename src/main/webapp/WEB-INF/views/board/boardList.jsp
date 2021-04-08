@@ -28,7 +28,7 @@
 		<a id="writeArticleButton">새 글을 작성해주세요!</a>
 		<c:forEach var="board" items="${boards.content}">
 			<article>
-				<a class="article" href="/board/freeDetail/${board.id}">
+				<a class="article" href="/boardDetail/${board.id}">
 					<h2 class="medium">${board.title}</h2>
 					<p class="small">${board.content}</p> <time class="small">${board.dateSubstr}
 					</time> <c:choose>
@@ -58,7 +58,7 @@
 				<c:when test="${boards.first}">
 					<div class="m-2">
 						<form class="form-inline d-flex justify-content-end"
-							action="/board/search/${type}" method="get">
+							action="/board/search/${type}" method="post">
 							<input type="text" name="keyword" class="form-control mr-sm-2"
 								placeholder="제목을 입력하세요">
 							<button class="btn m-1 btn__search">검색</button>

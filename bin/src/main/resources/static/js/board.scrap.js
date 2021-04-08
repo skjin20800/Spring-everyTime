@@ -11,7 +11,7 @@ function boardScrap(id){
 		url: "/myboard/scrap/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 			 location.reload();
 		}else{

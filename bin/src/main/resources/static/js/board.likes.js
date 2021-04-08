@@ -5,7 +5,7 @@ function boardLike(id){
 		url: "/likes/board/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 			 location.reload();
 		}else{
@@ -22,7 +22,7 @@ function replyLike(id){
 		url: "/likes/reply/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 			 location.reload();
 		}else{
@@ -39,7 +39,7 @@ function reReplyLike(id){
 		url: "/likes/rereply/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 			 location.reload();
 		}else{

@@ -14,6 +14,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/css/login/loginStyle.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <title>회원가입 페이지</title>
 </head>
 
@@ -27,28 +32,30 @@
 	</c:choose>
 	<div id="container" class="join"  style=" top: 310px !important;">
 		<a href="#"><img src="/images/login/login.logo.png"></a>
-		<form action="/join" method="post">
+
+		<form>
 			<p class="input">
-				<input type ="text" placeholder="아이디를 입력해주세요" name = "username" class="text"/>
+				<input type ="text" placeholder="아이디를 입력해주세요" id = "username" class="text"/>
 			</p>
 			<p class="input">
-				<input type = "password" placeholder="패스워드를 입력해주세요" name ="password" class="text"/> 
+				<input type = "password" placeholder="패스워드를 입력해주세요" id ="password" class="text"/> 
 			</p>
 				<p class="input">
-				<input type ="text" placeholder="별명을 입력해주세요" name = "nickname" class="text"/>
+				<input type ="text" placeholder="별명을 입력해주세요" id = "nickname" class="text"/>
 			</p>
 				<p class="input">
-				<input type = "email" placeholder="Email을 입력해주세요" name ="email" class="text"/>
+				<input type = "email" placeholder="Email을 입력해주세요" id ="email" class="text"/>
 			</p>
 				<p class="input">
-				<input type ="text" placeholder="대학교을 입력해주세요" name = "university" class="text"/> 
+				<input type ="text" placeholder="대학교을 입력해주세요" id = "university" class="text"/> 
 			</p>
 				<p class="input">
-				<input type ="text" placeholder="학번을 입력해주세요" name = "entranceYear" class="text"/>
+				<input type ="text" placeholder="학번을 입력해주세요" id = "entranceYear" class="text"/>
 			</p>
-			<input type="hidden" name="redirect" value="/">
+			
 			<p class="submit">
-				<input type="submit" value="회원가입" class="text">
+				<input id="joinPost" type="button" value="회원가입" class="text">
+
 			</p>
 			<p class="register">
 				<span>이미 회원가입 하셨나요?</span> 
@@ -56,7 +63,6 @@
 			</p>
 		</form>
 	</div>
-	
 
 	<address>
 		<ul class="links">
@@ -67,6 +73,7 @@
 		</ul>
 	</address>
 
+<script src="/js/join.js" type="text/javascript"></script>
 
 </body>
 </html>

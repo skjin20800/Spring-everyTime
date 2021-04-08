@@ -2,11 +2,18 @@ package com.everytime.project.web;
 
 
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.everytime.project.service.AuthService;
+import com.everytime.project.web.dto.CMRespDto;
 import com.everytime.project.web.dto.auth.AuthJoinReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -29,9 +36,10 @@ public class AuthController {
 	}
 	
 	@PostMapping("/join")
-	public String join(AuthJoinReqDto authJoinReqDto) {
-		System.out.println("회원가입 실행");
-		authService.회원가입(authJoinReqDto.toEntity());
-		return "redirect:/loginForm"; // 로그인 로직 다시 때리기
+	@ResponseBody
+	public CMRespDto<?> join(@Valid @RequestBody AuthJoinReqDto authJoinReqDto, BindingResult bindingResult) {
+		
+		int result = authService.회원가입(authJoinReqDto.toEntity());
+		return new CMRespDto<>(result,null);
 	}
 }

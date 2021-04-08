@@ -1,7 +1,7 @@
 package com.everytime.project.domain.user.scrap;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +17,7 @@ public interface ScrapRepository extends JpaRepository<Scrap, Long> {
 	int mBoardScrap(Long userId, Long boardId); // prepareStatement updateQuery() => -1 0 1
 	
 	// 게시판 스크랩 목록
-	List<Scrap> findByUserId(Long userId);
+	Page<Scrap> findByUserId(Long userId,Pageable pageable);
 	
 }
 

@@ -1,6 +1,7 @@
 package com.everytime.project.domain.board;
 
 import java.sql.Timestamp;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -54,11 +55,6 @@ public class Board {
 	
 	@Enumerated(EnumType.STRING) // Enum값을 DB에넣을때 STRING으로 바꿔넣어준다
 	private BoardType type; // FREE, 기타 타입
-	
-	
-	
-	@Lob
-	private String url;
 	
 	@Column(nullable = false, length = 100)
 	private Boolean isAnonymous;

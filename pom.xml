@@ -19,6 +19,21 @@
 	<dependencies>
 		<!--  추가 라이브러리 -->		
 		
+		<!-- AOP -->
+		<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+<!-- AOP -->
+		
+		<!-- vaild 체크 -->
+			<dependency>
+		<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+	</dependency>
+	<!-- vaild 체크 -->
+	
+		
 	<!-- JSP에서 security 땡겨쓰기 -->
 	<dependency>
 	  <groupId>org.springframework.security</groupId>
@@ -39,7 +54,7 @@
 	  <artifactId>jstl</artifactId>
 	  
 	</dependency>
-	
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>

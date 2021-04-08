@@ -1,7 +1,10 @@
 package com.everytime.project.web;
 
+import javax.validation.Valid;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +26,7 @@ public class ReplyController {
 	private final ReplyService replyService;
 	
 	@PostMapping("/reply/{id}")
-	public CMRespDto<?> save(Model model,@PathVariable Long id , @RequestBody ReplyReqDto replyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public CMRespDto<?> save(Model model,@PathVariable Long id ,@Valid @RequestBody ReplyReqDto replyReqDto, BindingResult bindingResult, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
 		Reply reply = replyReqDto.toEntity();
 		reply.setUser(principalDetails.getUser());
@@ -35,7 +38,6 @@ public class ReplyController {
 	@DeleteMapping("/reply/{id}")
 	public CMRespDto<?> deleteById(@PathVariable Long id,
 			@AuthenticationPrincipal PrincipalDetails principalDetails){
-		
 		//모든 컨트롤러에 삭제하기, 수정하기는 무조건 동일 인물이 로그인 했는지 확인!!!
 		int result = replyService.삭제하기(id, principalDetails.getUser().getId());
 		return new CMRespDto<>(result,null);

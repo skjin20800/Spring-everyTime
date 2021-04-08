@@ -21,5 +21,7 @@ public class CMRespDto<T> {
 	public CMRespDto(int statusCode, T data) {
 		this.statusCode = statusCode;
 		this.data = data;
-	}	
+	}
+	
+	
 }

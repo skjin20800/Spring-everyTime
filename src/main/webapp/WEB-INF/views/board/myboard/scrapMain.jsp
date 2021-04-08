@@ -13,7 +13,7 @@
 			</h1>
 		</div>
 	</aside>
-	<div class="wrap title">
+	<div class="wrap title" >
 		<h1>
 			<a href="/389150">내 스크랩</a>
 		</h1>
@@ -25,8 +25,8 @@
   
     <div class="wrap articles">
     <article>
-    <c:forEach var="scrap" items="${scraps}">
-    				<a class="article" href="/board/${scrap.board.type}Detail/${scrap.board.id}">
+    <c:forEach var="scrap" items="${scraps.content}">
+    				<a class="article" href="/boardDetail/${scrap.board.id}">
     <img src="https://cf-fpi.everytime.kr/0.png" class="picture medium">
     <c:choose>
     <c:when test="${scrap.board.isAnonymous eq 'false'}">
@@ -40,13 +40,13 @@
     <time class="medium">03/04 16:38</time>
     <hr>
     <h2 class="medium bold">${scrap.board.title}</h2>
-    <p class="medium">${scrapboard.content}</p>
-    <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${scrap.board.type}</a>
+    <p class="medium">${scrap.board.content}</p>
+    <a href="/389150" class="boardname">&nbsp;&nbsp;&nbsp;&nbsp; from ${scrap.board.typeName}</a>
     <ul class="status">
     <li class="removescrap">스크랩 취소</li>
-						<li title="공감" class="vote" onClick="boardLike(${board.id})">${board.likeCount}</li>
-						<li title="댓글" class="comment">${board.replyCount}</li>
-						<li title="스크랩" class="scrap">${board.scrapCount}&nbsp;&nbsp;</li>
+						<li title="공감" class="vote" onClick="boardLike(${scrap.board.id})">${scrap.board.likeCount}</li>
+						<li title="댓글" class="comment">${scrap.board.replyCount}</li>
+						<li title="스크랩" class="scrap">${scrap.board.scrapCount}&nbsp;&nbsp;</li>
 					</ul>
     <hr>
     <input type="hidden" name="172961707_comment_anonym" value="0"></a>
@@ -56,7 +56,25 @@
     
     <div class="clearBothOnly">
     
-    </div><div class="pagination"><a href="/myscrap/p/2" class="next">다음</a></div>
+    </div>		<div class="pagination jkb__pagination">
+			<c:choose>
+				<c:when test="${scraps.first}">
+				<a class="prev" disabled='disabled' >처음</a>
+				</c:when>
+				<c:otherwise>
+					<a href="?page=${scraps.number-1}" class="prev">이전</a>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when test="${scraps.last}">
+					<a class="next" disabled>끝</a>
+				</c:when>
+				<c:otherwise>
+						<a href="?page=${scraps.number+1}" class="next">다음</a>
+				</c:otherwise>
+			</c:choose>
+		</div>
     </div>
 	<!-- 스크랩복사 -->
 <%@include file="../../layout/realtimemenu.jsp"%>

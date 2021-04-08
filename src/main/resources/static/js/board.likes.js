@@ -1,11 +1,11 @@
 /*게시글 좋아요 클릭시 */
 function boardLike(id){
 	       $.ajax({
-		type: "POST",
+		type: "GET",
 		url: "/likes/board/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 			 location.reload();
 		}else{
@@ -18,11 +18,11 @@ function boardLike(id){
 /*댓글 좋아요 클릭시 */
 function replyLike(id){
 	       $.ajax({
-		type: "POST",
+		type: "GET",
 		url: "/likes/reply/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 			 location.reload();
 		}else{
@@ -35,11 +35,11 @@ function replyLike(id){
 /*대댓글 좋아요 클릭시 */
 function reReplyLike(id){
 	       $.ajax({
-		type: "POST",
+		type: "GET",
 		url: "/likes/rereply/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 			 location.reload();
 		}else{

@@ -17,12 +17,12 @@ let postId = $("#postId").val();
 		contentType: "application/json; charset=utf-8",
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
-			alert("게시글 작성에 성공하였습니다.");
+			alert("댓글 작성에 성공하였습니다.");
 			 location.reload();
 		}else{
-			alert("게시글 작성에 실패하였습니다.");
+			alert("댓글 작성에 실패하였습니다.");
 		}
 	});
       
@@ -45,7 +45,7 @@ function deleteReply(id){
 		url: "/reply/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		console.log(res);
+		
 		if(res.statusCode === 1){
 		$("#reply-"+id).remove();
 		}else{
