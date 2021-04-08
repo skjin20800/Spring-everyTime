@@ -38,6 +38,7 @@ public class StudentLecture {
 	@ManyToOne
 	@JoinColumn(name = "timetableId")
 	private Timetable timetable;
+	
 	@CreationTimestamp
 	private Timestamp createDate;
 }

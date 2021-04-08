@@ -9,10 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostLoad;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.everytime.project.domain.timetable.course.Course;
+import com.everytime.project.domain.timetable.studentLecture.StudentLecture;
 import com.everytime.project.domain.user.User;
 
 import lombok.AllArgsConstructor;
@@ -49,4 +52,17 @@ public class Lecture {
 	@JoinColumn(name = "courseId")
 	private Course course;
 
+	@Transient 
+	private String lectureroom;
+	@Transient 
+	private String firstTime;
+	@Transient 
+	private String secondTime;
+	
+	@PostLoad //select 되자마자 실행된다.
+	public void postLoad() {
+		this.lectureroom = lectureTime.substring(0,5);
+		this.firstTime= lectureTime.substring(lectureTime.indexOf("[")+1,lectureTime.indexOf("]"));
+		this.secondTime = lectureTime.substring(lectureTime.lastIndexOf("[")+1, lectureTime.lastIndexOf("]"));
+	}
 }

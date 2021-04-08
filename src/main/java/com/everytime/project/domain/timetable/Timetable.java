@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -57,7 +58,7 @@ public class Timetable {
 	@JoinColumn(name = "userId")
 	private User user;
 
-	@OneToMany(mappedBy = "timetable", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "timetable",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"timetable"})
 	@OrderBy("id desc")
 	private List<StudentLecture> studentLectures;
@@ -67,11 +68,9 @@ public class Timetable {
 	
 	@PostLoad //select 되자마자 실행된다.
 	public void postLoad() {
-		System.out.println("Timetable postLoad() - 작동");
 		for (StudentLecture credit : studentLectures) {
 			tableCredit += credit.getLecture().getCredit();
 		}
-
 	}
 	
 }
