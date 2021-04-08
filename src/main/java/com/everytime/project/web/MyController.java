@@ -67,10 +67,15 @@ public class MyController {
 	}
 
 	@PutMapping("/my/oauthUpdate")
+	@ResponseBody
 	public  CMRespDto<?> oauthUpdate(@RequestBody OauthUpdateDto oauthUpdateDto, @AuthenticationPrincipal PrincipalDetails principalDetails)  {
 		System.out.println("MyController oauthUpdate -  작동");
 		User userEntity = myService.oauth수정(oauthUpdateDto);
-//		principalDetails.setUser(userEntity); put 완성하고 주석 해제할 것. 
+		if (userEntity == null) {
+			return new CMRespDto<>(-1,null);
+		}else {
+		principalDetails.setUser(userEntity);
 		return new CMRespDto<>(1,null);
+		}
 	}
 }

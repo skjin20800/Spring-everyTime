@@ -26,12 +26,12 @@
 	<h1>Oauth 사용자 정보변경 페이지</h1>
 
 	<hr />
-	<form id="oauthUpdateForm" onsubmit="updateOauth">
+	<form id="oauthUpdateForm">
 		<input type="hidden" id="username" value="${principal.user.username}">
-		<input type="text" placeholder="별명을 입력해주세요" name="nickname" /> <br />
-		<input type="text" placeholder="대학교을 입력해주세요" name="university" /> <br />
-		<input type="text" placeholder="학번을 입력해주세요" name="entranceYear" /> <br />
-		<button id="oauthPut">추가 정보 입력</button>
+		<input type="text" placeholder="별명을 입력해주세요" id="nickname" /> <br />
+		<input type="text" placeholder="대학교을 입력해주세요" id="university" /> <br />
+		<input type="text" placeholder="학번을 입력해주세요" id="entranceYear" /> <br />
+		<button id="oauthPut" class="submit">추가 정보 입력</button>
 	</form>
 	<script src="/js/my.js" type="text/javascript"></script>
 

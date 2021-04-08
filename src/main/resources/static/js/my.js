@@ -6,7 +6,6 @@ $("#oauthPut").on("click", (e) => {
 		entranceYear: $("#entranceYear").val(),
 		username: $("#username").val()
 	};
-	alert("my.js  - Oauth변경 작동되나?");
 	$.ajax({
 		type: "put",
 		url: "/my/oauthUpdate",
@@ -16,9 +15,9 @@ $("#oauthPut").on("click", (e) => {
 	}).done(res => {
 		if (res.statusCode === 1) {
 			alert("인증에 성공하였습니다.");
-			location.href = "/"
-		} else {
-			alert("인증에 실패하셨습니다.");
+			history.go(-1);
+		} else{
+			alert("동일한 닉네임이 존제합니다.");
 		}
 	});
 });
