@@ -1,0 +1,182 @@
+@charset "utf-8";
+
+#subjects {
+  display: none; position: absolute; z-index: 99; bottom: 0; width: 100%; border-top: 1px solid #d6d6d6; box-shadow: 0 0 24px rgba(0, 0, 0, 0.2); background-color: #fff; overflow: hidden;
+}
+
+#subjects > div.filter {
+  position: relative; padding: 8px 56px 0 8px; width: 100%; height: 40px; box-sizing: border-box; white-space: nowrap; overflow-x: auto; overflow-y: hidden; -ms-overflow-style: none;
+}
+#subjects > div.filter::-webkit-scrollbar {
+  display: none;
+}
+#subjects > div.filter > a.close {
+  position: fixed; right: 0; display: inline-block; margin-right: 8px; padding: 0 12px; line-height: 32px; border-radius: 16px; color: #fff; font-size: 13px; font-weight: bold; background-color: #c62917; cursor: pointer;
+}
+#subjects > div.filter > a.item {
+  display: inline-block; margin-right: 8px; border-radius: 16px; background-color: #f2f2f2; cursor: pointer;
+}
+#subjects > div.filter > a.item > span {
+  display: inline-block; line-height: 32px; font-size: 13px; vertical-align: top;
+}
+#subjects > div.filter > a.item > span.key {
+  margin: 0 4px 0 12px; color: #737373;
+}
+#subjects > div.filter > a.item > span.value {
+  margin-right: 12px; color: #737373; font-weight: bold; letter-spacing: 0;
+}
+#subjects > div.filter > a.item.active > span.value {
+  color: #c62917;
+}
+#subjects > div.filter > a.item > span.reset {
+  display: none; margin-left: -12px; width: 32px; height: 32px; background: transparent url('/images/subjects.filter.reset.png') no-repeat center center; background-size: 16px 16px;
+}
+#subjects > div.filter > a.item.active > span.reset {
+  display: inline-block;
+}
+
+#subjects > div.list {
+  position: relative; width: 100%; overflow-x: hidden; overflow-y: auto;
+}
+#subjects > div.list > div.thead {
+  position: fixed; z-index: 100; width: 100%; height: 36px; border-bottom: 1px solid #d6d6d6; background-color: #fff;
+}
+#subjects > div.list > table {
+  width: 100%; border-collapse: collapse;
+}
+#subjects > div.list > table > thead > tr > th {
+  padding: 0 8px; height: 36px; line-height: 0; color: transparent; font-size: 13px; font-weight: normal; white-space: nowrap; text-align: left; vertical-align: top;
+}
+#subjects > div.list > table > thead > tr > th > div {
+  position: fixed; z-index: 101; line-height: 36px; color: #292929; font-size: 13px;
+}
+#subjects > div.list > table > tbody > tr {
+  border-bottom: 1px solid #ededed; background-color: #f8f8f8; cursor: pointer;
+}
+#subjects > div.list > table > tbody > tr:hover {
+  background-color: #fff;
+}
+#subjects > div.list > table > tbody > tr > td {
+  padding: 5px 8px; max-width: 200px; line-height: 20px; color: #444444; font-size: 13px; word-wrap: break-word;
+}
+#subjects > div.list > table > tbody > tr > td.bold {
+  color: #292929; font-weight: bold;
+}
+#subjects > div.list > table > tbody > tr > td.small {
+  line-height: 18px; font-size: 12px;
+}
+#subjects > div.list > table > tbody > tr > td > a.syllabus {
+  display: inline-block; padding: 0 8px; line-height: 20px; border-radius: 10px; color: #fff; font-size: 11px; white-space: nowrap; background-color: #a6a6a6; vertical-align: top;
+}
+#subjects > div.list > table > tbody > tr > td > a.star {
+  display: inline-block; width: 60px; height: 20px; background: transparent url('/images/app.subject.rating.details.star.off.png') no-repeat left center; background-size: 60px 12px;
+}
+#subjects > div.list > table > tbody > tr > td > a.star > span.on {
+  display: inline-block; height: 20px; background: transparent url('/images/app.subject.rating.details.star.on.png') no-repeat left center; background-size: 60px 12px; vertical-align: top;
+}
+#subjects > div.list > table > tbody > tr.empty {
+  border-bottom: 0; background-color: #fff; cursor: auto;
+}
+#subjects > div.list > table > tbody > tr.empty > th {
+  padding-top: 138px; line-height: 24px; color: #a6a6a6; font-size: 18px; font-weight: normal; text-align: center; background: transparent url('/images/subjects.list.empty.png') no-repeat center top 82px; background-size: 48px 48px;
+}
+#subjects > div.list > table > tfoot > tr > td {
+  padding: 36px 0; background: transparent url('/images/loading.svg') no-repeat center center; background-size: 24px 24px;
+}
+
+#subjects > div.notUpdated > p {
+  padding-top: 176px; line-height: 24px; color: #a6a6a6; font-size: 18px; font-weight: normal; text-align: center; background: transparent url('/images/subjects.notupdated.png') no-repeat center top 120px; background-size: 48px 48px;
+}
+#subjects > div.notUpdated > a.close {
+  position: absolute; right: 8px; top: 8px; display: inline-block; padding: 0 12px; line-height: 32px; border-radius: 16px; color: #fff; font-size: 13px; font-weight: bold; background-color: #c62917; cursor: pointer;
+}
+
+@media only screen and (min-width: 1367px) {
+  #subjects {
+    height: 400px;
+  }
+  #subjects > div.list {
+    height: 360px;
+  }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1366px) {
+  #subjects {
+    height: 320px;
+  }
+  #subjects > div.list {
+    height: 280px;
+  }
+}
+
+@media only screen and (min-width: 641px) {
+  #customsubjects {
+    display: none; position: absolute; z-index: 97; left: 430px; bottom: 0; padding: 25px; border: 1px solid #d6d6d6; border-bottom: 0; box-shadow: 0 0 24px rgba(0, 0, 0, 0.2); background-color: #fff;
+  }
+  #customsubjects h2 {
+    margin-bottom: 20px; color: #292929; font-size: 18px; font-weight: bold;
+  }
+  #customsubjects dl dt {
+    clear: both; float: left; margin-bottom: 5px; width: 80px; height: 30px; line-height: 30px; color: #a6a6a6; font-size: 12px; font-weight: bold;
+  }
+  #customsubjects dl dd {
+    float: left; margin-bottom: 5px
+  }
+  #customsubjects dl dd input.text {
+    padding: 0 5px; width: 400px; height: 30px; line-height: 30px; border: 1px solid #d6d6d6;
+    color: #292929; font-size: 13px; background-color: #f2f2f2;
+  }
+  #customsubjects dl dd input.text:focus {
+    background-color: #fff;
+  }
+  #customsubjects dl dd.timeplaces a.new, #customsubjects dl dd.timeplaces a.remove {
+    padding: 0 5px; line-height: 20px; cursor: pointer; color: #c62917; font-weight: bold;
+  }
+  #customsubjects dl dd.timeplaces a.remove {
+    float: right;
+  }
+  #customsubjects dl dd.timeplaces a.new strong {
+    font-size: 18px;
+  }
+  #customsubjects dl dd.timeplaces div.timeplace {
+    margin-bottom: 5px; padding: 5px; width: 400px; border: 1px solid #d6d6d6;
+  }
+  #customsubjects dl dd.timeplaces div.timeplace ol.weeks li {
+    float: left; margin-right: 1px; width: 25px; height: 25px; line-height: 25px; cursor: pointer;
+    color: #a6a6a6; font-size: 12px; font-weight: bold; background-color: #f2f2f2; text-align: center;
+  }
+  #customsubjects dl dd.timeplaces div.timeplace ol.weeks li.active {
+    color: #fff; background-color: #c62917;
+  }
+  #customsubjects dl dd.timeplaces div.timeplace p {
+    clear: left; padding-top: 5px;
+  }
+  #customsubjects dl dd.timeplaces div.timeplace p select {
+    margin-right: 5px; height: 30px; border: 1px solid #d6d6d6; color: #292929; font-size: 13px; background-color: transparent;
+  }
+  #customsubjects dl dd.timeplaces div.timeplace p span {
+    margin-right: 5px;
+  }
+  #customsubjects dl dd.timeplaces div.timeplace p input {
+    width: 80px;
+  }
+  #customsubjects div.submit {
+    text-align: right;
+  }
+  #customsubjects .button {
+    padding: 0 10px; border: 0; height: 30px; line-height: 30px; color: #fff; font-size: 12px; font-weight: bold; background-color: #c62917; cursor: pointer;
+  }
+  #customsubjects a.close {
+    position: absolute; z-index: 99; right: 10px; top: 0; margin-top: -20px; border-radius: 20px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); width: 40px; height: 40px;
+    background: #a6a6a6 url('/images/subjects.close.icon.png') no-repeat center center; cursor: pointer;
+  }
+  #customsubjects a.close:hover {
+    background-color: #c62917;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  #subjects, #customsubjects {
+    display: none;
+  }
+}

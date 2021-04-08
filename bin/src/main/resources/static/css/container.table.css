@@ -1,0 +1,288 @@
+@charset "utf-8";
+
+body {
+	overflow: hidden;
+}
+#bottom {
+	display: none;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * *  /  common  /  * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#container div.tablehead > div.empty {
+	padding: 120px 0; text-align: center;
+}
+#container div.tablehead > div.empty > p {
+	display: inline-block; padding-top: 52px; color: #a6a6a6; font-size: 18px; font-weight: bold; background: transparent url('/images/container.timetable.empty.png') no-repeat top center; background-size: 48px 44px;
+}
+
+#container table.tablehead,
+#container table.tablebody {
+	border-collapse: collapse; width: 100%;
+}
+#container table.tablehead {
+	background-color: #f2f2f2;
+}
+#container table.tablehead tr {
+	height: 40px;
+}
+#container table.tablehead tr th,
+#container table.tablehead tr td {
+	border-width: 1px; border-style: solid; border-color: #d6d6d6; color: #a6a6a6; font-weight: normal; text-align: center;
+}
+#container table.tablebody {
+	background-color: transparent;
+}
+#container table.tablebody tr th,
+#container table.tablebody tr td {
+	border: 1px solid #d6d6d6; vertical-align: top;
+}
+#container table.tablebody tr th div.hours {
+	position: absolute; z-index: 11;
+}
+#container table.tablebody tr th div.hours div.hour {
+	position: absolute; z-index: 10; left: 0; width: 100%;
+}
+#container table.tablebody tr th div.hours div.hour,
+#container table.tablebody tr th div.times div.time {
+	box-sizing: border-box; border-top: 1px solid #d6d6d6;
+	color: #a6a6a6; font-weight: normal; text-align: center;
+}
+#container table.tablebody tr td div.cols {
+	position: absolute; z-index: 11;
+}
+#container table.tablebody tr td div.cols div.subject {
+	position: absolute; z-index: 10; overflow: hidden;
+	box-sizing: border-box; width: 100%; border: 1px solid #d6d6d6; border-width: 1px 0;
+}
+#container table.tablebody tr td div.cols div.subject h3 {
+	color: #292929; font-weight: bold;
+}
+#container table.tablebody tr td div.cols div.subject p em {
+	margin-right: 5px; color: #737373; font-weight: bold;
+}
+#container table.tablebody tr td div.cols div.subject p span {
+	color: #737373;
+}
+#container table.tablebody tr td div.cols div.preview {
+	background-color: #d6d6d6;
+}
+#container table.tablebody tr td div.grids div.grid {
+	box-sizing: border-box; border-top: 1px solid #e3e3e3;
+}
+#container table.tablebody tr td ul.status {
+	display: none; float: right;
+}
+#container table.tablebody tr td ul.status li {
+	float: left; width: 15px; height: 15px; background-repeat: no-repeat; background-position: center center; cursor: pointer;
+}
+#container table.tablebody tr td ul.status li.search {
+	background-image: url('/images/container.timetable.search.png');
+}
+#container table.tablebody tr td ul.status li.edit {
+	background-image: url('/images/container.timetable.edit.png');
+}
+#container table.tablebody tr td ul.status li.del {
+	background-image: url('/images/container.timetable.del.png');
+}
+
+#container div.nontimes {
+	margin-top: 8px; border: 1px solid #d6d6d6;
+}
+#container div.nontimes div.subject {
+	padding: 0 16px; border-bottom: 1px solid #ededed;
+}
+#container div.nontimes div.subject:last-of-type {
+	border-bottom: 0;
+}
+#container div.nontimes div.subject span {
+	display: inline-block; line-height: 48px; vertical-align: middle; font-size: 14px;
+}
+#container div.nontimes div.subject span.name {
+	margin-right: 8px; color: #292929; font-weight: bold;
+}
+#container div.nontimes div.subject span.place {
+	margin-right: 8px; color: #737373;
+}
+#container div.nontimes div.subject span.del {
+	width: 24px; height: 24px; background: transparent url('/images/container.timetable.del.png') no-repeat center center; cursor: pointer;
+}
+
+#container ul.floating {
+	position: fixed; z-index: 80; bottom: 15px;
+}
+#container ul.floating li.button {
+	float: left; margin: 0 1px; height: 40px; line-height: 40px; cursor: pointer;
+	color: #fff; font-size: 14px; font-weight: bold; background-color: #c62917; background-repeat: no-repeat;
+}
+#container ul.floating li.button.search {
+	padding: 0 15px 0 45px; border-radius: 20px 0 0 20px; background-image: url('/images/container.timetable.search.icon.png'); background-position: 20px center;
+}
+#container ul.floating li.button.custom {
+	padding: 0 20px 0 30px; border-radius: 0 20px 20px 0; background-image: url('/images/container.timetable.custom.icon.png'); background-position: 10px center;
+}
+#container ul.floating li.button.only {
+	padding: 0 25px 0 50px; border-radius: 20px; background-position: 25px center;
+}
+
+.color1 { background-color: #f2e8e8; }
+.color2 { background-color: #ffe9e9; }
+.color3 { background-color: #eff9cc; }
+.color4 { background-color: #dcf2e9; }
+.color5 { background-color: #dee8f6; }
+.color6 { background-color: #fff8cc; }
+.color7 { background-color: #ffedda; }
+.color8 { background-color: #dceef2; }
+.color9 { background-color: #f2e8e8; }
+.color10 { background-color: #ffe9e9; }
+.color11 { background-color: #eff9cc; }
+.color12 { background-color: #dcf2e9; }
+.color13 { background-color: #dee8f6; }
+.color14 { background-color: #fff8cc; }
+.color15 { background-color: #ffedda; }
+.color16 { background-color: #dceef2; }
+.color17 { background-color: #f2e8e8; }
+.color18 { background-color: #ffe9e9; }
+.color19 { background-color: #eff9cc; }
+.color20 { background-color: #dcf2e9; }
+.color21 { background-color: #dee8f6; }
+.color22 { background-color: #fff8cc; }
+.color23 { background-color: #ffedda; }
+.color24 { background-color: #dceef2; }
+.color25 { background-color: #f2e8e8; }
+.color26 { background-color: #ffe9e9; }
+.color27 { background-color: #eff9cc; }
+.color28 { background-color: #dcf2e9; }
+.color29 { background-color: #dee8f6; }
+.color30 { background-color: #fff8cc; }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * *  /  pc only  /  * * * * * * * * * * * * * * * * * * * * * * * * */
+
+@media only screen and (min-width: 641px) {
+	#container div.tablehead {
+		position: fixed; z-index: 90; margin-top: -15px; padding-top: 15px; width: inherit;
+		background-color: #f8f8f8;
+	}
+	#container div.tablebody {
+		margin-top: 39px; width: inherit;
+	}
+}
+
+@media only screen and (min-width: 1367px) {
+	#container table.tablehead tr td {
+		font-size: 14px;
+	}
+	#container table.tablehead tr th,
+	#container table.tablebody tr th,
+	#container table.tablebody tr th div {
+		width: 80px;
+	}
+	#container table.tablebody tr th div.times div.time,
+	#container table.tablebody tr td div.grids div.grid {
+		height: 60px; line-height: 60px; font-size: 13px;
+	}
+	#container table.tablebody tr th div.times div.time.small,
+	#container table.tablebody tr td div.grids div.grid.small {
+		height: 30px; line-height: 30px;
+	}
+	#container table.tablebody tr th div.hours div.hour {
+		font-size: 14px;
+	}
+	#container table.tablebody tr td h3 {
+		margin: 10px 10px 0 10px; font-size: 14px; line-height: 20px;
+	}
+	#container table.tablebody tr td p {
+		margin: 0 10px 10px 10px; line-height: 15px;
+	}
+	#container table.tablebody tr td p em {
+		font-size: 12px;
+	}
+	#container table.tablebody tr td p span {
+		font-size: 12px;
+	}
+	#container table.tablebody tr td ul.status {
+		margin: 10px 10px 0 0;
+	}
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1366px) {
+	#container table.tablehead tr td {
+		font-size: 13px;
+	}
+	#container table.tablehead tr th,
+	#container table.tablebody tr th,
+	#container table.tablebody tr th div {
+		width: 60px;
+	}
+	#container table.tablebody tr th div.hours div.hour {
+		font-size: 13px;
+	}
+	#container table.tablebody tr th div.times div.time,
+	#container table.tablebody tr td div.grids div.grid {
+		height: 50px; line-height: 50px; font-size: 12px;
+	}
+	#container table.tablebody tr th div.times div.time.small,
+	#container table.tablebody tr td div.grids div.grid.small {
+		height: 25px; line-height: 25px;
+	}
+	#container table.tablebody tr td h3 {
+		margin: 7px 7px 0 7px; font-size: 12px; line-height: 13px;
+	}
+	#container table.tablebody tr td p {
+		margin: 0 7px 7px 7px; line-height: 12px;
+	}
+	#container table.tablebody tr td p em {
+		font-size: 11px;
+	}
+	#container table.tablebody tr td p span {
+		font-size: 11px;
+	}
+	#container table.tablebody tr td ul.status {
+		margin: 7px 7px 0 0;
+	}
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * *  /  mobile only  /  * * * * * * * * * * * * * * * * * * * * * * * * */
+
+@media only screen and (max-width: 640px) {
+	#container div.tablehead {
+		position: relative; z-index: 90; background-color: #f8f8f8;
+	}
+	#container table.tablehead tr td {
+		font-size: 13px;
+	}
+	#container table.tablehead tr th,
+	#container table.tablebody tr th,
+	#container table.tablebody tr th div {
+		width: 40px;
+	}
+	#container table.tablebody tr th div.hours div.hour {
+		font-size: 10px;
+	}
+	#container table.tablebody tr th div.times div.time,
+	#container table.tablebody tr td div.grids div.grid {
+		height: 60px; line-height: 60px; font-size: 10px;
+	}
+	#container table.tablebody tr th div.times div.time.small,
+	#container table.tablebody tr td div.grids div.grid.small {
+		height: 30px; line-height: 30px;
+	}
+	#container table.tablebody tr td h3 {
+		margin: 5px 5px 0 5px; font-size: 11px;
+	}
+	#container table.tablebody tr td p {
+		margin: 0 5px 5px 5px;
+	}
+	#container table.tablebody tr td p em {
+		display: block; font-size: 10px;
+	}
+	#container table.tablebody tr td p span {
+		display: block; font-size: 10px;
+	}
+	#container table.tablebody tr td ul.status {
+		width: 0; height: 0; overflow: hidden;
+	}
+	#container ul.floating {
+		display: none;
+	}
+}

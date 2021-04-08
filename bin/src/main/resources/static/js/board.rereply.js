@@ -1,7 +1,7 @@
 /*대댓글 버튼 클릭시 form 생성*/
 function formReReply(id){
 	
-	if($("#rereply-"+id).val() == null){
+	if($("#rereply-"+id).val() == null || $("#rereply-"+id).val() == ""){
 $("#reply-"+id).after(
 	`<form class="writecomment child">
 	<input type="hidden" id="rereply-${id}" value="${id}" /> 
@@ -38,10 +38,10 @@ function postReReply(id){
 	}).done((res)=>{
 		
 		if(res.statusCode === 1){
-			alert("게시글 작성에 성공하였습니다.");
+			alert("대댓글 작성에 성공하였습니다.");
 			 location.reload();
 		}else{
-			alert("게시글 작성에 실패하였습니다.");
+			alert("대댓글 작성에 실패하였습니다.");
 		}
 	});
 }
@@ -60,9 +60,9 @@ function deleteReReply(id){
 		url: "/rereply/"+id,
 		dataType:"json"
 	}).done((res)=>{
-		
+	
 		if(res.statusCode === 1){
-		$("#reply-"+id).remove();
+		$("#rereply-"+id).remove();
 		}else{
 			alert("삭제에 실패하였습니다.");
 		}
