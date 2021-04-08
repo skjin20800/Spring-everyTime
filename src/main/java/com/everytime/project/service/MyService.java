@@ -1,6 +1,5 @@
 package com.everytime.project.service;
 
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,10 +61,15 @@ public class MyService {
 	@Transactional
 	public User oauth수정(OauthUpdateDto oauthUpdateDto) {
 			User userEntity = userRepository.findByUsername(oauthUpdateDto.getUsername());
+			if(userRepository.findByNickname(oauthUpdateDto.getNickname())!=null) {
+				return null;
+			}
+			else {
 			userEntity.setNickname(oauthUpdateDto.getNickname());
 			userEntity.setUniversity(oauthUpdateDto.getUniversity());
 			userEntity.setEntranceYear(oauthUpdateDto.getEntranceYear());
 			userEntity.setUserRole(RoleType.USER);
 			return userEntity;
+			}
 	}
 }

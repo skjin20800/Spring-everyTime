@@ -28,10 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable(); // csrf비활성화
-		http.authorizeRequests().antMatchers("/", "/css/**", "/images/**", "/js/**").permitAll()
-				.antMatchers("/loginForm", "/joinForm").permitAll().antMatchers("/my/oauth")
-				.access("hasRole('ROLE_OAUTH')").antMatchers("/join").permitAll().antMatchers("/**")
-				.access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") // user,post만 인증 및 허용//ROLE_는 강제성이 있음. 롤 검증시 사용
+		http.authorizeRequests().antMatchers("/", "/css/**", "/images/**", "/js/**","/likes/**").permitAll()
+		.antMatchers("/loginForm","/joinForm","join").permitAll()
+				.antMatchers("/my/oauth","/my/oauthUpdate").access("hasRole('ROLE_OAUTH')")
+				.antMatchers("/join").permitAll()
+				.antMatchers("/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") // user,post만 인증 및 허용//ROLE_는 강제성이 있음. 롤 검증시 사용
 				.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')").anyRequest().permitAll() // 나머지 다 허용
 				.and().formLogin() // x-www-form-urlencoded
 				.loginPage("/loginForm") // 로그인 주소
