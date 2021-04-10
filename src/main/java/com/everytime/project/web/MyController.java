@@ -49,21 +49,38 @@ public class MyController {
 	public  CMRespDto<?> universityUpdate(@RequestBody UniversityUpdateDto universityUpdateDto, @AuthenticationPrincipal PrincipalDetails principalDetails)  {
 		System.out.println("MyController emailUpdate -  작동");
 		User userEntity = universityUpdateDto.toEntity();
-		return myService.대학교변경(userEntity);
+		userEntity = myService.대학교변경(userEntity);
+		if (userEntity == null) {
+			return new CMRespDto<>(-1,"비밀번호가 틀렸습니다.");
+		}else {
+		principalDetails.setUser(userEntity);
+		return new CMRespDto<>(1,"대학교가 변경되었습니다.");
+		}
 	}
 	@PutMapping("/my/emailUpdate")
 	@ResponseBody
-	public  CMRespDto<?> emailUpdate(@RequestBody EmailUpdateDto emailUpdateDto, @AuthenticationPrincipal PrincipalDetails principalDetails)  {
+	public CMRespDto<?> emailUpdate(@RequestBody EmailUpdateDto emailUpdateDto, @AuthenticationPrincipal PrincipalDetails principalDetails)  {
 		System.out.println("MyController emailUpdate -  작동");
 		User userEntity = emailUpdateDto.toEntity();
-		return myService.이메일변경(userEntity);
+		userEntity = myService.이메일변경(userEntity);
+		if (userEntity == null) {
+			return new CMRespDto<>(-1,"비밀번호가 틀렸습니다.");
+		}else {
+		principalDetails.setUser(userEntity);
+		return new CMRespDto<>(1,"이메일이 변경되었습니다.");
+		}
 	}
 	@PutMapping("/my/passwordUpdate")
 	@ResponseBody
-	public CMRespDto<?> passwordUpdate(@RequestBody PasswordUpdateDto passwordUpdateDto) {
-		System.out.println("MyController passwordUpdate - 작동");
-		System.out.println("passwordUpdate - "+passwordUpdateDto);
-		return myService.패스워드변경(passwordUpdateDto);
+	public CMRespDto<?> passwordUpdate(@RequestBody PasswordUpdateDto passwordUpdateDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		User userEntity = myService.패스워드변경(passwordUpdateDto);
+		if (userEntity == null) {
+			return new CMRespDto<>(-1,"비밀번호가 틀렸습니다.");
+		}else {
+		principalDetails.setUser(userEntity);
+		return new CMRespDto<>(1,"비밀번호가 변경되었습니다.");
+		}
 	}
 
 	@PutMapping("/my/oauthUpdate")

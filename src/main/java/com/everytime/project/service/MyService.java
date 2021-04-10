@@ -21,41 +21,40 @@ public class MyService {
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Transactional
-	public CMRespDto<?> 대학교변경(User user) {
+	public User 대학교변경(User user) {
 			User userEntity = userRepository.findByUsername(user.getUsername());
 			if(bCryptPasswordEncoder.matches(user.getPassword(), userEntity.getPassword())) {
 				userEntity.setUniversity(user.getUniversity());
-				return new CMRespDto<>(1,"대학교가 변경되었습니다.");
+				return userEntity;
 			}
 			else {
-			return new CMRespDto<>(-1,"비밀번호가 틀렸습니다.");
+			return null;
 			}
 	}
 	@Transactional
-	public CMRespDto<?> 이메일변경(User user) {
+	public User 이메일변경(User user) {
 		System.out.println("이메일변경 - " +user);
 			User userEntity = userRepository.findByUsername(user.getUsername());
 			if(bCryptPasswordEncoder.matches(user.getPassword(), userEntity.getPassword())) {
 				userEntity.setEmail(user.getEmail());
-				return new CMRespDto<>(1,"이메일이 변경되었습니다.");
+				return userEntity;
 			}
 			else {
-			return new CMRespDto<>(-1,"비밀번호가 틀렸습니다.");
+			return null;
 			}
 	}
 	@Transactional
-	public CMRespDto<?> 패스워드변경(PasswordUpdateDto user) {
+	public User 패스워드변경(PasswordUpdateDto user) {
 			User userEntity = userRepository.findByUsername(user.getUsername());
 			if(bCryptPasswordEncoder.matches(user.getNowpassword(), userEntity.getPassword())) {
 				String rawPassword = user.getNewpassword(); //비밀번호를 받아온다
 				String encPassword = bCryptPasswordEncoder.encode(rawPassword); //받아온 비밀번호를 해쉬암호화한다.
 				userEntity.setPassword(encPassword);
 				
-				return new CMRespDto<>(1,"비밀번호가 변경되었습니다.");
+				return userEntity;
+				
 			}
-			else {
-			return new CMRespDto<>(-1,"비밀번호가 틀렸습니다.");
-			}
+			else return null;
 	}
 	
 	@Transactional

@@ -44,7 +44,6 @@ public class LikesService {
 	
 	@Transactional
 	public int 대댓글공감(Long userId, Long reReplyId) {
-		
 		Likes like = likesRepository.findByUserIdAndReReplyId(userId,reReplyId);
 		if(like != null) {
 			return -1;

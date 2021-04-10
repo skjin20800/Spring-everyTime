@@ -34,7 +34,7 @@
     <div class="wrap">
       <div id="logo">
         <a href="/"><img src="/images/new/nav.logo.png"></a>
-        <p><span class="name multiple">에브리타임</span><span class="subname">동의대</span></p>
+        <p><span class="name multiple">에브리타임</span><span class="subname">${principal.user.university }</span></p>
       </div>
       <div id="account">
         <a href="/message" title="쪽지함" class="icon message">쪽지함</a></li>

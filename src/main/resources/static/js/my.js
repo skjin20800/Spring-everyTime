@@ -15,7 +15,7 @@ $("#oauthPut").on("click", (e) => {
 	}).done(res => {
 		if (res.statusCode === 1) {
 			alert("인증에 성공하였습니다.");
-			history.go(-1);
+			location.href='/'
 		} else{
 			alert("동일한 닉네임이 존제합니다.");
 		}
@@ -39,7 +39,7 @@ $("#emailPut").on("click", (e) => {
 		if (res.statusCode === 1) {
 
 			alert("이메일 수정에  성공하였습니다.");
-			history.go(-1);
+			location.href='/my'
 		} else {
 
 			alert("비밀번호를 잘못 입력하셨습니다.");
@@ -63,7 +63,7 @@ $("#universityPut").on("click", (e) => {
 		if (res.statusCode === 1) {
 
 			alert("대학교 수정에  성공하였습니다.");
-			history.go(-1);
+			location.href='/my'
 		} else {
 
 			alert("비밀번호를 잘못 입력하셨습니다.");
@@ -106,7 +106,7 @@ $("#passwordPut").on("click", (e) => {
 		if (res.statusCode === 1) {
 
 			alert("비밀번호 수정에  성공하였습니다.");
-			history.go(-1);
+			location.href='/my'
 		} else {
 
 			alert("비밀번호를 잘못 입력하셨습니다.");
