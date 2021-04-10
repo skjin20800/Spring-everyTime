@@ -37,12 +37,12 @@ import lombok.NoArgsConstructor;
 
 public class Timetable {
 
-	@Id //Primary Key
+	@Id // Primary Key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id; //시퀀스, auto_increment
-	
+	private Long id; // 시퀀스, auto_increment
+
 	@Column(nullable = false, length = 100)
-	private String	tableName;
+	private String tableName;
 	@Column(nullable = false, length = 100)
 	private String semesterType;
 	@Column(nullable = false, length = 100)
@@ -50,27 +50,27 @@ public class Timetable {
 	@Column(length = 100)
 	@ColumnDefault("'false'")
 	private Boolean isStandard;
-	
-	@Transient 
-	private double tableCredit;
-	
-	@ManyToOne
-	@JoinColumn(name = "userId")
-	private User user;
 
-	@OneToMany(mappedBy = "timetable",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"timetable"})
+	@Transient
+	private double tableCredit;
+
+	 @ManyToOne
+	 @JoinColumn(name = "userId")
+	 private User user;
+	 
+	@OneToMany(mappedBy = "timetable", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({ "timetable" })
 	@OrderBy("id desc")
 	private List<StudentLecture> studentLectures;
-	
+
 	@CreationTimestamp
 	private Timestamp updateDate;
-	
-	@PostLoad //select 되자마자 실행된다.
+
+	@PostLoad // select 되자마자 실행된다.
 	public void postLoad() {
 		for (StudentLecture credit : studentLectures) {
 			tableCredit += credit.getLecture().getCredit();
 		}
 	}
-	
+
 }
