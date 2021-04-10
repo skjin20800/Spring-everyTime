@@ -1,7 +1,6 @@
 package com.everytime.project.service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.everytime.project.domain.timetable.Timetable;
 import com.everytime.project.domain.timetable.TimetableRepository;
-import com.everytime.project.domain.timetable.studentLecture.StudentLecture;
 import com.everytime.project.web.dto.timetable.SemesterTypetableRespDto;
 
 import lombok.RequiredArgsConstructor;

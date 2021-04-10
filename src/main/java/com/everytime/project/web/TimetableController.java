@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.everytime.project.config.auth.PrincipalDetails;
-import com.everytime.project.domain.board.Board;
 import com.everytime.project.domain.timetable.Timetable;
 import com.everytime.project.service.TimetableService;
 import com.everytime.project.web.dto.timetable.SemesterTypetableRespDto;
