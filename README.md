@@ -172,8 +172,8 @@
  <br>
   <br>
   
-### 3. 서브메뉴 페이지JQuery
- ![image](./mdimg/JQuery_3.png)
+### 3. 서브메뉴 페이지
+ ![image](./mdimg/3.png)
 
 <br>
 <br>
