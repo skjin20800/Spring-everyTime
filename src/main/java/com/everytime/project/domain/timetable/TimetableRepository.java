@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.everytime.project.web.dto.timetable.SemesterTypetableRespDto;
-
 public interface TimetableRepository extends JpaRepository<Timetable, Long>{
 
 	@Query(value = "select * from timetable where userId = :principalId AND yearType= :yearType AND semesterType = :semesterType", nativeQuery = true)

@@ -2,7 +2,6 @@ package com.everytime.project.domain.timetable.studentLecture;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

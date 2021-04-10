@@ -15,8 +15,6 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.everytime.project.domain.timetable.course.Course;
-import com.everytime.project.domain.timetable.studentLecture.StudentLecture;
-import com.everytime.project.domain.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

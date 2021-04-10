@@ -177,6 +177,7 @@
   padding: 10px;
   border-top: 1px solid #e3e3e3;
 }
+
 #container div.card > div.board > a:hover {
   background-color: #f9f9f9;
 }

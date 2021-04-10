@@ -17,9 +17,9 @@
 		</h1>
 		<hr>
 	</div>
-	<div class="wrap articles">
+	<div class="wrap articles" id="writeBoardContainer">
 		<a id="writeArticleButton" style="display: none;">새 글을 작성해주세요!</a>
-		<article>
+		<article id="boardInfo">
 			<!-- 게시글 내용 -->
 			<a class="article"> <img src="https://cf-fpi.everytime.kr/0.png" class="picture large">
 				<div class="profile__kb">
@@ -33,20 +33,32 @@
 					</c:choose>
 					<time class="large">${board.dateSubstr}</time>
 				</div>
-				<ul class="status">
-					<li class="messagesend" data-modal="messageSend" data-article-id="177166298" data-is-anonym="1">쪽지</li>
-					<li class="abuse">신고</li>
-				</ul>
+											<c:choose>
+								<c:when test="${board.user.id ne principal.user.id}">
+									<ul class="status">
+										<li class="messagesend" data-modal="messageSend" data-comment-id="841986086" data-is-anonym="1">쪽지</li>
+										<li class="abuse">신고</li>
+									</ul>
+								</c:when>
+								<c:otherwise>
+									<ul class="status">
+										<li class="commentvote" onClick="updateBoard('${board.id}','${board.content}','${board.title}','${board.isAnonymous}')">수정</li>
+										<li class="del"><a onClick="deleteBoard(${board.id})">삭제</a></li>
+										<li></li>
+									</ul>
+							    </c:otherwise>
+							    </c:choose>				
 				<hr>
-				<h2 class="large">${board.title}</h2>
-				<p class="large">${board.content}</p>
+				<h2 class="large">&nbsp;&nbsp;${board.title}</h2>
+				<p class="large">&nbsp;&nbsp;&nbsp;${board.content}</p>
 				<ul class="status">
 					<li title="공감" class="vote" onClick="boardLike(${board.id})">${board.likeCount}</li>
 					<!-- 댓글, 대댓글 갯수 더해서 출력 -->
 					<li title="댓글" class="comment">${board.replyCount}</li>
-					<li title="스크랩" class="scrap" onClick="boardScrap(${board.id})" >${board.scrapCount}</li>
+					<li title="스크랩" class="scrap" onClick="boardScrap(${board.id})" >${board.scrapCount}&nbsp;&nbsp;&nbsp;</li>
 				</ul>
 			</a> <br />
+			<br />
 			<!-- 게시글 끝 -->
 			<!-- 댓글리스트-->
 			<div class="comments" style="display: block;">
@@ -112,7 +124,7 @@
 					<!-- 대댓글 -->
 					<!-- 대댓글 반복문 -->
 					<c:forEach var="rereply" items="${reply.rereplys}">
-						<article class="child" id="reply-${rereply.id}">
+						<article class="child" id="rereply-${rereply.id}">
 							<img src="https://cf-fpi.everytime.kr/0.png" class="picture medium">
 							<!-- 익명 여부 -->
 							<c:choose>
@@ -176,9 +188,10 @@
 
 			</div>
 		</article>
+		
 		<div class="clearBothOnly"></div>
 		<div class="pagination">
-			<a id="goListButton" class="list">글 목록</a>
+			<a id="goListButton" class="list" onClick="history.go(-1);">글 목록</a>
 		</div>
 	</div>
 	<hr>
@@ -186,6 +199,7 @@
 	<%@include file="../layout/realtimemenu.jsp"%>
 </div>
 <%@include file="../layout/footer.jsp"%>
+<script src="/js/board.js" type="text/javascript"></script>
 <script src="/js/board.reply.js" type="text/javascript"></script>
 <script src="/js/board.rereply.js" type="text/javascript"></script>
 <script src="/js/board.likes.js" type="text/javascript"></script>

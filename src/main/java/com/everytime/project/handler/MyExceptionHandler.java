@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.everytime.project.domain.exception.MyExceptionRepository;
 import com.everytime.project.web.dto.CMRespDto;
 
 import lombok.RequiredArgsConstructor;
