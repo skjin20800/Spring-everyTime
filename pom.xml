@@ -14,19 +14,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>everytime</name>
 	<description>Demo project for Spring Boot</description>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<!-- 추가 라이브러리 -->
-		<!--jar에서 JSP사용가능 -->
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
-		<!--jar에서 JSP사용가능 -->
 		<!-- 톰캣 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

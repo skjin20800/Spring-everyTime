@@ -19,7 +19,7 @@ spring:
     password: every1234
     
   jpa:
-    open-in-view: false
+    open-in-view: true
     hibernate:
       ddl-auto: update
       naming:
