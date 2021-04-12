@@ -98,14 +98,14 @@
 
 
 ## 배포 -예정
-- AWS or 네이버클라우드
+- 네이버 클라우드
 - ubuntu
 - Putty
 - Docker
 - tomcat
 - Mysql
 
-![AWS](./mdimg/AWS.png)
+![네이버](./mdimg/naver.png)
 ![docker1](./mdimg/docker1.png)
 
 <br>
@@ -115,16 +115,13 @@
  ###  MVC 패턴
 ![MVC](./mdimg/MVC.png)
 
- ### 기능설계
-  ![Reflection](./mdimg/Reflection.png)
-
 
 ## 개발환경
 - 개발언어 : JAVA SpringBoot - 2.4.3V
 - IDE : STS, Vscode
 - DB : Mysql 8.0
 - WAS :  tomcat
-- 배포 : AWS - Docker
+- 배포 : 네이버 클라우드- Docker
 
 ##  의존성
 
