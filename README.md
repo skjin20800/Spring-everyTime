@@ -63,7 +63,8 @@
 - 이메일 수정
 - 학교 수정
 - 시간표 조회
-- 개인 시간표 조회
+- 시간표 목록별 이동
+- 시간표에 수업 추가
 
 
 # 사용 기술
@@ -150,6 +151,9 @@
  ![image](./mdimg/DB_2.png)
 
 
+## 시간표 모델링
+![image](https://user-images.githubusercontent.com/30206820/114356495-a54e0a00-9bab-11eb-8bfc-8e05aa6be112.png)
+
 
 
 ## 페이지 화면 소개 
@@ -212,6 +216,11 @@
 ### 10. 실시간 인기 Top3
  ![image](./mdimg/10.png) 
 
+### 11. 시간표 조회
+![image](https://user-images.githubusercontent.com/30206820/114357213-74220980-9bac-11eb-8fba-e515ca340069.png)
+
+### 12. 시간표에 수업 추가
+![image](https://user-images.githubusercontent.com/30206820/114357262-8308bc00-9bac-11eb-811f-622aa3a4311a.png)
 
 ### 블로그 주소
 ### 진경빈 블로그 주소 : https://blog.naver.com/skjin20800
