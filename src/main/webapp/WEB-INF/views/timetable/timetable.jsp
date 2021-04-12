@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal" />
+</sec:authorize>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>에브리타임 test</title>
+<title>에브리타임</title>
 <meta charset="utf-8">
 <meta name="referrer" content="origin">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +20,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image"
 	content="https://everytime.kr/images/og_image.png">
-<meta property="og:url" content="https://everytime.kr/timetable">
+<meta property="og:url" content="https://everytime.kr/timetable/2018/1">
 <meta property="og:site_name" content="에브리타임">
 <meta property="og:title" content="에브리타임">
 <meta property="og:description"
@@ -37,8 +46,6 @@
 <!--[if lt IE 8]>
   <script src="/js/extensions.json3.min.js"></script>
   <![endif]-->
-<script type="text/javascript" async=""
-	src="https://www.google-analytics.com/analytics.js"></script>
 <script type="text/javascript" src="/js/extensions.jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="/js/extensions.underscore-min.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
@@ -49,9 +56,10 @@
 <script type="text/javascript" src="/js/timetable.index.js"></script>
 <script type="text/javascript" src="/js/timetable.subjectcolumninfo.js"></script>
 <script type="text/javascript" src="/js/timetable.imagegenerator.js"></script>
+<script type="text/javascript" src="/js/timetable.js"></script>
 </head>
-<body style="" data-new-gr-c-s-check-loaded="14.1002.0"
-	data-gr-ext-installed="" class="vsc-initialized">
+
+<body>
 	<nav>
 		<div class="wrap">
 			<div id="logo">
@@ -61,8 +69,8 @@
 				</p>
 			</div>
 			<div id="account">
-				<a href="/message" title="쪽지함" class="icon message">쪽지함</a> <a
-					href="/my" title="내 정보" class="icon my">내 정보</a> <input
+				<a href="/message" title="쪽지함" class="icon message">쪽지함</a>
+				</li> <a href="/my" title="내 정보" class="icon my">내 정보</a> <input
 					type="hidden" id="userUserid" value="lonru"> <input
 					type="hidden" id="userSchool" value="151"> <input
 					type="hidden" id="userCampus" value="183">
@@ -81,23 +89,25 @@
 	<script type="text/javascript">
     var _timetableGridInfo = [];
   </script>
-	<div id="container" class="timetable" style="height: 344px;">
+	<div id="container" class="timetable" style="height: 679px;">
 		<hr>
 		<aside>
 			<form class="select">
-				<select id="semesters">
+				<select id="semesters" onchange="chageSelect()">
 					<option>2021년 2학기</option>
 					<option>2021년 1학기</option>
 					<option>2020년 2학기</option>
-					<option>2020년 1학기</option></select>
+					<option>2020년 1학기</option>
+				</select>
 			</form>
 			<div class="title">
 				<a class="hamburger"></a>
-				<h1 id="tableName">시간표 1</h1>
+				<h1 id="tableName">${timetable.tableName}</h1>
 				<div class="description">
 					<ul class="info">
-						<li><span id="tableCredit">18.5</span> 학점</li>
-						<li><time id="tableUpdatedAt">18/03/16 15:16</time> 변경</li>
+						<li><span id="tableCredit">${timetable.tableCredit}</span> 학점</li>
+						<li><time id="tableUpdatedAt">${timetable.updateDate}</time>
+							변경</li>
 					</ul>
 				</div>
 				<hr>
@@ -109,19 +119,40 @@
 				<hr>
 			</div>
 			<div class="menu">
+				<input type="hidden" id ="timetableId" value="${timetable.id}">
 				<ol>
-					<li class="active"><a href="/timetable/2018/1/8599353"
-						class="primary">시간표 1</a></li>
-					<li><a href="/timetable/2018/1/8814795">호엥</a></li>
-					<li><a href="/timetable/2018/1/8816614">호에엥</a></li>
-					<li><a href="/timetable/2018/1/8818196">호에에엥</a></li>
-					<li><a href="/timetable/2018/1/8924988">ㅎㆍㄷ</a></li>
-					<li class="extension"><a class="create">새 시간표 만들기</a><a
-						class="wizard" href="/timetable/wizard/2018/1">마법사로 시간표 만들기</a></li>
+					<c:forEach var="semester" items="${semester}">
+						<c:choose>
+							<c:when
+								test="${timetableId eq semester.id and semester.isStandard eq 'true'}">
+								<li class="active"><a
+									href="/timetable/${semester.yearType}/${semester.semesterType }/${semester.id}"
+									class="primary">${semester.tableName}</a></li>
+							</c:when>
+
+							<c:when
+								test="${timetableId eq semester.id and semester.isStandard eq 'false'}">
+								<li class="active"><a
+									href="/timetable/${semester.yearType}/${semester.semesterType }/${semester.id}">${semester.tableName}</a></li>
+							</c:when>
+							<c:when test="${semester.isStandard eq 'true'}">
+								<li><a
+									href="/timetable/${semester.yearType}/${semester.semesterType }/${semester.id}"
+									class="primary">${semester.tableName}</a></li>
+
+							</c:when>
+							<c:otherwise>
+
+								<li><a
+									href="/timetable/${semester.yearType}/${semester.semesterType }/${semester.id}">${semester.tableName}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<li class="extension"><a class="create">새 시간표 만들기</a>
 				</ol>
 			</div>
 		</aside>
-		<div class="wrap" style="width: 1085px;">
+		<div class="wrap" style="width: 1104px;">
 			<div class="tablehead">
 				<table class="tablehead">
 					<tbody>
@@ -168,254 +199,79 @@
 									<div class="time">오후 10시</div>
 									<div class="time">오후 11시</div>
 								</div></th>
-							<td><div class="cols" style="width: 199px;">
-									<div class="subject color2" style="height: 61px; top: 660px;">
-										<ul class="status" style="display: none;">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>생명과학개론</h3>
-										<p>
-											<em>빈기철</em><span>정보913</span>
-										</p>
+							<!-- 								1교시 450 5교시 650 -->
+							<c:set var="list" value="${fn:split('월,화,수,목,금',',')}" />
+							<c:forEach var="day" items="${list}" varStatus="i">
+								<td><div class="cols" style="width: 203px;">
+										<c:forEach var="sLecture" items="${timetable.studentLectures}">
+											<c:if test="${fn:contains(sLecture.lecture.firstTime,day)}">
+												<fmt:formatNumber type="number" var="top"
+													value="${fn:substring(sLecture.lecture.firstTime,1,2)*60+480}" />
+													<c:set var="length" value="${fn:length(sLecture.lecture.firstTime)}"/>
+													<fmt:formatNumber type="number" var="end" value="${fn:substring(sLecture.lecture.firstTime,length-1,length)}"/>
+													<fmt:formatNumber type="number" var="start" value="${fn:substring(sLecture.lecture.firstTime,1,2)}"/>
+												<fmt:formatNumber type="number" var="height"
+													value="${(end-start)*60+61 }" />
+												<div class="subject color${sLecture.id}"
+													style="height: ${height}px; top: ${top}px;">
+													<ul class="status" style="display: none;">
+														<li title="삭제" class="del"></li>
+													</ul>
+													<h3>${sLecture.lecture.course.courseName}</h3>
+													<p>
+														<em>${sLecture.lecture.professor}</em><span>${sLecture.lecture.lectureroom}</span>
+													</p>
+												</div>
+											</c:if>
+											<c:if test="${fn:contains(sLecture.lecture.secondTime,day)}">
+												<fmt:formatNumber type="number" var="top"
+													value="${fn:substring(sLecture.lecture.secondTime,1,2)*60+480}" />
+														<c:set var="length" value="${fn:length(sLecture.lecture.secondTime)}"/>
+													<fmt:formatNumber type="number" var="end" value="${fn:substring(sLecture.lecture.secondTime,length-1,length)}"/>
+													<fmt:formatNumber type="number" var="start" value="${fn:substring(sLecture.lecture.secondTime,1,2)}"/>
+												<fmt:formatNumber type="number" var="height"
+													value="${(end-start)*60+61 }" />
+												<div class="subject color${sLecture.id}"
+													style="height: ${height}px; top: ${top}px;">
+													<ul class="status" style="display: none;">
+														<li title="삭제" class="del"></li>
+													</ul>
+													<h3>${sLecture.lecture.course.courseName}</h3>
+													<p>
+														<em>${sLecture.lecture.professor}</em><span>${sLecture.lecture.lectureroom}</span>
+													</p>
+												</div>
+											</c:if>
+										</c:forEach>
 									</div>
-									<div class="subject color5" style="height: 121px; top: 780px;">
-										<ul class="status" style="display: none;">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>객체지향프로그래밍Ⅰ</h3>
-										<p>
-											<em>장희숙</em><span>정보915</span>
-										</p>
-									</div>
-									<div class="subject color6" style="height: 61px; top: 600px;">
-										<ul class="status">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>데이터구조</h3>
-										<p>
-											<em>이중화</em><span>정보913</span>
-										</p>
-									</div>
-								</div>
-								<div class="grids">
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-								</div></td>
-							<td><div class="cols" style="width: 200px;">
-									<div class="subject color1" style="height: 61px; top: 960px;">
-										<ul class="status">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>전공탐색과진로설계Ⅱ-Ⅰ</h3>
-										<p>
-											<em>김태석</em><span>정보908</span>
-										</p>
-									</div>
-									<div class="subject color5" style="height: 121px; top: 780px;">
-										<ul class="status" style="display: none;">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>객체지향프로그래밍Ⅰ</h3>
-										<p>
-											<em>장희숙</em><span>정보915</span>
-										</p>
-									</div>
-									<div class="subject color7" style="height: 121px; top: 660px;">
-										<ul class="status" style="display: none;">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>공학설계입문</h3>
-										<p>
-											<em>권오준</em><span>정보913</span>
-										</p>
-									</div>
-								</div>
-								<div class="grids">
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-								</div></td>
-							<td><div class="cols" style="width: 200px;">
-									<div class="subject color4" style="height: 121px; top: 900px;">
-										<ul class="status">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>컴퓨터그래픽스</h3>
-										<p>
-											<em>장희숙</em><span>정보915</span>
-										</p>
-									</div>
-									<div class="subject color7" style="height: 121px; top: 660px;">
-										<ul class="status">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>공학설계입문</h3>
-										<p>
-											<em>권오준</em><span>정보913</span>
-										</p>
-									</div>
-								</div>
-								<div class="grids">
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-								</div></td>
-							<td><div class="cols" style="width: 200px;">
-									<div class="subject color2" style="height: 121px; top: 960px;">
-										<ul class="status">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>생명과학개론</h3>
-										<p>
-											<em>빈기철</em><span>정보913</span>
-										</p>
-									</div>
-									<div class="subject color6" style="height: 121px; top: 660px;">
-										<ul class="status">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>데이터구조</h3>
-										<p>
-											<em>이중화</em><span>정보913</span>
-										</p>
-									</div>
-								</div>
-								<div class="grids">
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-								</div></td>
-							<td><div class="cols" style="width: 200px;">
-									<div class="subject color3" style="height: 181px; top: 660px;">
-										<ul class="status">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>확률및통계</h3>
-										<p>
-											<em>이석기</em><span>정보913</span>
-										</p>
-									</div>
-									<div class="subject color4" style="height: 121px; top: 540px;">
-										<ul class="status">
-											<li title="삭제" class="del"></li>
-										</ul>
-										<h3>컴퓨터그래픽스</h3>
-										<p>
-											<em>장희숙</em><span> 정보912</span>
-										</p>
-									</div>
-								</div>
-								<div class="grids">
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-									<div class="grid"></div>
-								</div></td>
+									<div class="grids">
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+										<div class="grid"></div>
+									</div></td>
+							</c:forEach>
+
 							<td style="display: none;"><div class="cols"></div>
 								<div class="grids">
 									<div class="grid"></div>
@@ -475,8 +331,7 @@
 				</table>
 				<div class="nontimes"></div>
 			</div>
-		</div>
-		<form id="tableExport" class="modal">
+		</div>		<form id="tableExport" class="modal">
 			<a title="닫기" class="close"></a>
 			<h3>시간표 이미지 저장</h3>
 			<p>
@@ -512,179 +367,31 @@
 			<input type="button" value="삭제" class="button light floatLeft">
 			<input type="submit" value="설정 저장" class="button">
 		</form>
-		<form id="subjectCampusFilter" class="modal">
+		<form id="insertTime" class="modal">
 			<a title="닫기" class="close"></a>
-			<h3>캠퍼스</h3>
-			<div class="filter"></div>
-			<input type="submit" value="적용" class="button">
+			<h3>시간표 추가</h3>
+			<p>
+				<label style="display:inline-block; width:60px;">과목코드</label> 
+				<label style="display:inline-block; width:80px;">과목명</label> 
+				<label style="display:inline-block; width:50px;">교수</label> 
+				<label style="display:inline-block; width:50px;">강의시간</label> 
+<!-- 				<label style="display:inline-block; width:50px;">학년</label>  -->
+<!-- 				<label style="display:inline-block; width:50px;">정원</label>  -->
+			</p>
+			<c:forEach var="lecture" items="${AllLecture}" >
+			<p>
+				<input type="radio" id='lecture"+${lecture.course.id}+"'  name="lecbox" value="${lecture.course.id}">
+					<label for= 'lecture"+${lecture.course.id}+"'  class="checkbox">${lecture.course.courseCode} / ${lecture.course.courseName} / ${lecture.professor} / ${lecture.lectureTime}</label> 	
+			</p>
+			</c:forEach>
+<!-- 			<input type="button" value="삭제" class="button light floatLeft"> -->
+			<input type="submit" value="시간표 추가" class="button">
 		</form>
-		<form id="subjectCategoryFilter" class="modal">
-			<a title="닫기" class="close"></a>
-			<h3>전공/영역</h3>
-			<div class="filter"></div>
-		</form>
-		<form id="subjectKeywordFilter" class="modal">
-			<a title="닫기" class="close"></a>
-			<h3>검색어</h3>
-			<div class="filter"></div>
-			<input type="submit" value="검색" class="button">
-		</form>
-		<form id="subjectOrderFilter" class="modal">
-			<a title="닫기" class="close"></a>
-			<h3>정렬</h3>
-			<div class="filter"></div>
-			<input type="submit" value="적용" class="button">
-		</form>
-		<form id="subjectTimeFilter" class="modal">
-			<a title="닫기" class="close"></a>
-			<h3>시간</h3>
-			<div class="filter"></div>
-			<input type="submit" value="적용" class="button">
-		</form>
-		<form id="subjectGradeFilter" class="modal">
-			<a title="닫기" class="close"></a>
-			<h3>학년</h3>
-			<div class="filter"></div>
-			<input type="button" value="전체 선택" class="button light floatLeft"
-				data-action="select"> <input type="button" value="전체 취소"
-				class="button light floatLeft" data-action="deselect"> <input
-				type="submit" value="적용" class="button">
-		</form>
-		<form id="subjectTypeFilter" class="modal">
-			<a title="닫기" class="close"></a>
-			<h3>구분</h3>
-			<div class="filter"></div>
-			<input type="button" value="전체 선택" class="button light floatLeft"
-				data-action="select"> <input type="button" value="전체 취소"
-				class="button light floatLeft" data-action="deselect"> <input
-				type="submit" value="적용" class="button">
-		</form>
-		<form id="subjectCreditFilter" class="modal">
-			<a title="닫기" class="close"></a>
-			<h3>학점</h3>
-			<div class="filter"></div>
-			<input type="button" value="전체 선택" class="button light floatLeft"
-				data-action="select"> <input type="button" value="전체 취소"
-				class="button light floatLeft" data-action="deselect"> <input
-				type="submit" value="적용" class="button">
-		</form>
-		<ul class="floating" style="left: 753.2px;">
-			<li class="button search">수업 목록에서 검색</li>
+		<ul class="floating" style="left: 762.4px;">
+			<li data-modal="insertTime" class="button search">수업 목록에서 검색</li>
 			<li class="button custom">직접 추가</li>
 		</ul>
 	</div>
-	<form id="customsubjects" style="display: none;">
-		<input type="hidden" name="id" value=""> <a title="닫기"
-			class="close"></a>
-		<h2></h2>
-		<dl>
-			<dt>과목명 (필수)</dt>
-			<dd>
-				<input type="text" name="name" placeholder="예) 경제학입문" maxlength="40"
-					class="text">
-			</dd>
-			<dt>교수명</dt>
-			<dd>
-				<input type="text" name="professor" placeholder="예) 홍길동"
-					maxlength="40" class="text">
-			</dd>
-			<dt>시간/장소</dt>
-			<dd class="timeplaces">
-				<div class="timeplace">
-					<ol class="weeks">
-						<li class="active">월</li>
-						<li>화</li>
-						<li>수</li>
-						<li>목</li>
-						<li>금</li>
-						<li>토</li>
-						<li>일</li>
-					</ol>
-					<p>
-						<select class="starthour"><option value="0">오전
-								0시</option>
-							<option value="1">오전 1시</option>
-							<option value="2">오전 2시</option>
-							<option value="3">오전 3시</option>
-							<option value="4">오전 4시</option>
-							<option value="5">오전 5시</option>
-							<option value="6">오전 6시</option>
-							<option value="7">오전 7시</option>
-							<option value="8">오전 8시</option>
-							<option value="9" selected="selected">오전 9시</option>
-							<option value="10">오전 10시</option>
-							<option value="11">오전 11시</option>
-							<option value="12">오후 12시</option>
-							<option value="13">오후 1시</option>
-							<option value="14">오후 2시</option>
-							<option value="15">오후 3시</option>
-							<option value="16">오후 4시</option>
-							<option value="17">오후 5시</option>
-							<option value="18">오후 6시</option>
-							<option value="19">오후 7시</option>
-							<option value="20">오후 8시</option>
-							<option value="21">오후 9시</option>
-							<option value="22">오후 10시</option>
-							<option value="23">오후 11시</option></select><select class="startminute"><option
-								value="0">0분</option>
-							<option value="5">5분</option>
-							<option value="10">10분</option>
-							<option value="15">15분</option>
-							<option value="20">20분</option>
-							<option value="25">25분</option>
-							<option value="30">30분</option>
-							<option value="35">35분</option>
-							<option value="40">40분</option>
-							<option value="45">45분</option>
-							<option value="50">50분</option>
-							<option value="55">55분</option></select><span>~</span><select
-							class="endhour"><option value="0">오전 0시</option>
-							<option value="1">오전 1시</option>
-							<option value="2">오전 2시</option>
-							<option value="3">오전 3시</option>
-							<option value="4">오전 4시</option>
-							<option value="5">오전 5시</option>
-							<option value="6">오전 6시</option>
-							<option value="7">오전 7시</option>
-							<option value="8">오전 8시</option>
-							<option value="9">오전 9시</option>
-							<option value="10" selected="selected">오전 10시</option>
-							<option value="11">오전 11시</option>
-							<option value="12">오후 12시</option>
-							<option value="13">오후 1시</option>
-							<option value="14">오후 2시</option>
-							<option value="15">오후 3시</option>
-							<option value="16">오후 4시</option>
-							<option value="17">오후 5시</option>
-							<option value="18">오후 6시</option>
-							<option value="19">오후 7시</option>
-							<option value="20">오후 8시</option>
-							<option value="21">오후 9시</option>
-							<option value="22">오후 10시</option>
-							<option value="23">오후 11시</option></select><select class="endminute"><option
-								value="0">0분</option>
-							<option value="5">5분</option>
-							<option value="10">10분</option>
-							<option value="15">15분</option>
-							<option value="20">20분</option>
-							<option value="25">25분</option>
-							<option value="30">30분</option>
-							<option value="35">35분</option>
-							<option value="40">40분</option>
-							<option value="45">45분</option>
-							<option value="50">50분</option>
-							<option value="55">55분</option></select><input type="text"
-							placeholder="예) 종303" class="text place">
-					</p>
-				</div>
-				<a class="new"><strong>+</strong> 더 입력</a>
-			</dd>
-		</dl>
-		<div class="clearBothOnly"></div>
-		<div class="submit">
-			<input type="submit" value="저장" class="button">
-		</div>
-	</form>
 	<div id="subjects"></div>
 	<div id="bottom">
 		<ul class="links">
@@ -696,9 +403,8 @@
 			<li class="copyright"><a href="/">© 에브리타임</a></li>
 		</ul>
 	</div>
-
 	<script type="text/javascript">
-    var _serverTime = 1617309253991;
+    var _serverTime = 1617840659781;
     var _clientTime = new Date().getTime();
     var _diffTime = _clientTime - _serverTime;
     var _apiServerUrl = 'https://api.everytime.kr';
@@ -711,6 +417,6 @@
     gtag('js', new Date());
     gtag('config', 'UA-22022140-4');
   </script>
-
 </body>
+<whale-quicksearch translate="no"></whale-quicksearch>
 </html>

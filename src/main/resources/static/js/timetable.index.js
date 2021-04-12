@@ -60,13 +60,80 @@
 $().ready(function () {
 	var $aside = $('aside:first');
 	var $container = $('#container');
-	var $tableExport, $tableSetting;
+	var $tableExport, $tableSetting,$insertTime;
 
 	var _fn = {
 		initiate: function () {
 			_fn.initiateTableExport();
 			_fn.initiateTableSetting();
+			_fn.initiateInsertTime();
 		},
+		initiateInsertTime: function () {
+			$insertTime = $('#insertTime');
+			$('[data-modal="insertTime"]').on('click', function () {
+				_fn.showInsertTime();
+			});
+			$('a.close', $insertTime).on('click', function () {
+				_fn.hideInsertTime();
+			});
+			$insertTime.on('submit', function () {
+				_fn.saveInsertTime();
+				return false;
+			});
+		},
+		showInsertTime: function () {
+			var $menu = $aside.find('div.menu > ol');
+			var $name = $insertTime.find('input[name="name"]');
+			var $priv = $insertTime.find('input[name="priv"]');
+			var $isPrimary = $insertTime.find('input[name="is_primary"]');
+			var $currentMenu = $menu.find('li').filter(function () {
+				return $(this).data('id') === _set.tableId;
+			});
+			var tableName = $currentMenu.data('name');
+			var tablePriv = $currentMenu.data('priv');
+			var tableIsPrimary = $currentMenu.data('isPrimary');
+			$name.val(tableName);
+			$priv.filter('[value="' + tablePriv + '"]').click();
+			if (tableIsPrimary === true) {
+				$isPrimary.prop('checked', true).prop('disabled', true);
+			} else {
+				$isPrimary.prop('checked', false).prop('disabled', false);
+			}
+			$insertTime.show();
+		},
+		hideInsertTime: function () {
+			$insertTime.hide();
+		},
+		saveInsertTime: function () {
+			var timetableId = $("#timetableId").val();
+			var lectureLength = document.getElementsByName("lecbox").length;
+			for (var i=0; i<lectureLength; i++) {
+            if (document.getElementsByName("lecbox")[i].checked == true) {
+                lectureId = document.getElementsByName("lecbox")[i].value;
+            }
+        }	
+        let data = {
+	timetableId : $("#timetableId").val()
+};
+			// 시간표 이름 저장
+		
+				$.ajax({
+					type: 'POST',
+					url:'/timetable/'+timetableId+'/'+lectureId,
+					data: JSON.stringify(data),
+		contentType: "application/json; charset=utf-8",
+		dataType:"json"
+		}).done((res)=>{
+
+		if(res.statusCode === 1){
+			alert("게시글 작성에 성공하였습니다.");
+			 location.reload();
+		}else{
+			alert("게시글 작성에 실패하였습니다.");
+		}
+	});
+		},
+		
 		initiateTableExport: function () {
 			$tableExport = $('#tableExport');
 			$('[data-modal="tableExport"]').on('click', function () {

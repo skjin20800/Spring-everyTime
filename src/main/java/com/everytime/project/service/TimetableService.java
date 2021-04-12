@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.everytime.project.domain.timetable.Timetable;
 import com.everytime.project.domain.timetable.TimetableRepository;
+import com.everytime.project.domain.timetable.lecture.Lecture;
+import com.everytime.project.domain.timetable.lecture.LectureRepository;
 import com.everytime.project.web.dto.timetable.SemesterTypetableRespDto;
 
 import lombok.RequiredArgsConstructor;
@@ -16,15 +18,21 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class TimetableService {
 	private final TimetableRepository timetableRepository;
+	private final LectureRepository lectureRepository;
 	
 //	@Transactional(readOnly = true)
 //	public Page<Board> 게시판목록(BoardType type,Pageable pageable) {		
 //		return boardRepository.findByType(type,pageable);
 //	}
-	
 	@Transactional(readOnly = true)
-	public Timetable 시간표상세보기(Long principalId) {
-		Timetable timetableEntity = timetableRepository.findByStandard(principalId);
+	public List<Lecture> 강좌불러오기() {
+		List<Lecture> lectureEntity = lectureRepository.findAll();
+		return lectureEntity;
+	}
+
+	@Transactional(readOnly = true)
+	public Timetable 시간표상세보기(Long principalId,String yearType,String semesterType) {
+		Timetable timetableEntity = timetableRepository.findByStandard(principalId,yearType,semesterType);
 		if(principalId.equals(timetableEntity.getUser().getId())) {
 			return timetableEntity;
 		}else {

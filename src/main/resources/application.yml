@@ -14,14 +14,14 @@ spring:
   
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.17.0.2:3306/every?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/every?serverTimezone=Asia/Seoul
     username: every
     password: every1234
     
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: false

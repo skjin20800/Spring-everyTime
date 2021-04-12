@@ -48,7 +48,7 @@ public class Timetable {
 	@Column(nullable = false, length = 100)
 	private String yearType;
 	@Column(length = 100)
-	@ColumnDefault("'false'")
+	@ColumnDefault("FALSE")
 	private Boolean isStandard;
 
 	@Transient
