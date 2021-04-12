@@ -20,6 +20,6 @@ public class MyExceptionHandler {
 	@ExceptionHandler(value = Exception.class)
 	public CMRespDto<?> hello(Exception e) {
 		exceptionList.addExceptionList(e.getMessage());
-		return new CMRespDto<>(-1, "오류남");
+		return new CMRespDto<>(-1, "오류남"+e.getMessage());
 	}	
 }

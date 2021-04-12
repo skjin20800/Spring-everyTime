@@ -7,11 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.everytime.project.config.auth.PrincipalDetails;
 import com.everytime.project.domain.timetable.Timetable;
 import com.everytime.project.domain.timetable.lecture.Lecture;
 import com.everytime.project.service.TimetableService;
+import com.everytime.project.web.dto.CMRespDto;
 import com.everytime.project.web.dto.timetable.SemesterTypetableRespDto;
 
 import lombok.RequiredArgsConstructor;
@@ -60,5 +64,10 @@ public class TimetableController {
 		model.addAttribute("AllLecture",AllLecture);
 		return "timetable/timetable";
 	}
-
+	@PostMapping("/timetable/insert/{timetableId}/{lectureId}")
+	@ResponseBody
+	public CMRespDto<?> insertTimetable(@PathVariable Long timetableId,@PathVariable Long lectureId,@AuthenticationPrincipal PrincipalDetails principalDetails ) {
+		int result = timetableService.시간표추가하기(timetableId,lectureId);
+		return new CMRespDto<>(result,"시간표가 추가되었습니다.");
+	}
 }

@@ -212,14 +212,15 @@
 													<fmt:formatNumber type="number" var="start" value="${fn:substring(sLecture.lecture.firstTime,1,2)}"/>
 												<fmt:formatNumber type="number" var="height"
 													value="${(end-start)*60+61 }" />
-												<div class="subject color${sLecture.id}"
+												<div class="subject color${sLecture.id %30+1}"
 													style="height: ${height}px; top: ${top}px;">
+													
 													<ul class="status" style="display: none;">
 														<li title="삭제" class="del"></li>
 													</ul>
 													<h3>${sLecture.lecture.course.courseName}</h3>
 													<p>
-														<em>${sLecture.lecture.professor}</em><span>${sLecture.lecture.lectureroom}</span>
+														<em>${sLecture.lecture.professor}</em><span>${sLecture.lecture.lectureroom}</span>														
 													</p>
 												</div>
 											</c:if>
@@ -231,7 +232,7 @@
 													<fmt:formatNumber type="number" var="start" value="${fn:substring(sLecture.lecture.secondTime,1,2)}"/>
 												<fmt:formatNumber type="number" var="height"
 													value="${(end-start)*60+61 }" />
-												<div class="subject color${sLecture.id}"
+												<div class="subject color${sLecture.id%30+1}"
 													style="height: ${height}px; top: ${top}px;">
 													<ul class="status" style="display: none;">
 														<li title="삭제" class="del"></li>
