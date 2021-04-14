@@ -98,8 +98,9 @@
      - Exceipton
 
 
-## 배포 -예정
+## 배포
 - 네이버 클라우드
+- Micro
 - ubuntu
 - Putty
 - Docker
@@ -107,7 +108,6 @@
 - Mysql
 
 ![네이버](./mdimg/naver.png)
-![docker1](./mdimg/docker1.png)
 
 <br>
 <br>
