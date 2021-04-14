@@ -148,8 +148,6 @@
 
  ![image](./mdimg/DB_1.png)
 
- ![image](./mdimg/DB_2.png)
-
 
 ## 시간표 모델링
 ![image](https://user-images.githubusercontent.com/30206820/114356495-a54e0a00-9bab-11eb-8bfc-8e05aa6be112.png)
